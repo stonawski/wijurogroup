@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Linkedin, Mail, Menu, Phone, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Linkedin, Mail, Menu, Phone, X } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 
 import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
@@ -29,6 +29,10 @@ export const Route = createFileRoute("/")({
 const navItems = [
   ["O nás", "#o-nas"], ["Co děláme", "#sluzby"], ["Projekty", "#projekty"],
   ["Odpovědnost", "#odpovednost"], ["Kontakt", "#kontakt"],
+];
+
+const moreItems = [
+  ["Investice", "#investice"], ["Náš přístup", "#pristup"], ["Hodnoty", "#hodnoty"],
 ];
 
 const services = [
@@ -67,6 +71,7 @@ const values = [
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
   const [navHidden, setNavHidden] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
 
@@ -145,6 +150,27 @@ function Index() {
         <nav className="intro-up mt-20 flex flex-col items-center gap-7" style={{ "--d": "0.5s" } as React.CSSProperties} aria-label="Hlavní navigace">
           {navItems.map(([label, href]) => <a key={href} href={href} className="rail-link">{label}</a>)}
         </nav>
+        <div className="intro-up mt-12 flex w-full flex-col items-center px-8" style={{ "--d": "0.7s" } as React.CSSProperties}>
+          <button
+            type="button"
+            onClick={() => setMoreOpen(!moreOpen)}
+            aria-expanded={moreOpen}
+            aria-controls="rail-more"
+            className="more-toggle"
+          >
+            Více
+            <ChevronDown size={13} strokeWidth={1.6} className={`transition-transform duration-500 ease-[cubic-bezier(.19,.8,.18,1)] ${moreOpen ? "rotate-180" : ""}`} />
+          </button>
+          <div id="rail-more" className={`more-panel w-full ${moreOpen ? "is-open" : ""}`}>
+            <div className="overflow-hidden">
+              <div className="flex flex-col items-center gap-5 border-t border-stone-foreground/20 pt-7">
+                {moreItems.map(([label, href], i) => (
+                  <a key={href} href={href} className="more-link" style={{ "--i": i } as React.CSSProperties}>{label}</a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
         <span className="mt-auto mb-10 h-16 w-px bg-stone-foreground/25" aria-hidden />
       </aside>
 
@@ -319,7 +345,7 @@ function Index() {
         </section>
 
         {/* PŘÍSTUP */}
-        <section className="border-t border-border" data-reveal>
+        <section id="pristup" className="scroll-mt-24 border-t border-border" data-reveal>
           <div className="section-shell grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <p className="eyebrow">Přístup</p>
@@ -338,7 +364,7 @@ function Index() {
         </section>
 
         {/* HODNOTY */}
-        <section className="bg-stone/45" data-reveal="clip">
+        <section id="hodnoty" className="scroll-mt-24 bg-stone/45" data-reveal="clip">
           <div className="section-shell">
             <h2 className="display-heading mb-16">Na čem nám záleží</h2>
             <div className="grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">

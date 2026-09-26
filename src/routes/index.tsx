@@ -6,6 +6,7 @@ import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
 import stoneSeamless from "@/assets/stone-seamless.png";
 import logoMark from "@/assets/logo-mark.png";
 import heroStone from "@/assets/hero-stone.jpg";
+import stoneSlab from "@/assets/stone-slab.jpg";
 
 const title = "WIJURO Group | Marketing, Business & Investments";
 const description =
@@ -26,8 +27,8 @@ export const Route = createFileRoute("/")({
 });
 
 const navItems = [
-  ["Domů", "#top"], ["O nás", "#o-nas"], ["Služby", "#sluzby"],
-  ["Investice", "#investice"], ["Projekty", "#projekty"], ["Kontakt", "#kontakt"],
+  ["O nás", "#o-nas"], ["Co děláme", "#sluzby"], ["Projekty", "#projekty"],
+  ["Odpovědnost", "#odpovednost"], ["Kontakt", "#kontakt"],
 ];
 
 const services = [
@@ -133,27 +134,34 @@ function Index() {
     };
   }, [menuOpen]);
 
+  const slabStyle = { backgroundImage: `url(${stoneSlab})` } as React.CSSProperties;
   return (
-    <div id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground">
+    <div id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground lg:pl-[172px]">
+      {/* Desktop: vertical natural-stone rail */}
+      <aside className="stone-rail fixed inset-y-0 left-0 z-50 hidden w-[172px] flex-col items-center lg:flex" style={slabStyle}>
+        <a href="#top" aria-label="WIJURO Group — úvod" className="intro-logo mt-12 flex justify-center px-6">
+          <img src={logoMark} alt="WIJURO Group" className="h-auto w-[112px]" width="406" height="567" />
+        </a>
+        <nav className="intro-up mt-20 flex flex-col items-center gap-7" style={{ "--d": "0.5s" } as React.CSSProperties} aria-label="Hlavní navigace">
+          {navItems.map(([label, href]) => <a key={href} href={href} className="rail-link">{label}</a>)}
+        </nav>
+        <span className="mt-auto mb-10 h-16 w-px bg-stone-foreground/25" aria-hidden />
+      </aside>
+
+      {/* Mobile / tablet: compact stone bar */}
       <header
-        className={`nav-stone fixed inset-x-0 top-0 z-50 isolate bg-stone text-stone-foreground transition-transform duration-500 ease-[cubic-bezier(.19,.8,.18,1)] ${navHidden && !menuOpen ? "-translate-y-full" : "translate-y-0"}`}
-        style={{ "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties}
+        className={`stone-rail fixed inset-x-0 top-0 z-50 isolate text-stone-foreground transition-transform duration-500 ease-[cubic-bezier(.19,.8,.18,1)] lg:hidden ${navHidden && !menuOpen ? "-translate-y-full" : "translate-y-0"}`}
+        style={slabStyle}
       >
-        <div className="mx-auto flex h-24 max-w-[1480px] items-center justify-between px-5 md:h-28 md:px-10 lg:px-16">
-          <a href="#top" aria-label="WIJURO Group — úvod" className="intro-logo flex h-24 shrink-0 items-center md:h-28">
-            <img src={logoMark} alt="WIJURO Group" className="h-[4.5rem] w-auto md:h-[5.5rem]" width="405" height="591" />
+        <div className="flex h-20 items-center justify-between px-5 md:h-24 md:px-10">
+          <a href="#top" aria-label="WIJURO Group — úvod" className="intro-logo flex items-center">
+            <img src={logoMark} alt="WIJURO Group" className="h-14 w-auto md:h-[4.5rem]" width="406" height="567" />
           </a>
-          <nav className="intro-up hidden items-center gap-9 lg:flex" style={{ "--d": "0.5s" } as React.CSSProperties} aria-label="Hlavní navigace">
-            {navItems.map(([label, href]) => <a key={href} href={href} className="nav-link">{label}</a>)}
-            <a href="#kontakt" className="lux-hover lux-arrow ml-3 inline-flex h-11 items-center gap-2 rounded-[2px] bg-stone-foreground px-5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-stone hover:opacity-90">
-              Pojďme se spojit <ArrowUpRight size={14} />
-            </a>
-          </nav>
-          <button type="button" aria-label={menuOpen ? "Zavřít menu" : "Otevřít menu"} aria-expanded={menuOpen} aria-controls="mobile-menu" className="relative z-10 inline-flex h-11 w-11 shrink-0 items-center justify-center lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+          <button type="button" aria-label={menuOpen ? "Zavřít menu" : "Otevřít menu"} aria-expanded={menuOpen} aria-controls="mobile-menu" className="relative z-10 inline-flex h-11 w-11 shrink-0 items-center justify-center" onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
-          <nav id="mobile-menu" className={`mobile-menu nav-stone fixed inset-x-0 bottom-0 top-24 flex flex-col overflow-y-auto bg-stone px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-6 md:top-28 md:px-10 lg:hidden ${menuOpen ? "is-open" : "invisible pointer-events-none"}`} aria-label="Mobilní navigace" aria-hidden={!menuOpen} style={{ "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties}>
+          <nav id="mobile-menu" className={`mobile-menu stone-rail fixed inset-x-0 bottom-0 top-20 flex flex-col overflow-y-auto px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-6 md:top-24 md:px-10 ${menuOpen ? "is-open" : "invisible pointer-events-none"}`} aria-label="Mobilní navigace" aria-hidden={!menuOpen} style={slabStyle}>
             {navItems.map(([label, href]) => (
               <a key={href} href={href} tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mobile-menu-link border-b border-stone-foreground/15 py-4 text-2xl font-light sm:text-3xl">{label}</a>
             ))}
@@ -165,7 +173,7 @@ function Index() {
 
       <main>
         {/* HERO */}
-        <section ref={heroRef} className="relative mx-auto grid min-h-[100svh] max-w-[1480px] items-center gap-10 px-5 pb-14 pt-32 md:px-10 md:pt-40 lg:grid-cols-12 lg:gap-12 lg:px-16 lg:pb-16">
+        <section ref={heroRef} className="relative mx-auto grid min-h-[100svh] max-w-[1480px] items-center gap-10 px-5 pb-14 pt-28 md:px-10 md:pt-36 lg:grid-cols-12 lg:gap-12 lg:px-16 lg:py-16">
           <div className="hero-text relative z-10 lg:col-span-6">
             <p className="eyebrow intro-up" style={{ "--d": "1.2s" } as React.CSSProperties}>Marketing · Business Development · Investice</p>
             <h1 className="mt-7 text-[2.75rem] font-light leading-[0.98] sm:text-6xl md:mt-8 md:text-7xl lg:whitespace-nowrap lg:text-[clamp(3.5rem,6vw,6.6rem)]">
@@ -345,7 +353,7 @@ function Index() {
         </section>
 
         {/* ODPOVĚDNOST */}
-        <section className="section-shell" data-reveal>
+        <section id="odpovednost" className="section-shell" data-reveal>
           <div className="grid gap-10 lg:grid-cols-12">
             <p className="eyebrow lg:col-span-3">Odpovědnost</p>
             <div className="lg:col-span-8">

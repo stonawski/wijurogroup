@@ -63,6 +63,16 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 @utility stone-rail { background-color: var(--stone); background-size: cover; background-position: center; background-repeat: no-repeat; color: var(--color-stone-foreground); box-shadow: inset -1px 0 0 oklch(0.4 0.02 74 / .18), 6px 0 24px -18px oklch(0.3 0.02 74 / .35); }
 @utility rail-link { position: relative; font-size: .64rem; font-weight: 700; text-transform: uppercase; letter-spacing: .2em; color: var(--color-stone-foreground); opacity: .72; transition: opacity .4s, transform .5s var(--ease-lux); &:hover { opacity: 1; transform: translateY(-1px); } &::after { content: ""; position: absolute; left: 50%; right: 50%; bottom: -.5rem; height: 1px; background: var(--color-stone-foreground); transition: left .4s var(--ease-lux), right .4s var(--ease-lux); } &:hover::after { left: 25%; right: 25%; } }
 @utility nav-stone { background-image: var(--nav-stone-image); background-repeat: no-repeat; background-size: cover; background-position: center; }
+/* Souvislý kamenný povrch: lišty i levá linka sdílí jednu texturu ukotvenou k výřezu,
+   takže na sebe navazují beze švu. P = výška horní lišty / 2 − ⅓ šířky viewportu
+   (textura 1920×640 → výška vykreslená na šířku = 33,33 vw). */
+@utility stone-field { background-image: var(--nav-stone-image); background-color: var(--stone); background-repeat: repeat-y; background-size: 100vw auto; background-position: 0 calc(2.5rem - 33.3333vw); background-attachment: fixed; }
+@utility stone-field-bar { background-image: var(--nav-stone-image); background-color: var(--stone); background-repeat: repeat-y; background-size: 100vw auto; background-position: 0 calc(2.5rem - 33.3333vw); background-attachment: scroll; }
+@utility stone-field-menu { background-image: var(--nav-stone-image); background-color: var(--stone); background-repeat: repeat-y; background-size: 100vw auto; background-position: 0 calc(-2.5rem - 33.3333vw); background-attachment: scroll; }
+@media (min-width: 768px) {
+  .stone-field, .stone-field-bar { background-position-y: calc(3rem - 33.3333vw); }
+  .stone-field-menu { background-position-y: calc(-3rem - 33.3333vw); }
+}
 
 .mobile-menu { visibility: hidden; pointer-events: none; opacity: 0; transform: translateY(-1rem); transition: opacity .45s var(--ease-lux), transform .55s var(--ease-lux), visibility 0s linear .55s; }
 .mobile-menu.is-open { visibility: visible; pointer-events: auto; opacity: 1; transform: none; transition-delay: 0s; }

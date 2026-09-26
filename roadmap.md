@@ -1,5 +1,5 @@
 # Roadmap
 
-- [ ] Použít přesně nové nahrané logo (Logo_WIJURO-3.png) — žádné jiné ztvárnění
-- [ ] Lišta a logo musí zcela splývat — žádný viditelný přechod, stín ani barevný rozdíl
+- [x] Použít přesně nové nahrané logo (Logo_WIJURO-3.png) — v liště, patičce i faviconu
+- [x] Lišta a logo splývají — průhledné logo na bezševné textuře z pozadí téhož loga
 - [ ] Doplnit skutečné kontakty (e-mail, telefon, LinkedIn) — čeká na údaje od uživatele

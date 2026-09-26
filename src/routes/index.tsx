@@ -6,7 +6,6 @@ import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
 import stoneSeamless from "@/assets/stone-seamless.png";
 import logoMark from "@/assets/logo-mark.png";
 import heroStone from "@/assets/hero-stone.jpg";
-import stoneSlab from "@/assets/stone-slab.jpg";
 
 const title = "WIJURO Group | Marketing, Business & Investments";
 const description =
@@ -139,67 +138,61 @@ function Index() {
     };
   }, [menuOpen]);
 
-  const slabStyle = { backgroundImage: `url(${stoneSlab})` } as React.CSSProperties;
+  const barStyle = { "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties;
   return (
-    <div id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground lg:pl-[172px]">
-      {/* Desktop: vertical natural-stone rail */}
-      <aside className="stone-rail fixed inset-y-0 left-0 z-50 hidden w-[172px] flex-col items-center lg:flex" style={slabStyle}>
-        <a href="#top" aria-label="WIJURO Group — úvod" className="intro-logo mt-12 flex justify-center px-6">
-          <img src={logoMark} alt="WIJURO Group" className="h-auto w-[112px]" width="406" height="567" />
-        </a>
-        <nav className="intro-up mt-20 flex flex-col items-center gap-7" style={{ "--d": "0.5s" } as React.CSSProperties} aria-label="Hlavní navigace">
-          {navItems.map(([label, href]) => <a key={href} href={href} className="rail-link">{label}</a>)}
-        </nav>
-        <div className="intro-up mt-12 flex w-full flex-col items-center px-8" style={{ "--d": "0.7s" } as React.CSSProperties}>
-          <button
-            type="button"
-            onClick={() => setMoreOpen(!moreOpen)}
-            aria-expanded={moreOpen}
-            aria-controls="rail-more"
-            className="more-toggle"
-          >
-            Více
-            <ChevronDown size={13} strokeWidth={1.6} className={`transition-transform duration-500 ease-[cubic-bezier(.19,.8,.18,1)] ${moreOpen ? "rotate-180" : ""}`} />
-          </button>
-          <div id="rail-more" className={`more-panel w-full ${moreOpen ? "is-open" : ""}`}>
-            <div className="overflow-hidden">
-              <div className="flex flex-col items-center gap-5 border-t border-stone-foreground/20 pt-7">
-                {moreItems.map(([label, href], i) => (
-                  <a key={href} href={href} className="more-link" style={{ "--i": i } as React.CSSProperties}>{label}</a>
+    <div id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground">
+      {/* Horizontal natural-stone top bar */}
+      <header
+        className={`nav-stone fixed inset-x-0 top-0 z-50 isolate bg-stone text-stone-foreground transition-transform duration-500 ease-[cubic-bezier(.19,.8,.18,1)] ${navHidden && !menuOpen ? "-translate-y-full" : "translate-y-0"}`}
+        style={barStyle}
+      >
+        <div className="mx-auto flex h-20 max-w-[1480px] items-center justify-between px-5 md:h-24 md:px-10 lg:px-16">
+          <a href="#top" aria-label="WIJURO Group — úvod" className="intro-logo flex items-center">
+            <img src={logoMark} alt="WIJURO Group" className="h-14 w-auto md:h-[4.25rem]" width="406" height="567" />
+          </a>
+          <nav className="intro-up hidden items-center gap-9 lg:flex" style={{ "--d": "0.5s" } as React.CSSProperties} aria-label="Hlavní navigace">
+            {navItems.map(([label, href]) => <a key={href} href={href} className="nav-link">{label}</a>)}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setMoreOpen(!moreOpen)}
+                aria-expanded={moreOpen}
+                aria-controls="nav-more"
+                className="nav-link inline-flex items-center gap-1.5"
+              >
+                Více
+                <ChevronDown size={13} strokeWidth={1.6} className={`transition-transform duration-500 ease-[cubic-bezier(.19,.8,.18,1)] ${moreOpen ? "rotate-180" : ""}`} />
+              </button>
+              <div id="nav-more" className={`nav-stone absolute right-0 top-full mt-5 min-w-52 border border-stone-foreground/15 bg-stone shadow-[0_24px_50px_-24px_rgba(40,32,22,0.35)] transition-all duration-500 ease-[cubic-bezier(.19,.8,.18,1)] ${moreOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0"}`} style={barStyle}>
+                {moreItems.map(([label, href]) => (
+                  <a key={href} href={href} onClick={() => setMoreOpen(false)} className="block px-6 py-4 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-stone-foreground/75 transition-colors first:border-b first:border-stone-foreground/10 hover:text-stone-foreground [&:not(:first-child)]:border-t [&:not(:first-child)]:border-stone-foreground/10">{label}</a>
                 ))}
               </div>
             </div>
+          </nav>
+          <div className="flex items-center gap-4">
+            <a href="#kontakt" className="button-primary intro-up hidden lg:inline-flex" style={{ "--d": "0.7s" } as React.CSSProperties}>Pojďme se spojit</a>
+            <button type="button" aria-label={menuOpen ? "Zavřít menu" : "Otevřít menu"} aria-expanded={menuOpen} aria-controls="mobile-menu" className="relative z-10 inline-flex h-11 w-11 shrink-0 items-center justify-center lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+              {menuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
           </div>
         </div>
-        <span className="mt-auto mb-10 h-16 w-px bg-stone-foreground/25" aria-hidden />
-      </aside>
-
-      {/* Mobile / tablet: compact stone bar */}
-      <header
-        className={`stone-rail fixed inset-x-0 top-0 z-50 isolate text-stone-foreground transition-transform duration-500 ease-[cubic-bezier(.19,.8,.18,1)] lg:hidden ${navHidden && !menuOpen ? "-translate-y-full" : "translate-y-0"}`}
-        style={slabStyle}
-      >
-        <div className="flex h-20 items-center justify-between px-5 md:h-24 md:px-10">
-          <a href="#top" aria-label="WIJURO Group — úvod" className="intro-logo flex items-center">
-            <img src={logoMark} alt="WIJURO Group" className="h-14 w-auto md:h-[4.5rem]" width="406" height="567" />
+        <nav id="mobile-menu" className={`mobile-menu nav-stone fixed inset-x-0 bottom-0 top-20 flex flex-col overflow-y-auto bg-stone px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-6 md:top-24 md:px-10 lg:hidden ${menuOpen ? "is-open" : "invisible pointer-events-none"}`} aria-label="Mobilní navigace" aria-hidden={!menuOpen} style={barStyle}>
+          {navItems.map(([label, href]) => (
+            <a key={href} href={href} tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mobile-menu-link border-b border-stone-foreground/15 py-4 text-2xl font-light sm:text-3xl">{label}</a>
+          ))}
+          {moreItems.map(([label, href]) => (
+            <a key={href} href={href} tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mobile-menu-link border-b border-stone-foreground/15 py-4 text-xl font-light text-stone-foreground/70 sm:text-2xl">{label}</a>
+          ))}
+          <a href="#kontakt" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mt-auto inline-flex min-h-12 items-center justify-center gap-2 rounded-[2px] bg-stone-foreground px-4 py-3 text-center text-xs font-semibold uppercase text-stone">
+            Pojďme se spojit <ArrowUpRight size={14} />
           </a>
-          <button type="button" aria-label={menuOpen ? "Zavřít menu" : "Otevřít menu"} aria-expanded={menuOpen} aria-controls="mobile-menu" className="relative z-10 inline-flex h-11 w-11 shrink-0 items-center justify-center" onClick={() => setMenuOpen(!menuOpen)}>
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
-          <nav id="mobile-menu" className={`mobile-menu stone-rail fixed inset-x-0 bottom-0 top-20 flex flex-col overflow-y-auto px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-6 md:top-24 md:px-10 ${menuOpen ? "is-open" : "invisible pointer-events-none"}`} aria-label="Mobilní navigace" aria-hidden={!menuOpen} style={slabStyle}>
-            {navItems.map(([label, href]) => (
-              <a key={href} href={href} tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mobile-menu-link border-b border-stone-foreground/15 py-4 text-2xl font-light sm:text-3xl">{label}</a>
-            ))}
-            <a href="#kontakt" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mt-auto inline-flex min-h-12 items-center justify-center gap-2 rounded-[2px] bg-stone-foreground px-4 py-3 text-center text-xs font-semibold uppercase text-stone">
-              Pojďme se spojit <ArrowUpRight size={14} />
-            </a>
-          </nav>
+        </nav>
       </header>
 
       <main>
         {/* HERO */}
-        <section ref={heroRef} className="relative mx-auto grid min-h-[100svh] max-w-[1480px] items-center gap-10 px-5 pb-14 pt-28 md:px-10 md:pt-36 lg:grid-cols-12 lg:gap-12 lg:px-16 lg:py-16">
+        <section ref={heroRef} className="relative mx-auto grid min-h-[100svh] max-w-[1480px] items-center gap-10 px-5 pb-14 pt-28 md:px-10 md:pt-36 lg:grid-cols-12 lg:gap-12 lg:px-16 lg:pb-16 lg:pt-32">
           <div className="hero-text relative z-10 lg:col-span-6">
             <p className="eyebrow intro-up" style={{ "--d": "1.2s" } as React.CSSProperties}>Marketing · Business Development · Investice</p>
             <h1 className="mt-7 text-[2.75rem] font-light leading-[0.98] sm:text-6xl md:mt-8 md:text-7xl lg:text-[clamp(3.2rem,5vw,6rem)]">

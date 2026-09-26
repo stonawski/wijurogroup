@@ -146,7 +146,7 @@ function Index() {
         <section ref={heroRef} className="relative mx-auto grid min-h-[100svh] max-w-[1480px] items-center gap-10 px-5 pb-14 pt-32 md:px-10 md:pt-40 lg:grid-cols-12 lg:gap-12 lg:px-16 lg:pb-16">
           <div className="hero-text relative z-10 lg:col-span-6">
             <p className="eyebrow intro-up" style={{ "--d": "1.2s" } as React.CSSProperties}>Marketing · Business Development · Investice</p>
-            <h1 className="mt-8 text-[clamp(3rem,7.6vw,7.4rem)] font-light leading-[0.95] tracking-[-0.045em]">
+            <h1 className="mt-8 text-[clamp(3rem,7.6vw,7.4rem)] font-light leading-[0.95] lg:whitespace-nowrap lg:text-[clamp(3.5rem,6vw,6.6rem)] tracking-[-0.045em]">
               <span className="intro-line"><span style={{ "--d": "1.4s" } as React.CSSProperties}>Building ideas.</span></span>
               <span className="intro-line"><span className="text-muted-foreground" style={{ "--d": "1.65s" } as React.CSSProperties}>Growing value.</span></span>
             </h1>
@@ -166,7 +166,7 @@ function Index() {
               </div>
             </div>
           </div>
-          <div className="hero-cue intro-up pointer-events-none absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 lg:flex" style={{ "--d": "2.8s" } as React.CSSProperties} aria-hidden="true">
+          <div className="hero-cue intro-up pointer-events-none absolute bottom-6 left-16 hidden flex-col items-center gap-3 lg:flex" style={{ "--d": "2.8s" } as React.CSSProperties} aria-hidden="true">
             <span className="text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-muted-foreground">Scroll</span>
             <span className="h-10 w-px bg-foreground/30" />
           </div>

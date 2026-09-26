@@ -94,7 +94,7 @@ function Index() {
     const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("is-visible")),
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+      { threshold: 0, rootMargin: "0px 0px -12% 0px" },
     );
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();

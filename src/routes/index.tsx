@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, ChevronDown, Linkedin, Mail, Menu, Phone, X } from "lucide-react";
+import { ArrowUpRight, Linkedin, Mail, Menu, Phone, X } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 
 import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
@@ -70,7 +70,6 @@ const values = [
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [moreOpen, setMoreOpen] = useState(false);
   const [navHidden, setNavHidden] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
 

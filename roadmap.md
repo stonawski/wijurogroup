@@ -11,4 +11,7 @@
 - [x] Levou stranou webu vede zesílená kamenná linka navazující na horní lištu a patičku
 - [x] Pravá část hero animace přímo navazuje na spodní hranu horní kamenné lišty
 - [x] Původní vodorovný znak v hero scéně je zcela odstraněn a nahrazen přesným originálním logem WIJURO
+- [x] Hero má plynulý filmový nájezd a sluneční záblesk přes originální logo
+- [x] Levá kamenná lišta je silnější a používá stejnou texturu jako horní a spodní lišta
+- [x] Tlačítko „Pojďme se spojit“ zůstává pouze ve spodní části stránky
 - [ ] Doplnit skutečné kontakty (e-mail, telefon, LinkedIn) — čeká na údaje od uživatele

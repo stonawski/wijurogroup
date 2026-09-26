@@ -109,14 +109,14 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 @keyframes intro-line { from { transform: translateY(108%); } to { transform: none; } }
 @keyframes intro-clip { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
 @keyframes intro-zoom { from { transform: scale(1.22); } to { transform: scale(1.06); } }
-@keyframes light-drift { 0%, 100% { transform: translate3d(-18%, -6%, 0); opacity: .55; } 50% { transform: translate3d(14%, 8%, 0); opacity: .9; } }
+@keyframes light-drift { 0%, 100% { transform: translate3d(-30%, -5%, 0) scale(.92); opacity: .15; } 48% { opacity: .26; } 58% { transform: translate3d(20%, 5%, 0) scale(1.05); opacity: .72; } 72% { opacity: .2; } }
 .intro-logo { animation: intro-fade 1.4s var(--ease-lux) .15s both; }
 .intro-up { animation: intro-up 1.3s var(--ease-lux) both; animation-delay: var(--d, 0s); }
 .intro-line { display: block; overflow: hidden; padding-bottom: .2em; margin-bottom: -.2em; }
 .intro-line > span { display: block; animation: intro-line 1.6s var(--ease-lux) both; animation-delay: var(--d, 0s); }
 .intro-clip { animation: intro-clip 2s var(--ease-lux) .55s both; }
 .intro-zoom { animation: intro-zoom 4.5s var(--ease-lux) .55s both; }
-.hero-light { position: absolute; inset: -30%; pointer-events: none; background: radial-gradient(40% 35% at 50% 40%, oklch(0.99 0.02 85 / .35), transparent 70%); mix-blend-mode: soft-light; animation: light-drift 18s ease-in-out infinite; }
+.hero-light { position: absolute; inset: -30%; z-index: 2; pointer-events: none; background: radial-gradient(32% 28% at 50% 43%, oklch(0.99 0.02 85 / .38), transparent 72%); mix-blend-mode: screen; animation: light-drift 10s var(--ease-lux) infinite; }
 .hero-glass-logo { position: absolute; left: 50%; top: 48%; z-index: 1; width: clamp(3.75rem, 12%, 6rem); transform: translate(-50%, -50%); opacity: .38; mix-blend-mode: screen; filter: sepia(.18) brightness(1.32) contrast(.78); animation: glass-logo-glint 10s ease-in-out infinite; }
 .hero-glass-logo img { display: block; width: 100%; height: auto; }
 @keyframes glass-logo-glint { 0%, 100% { opacity: .34; filter: sepia(.18) brightness(1.22) contrast(.76); } 48%, 62% { opacity: .45; filter: sepia(.12) brightness(1.48) contrast(.7); } }

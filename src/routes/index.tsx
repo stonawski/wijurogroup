@@ -6,7 +6,7 @@ import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
 import stoneSeamless from "@/assets/stone-raw.jpg";
 import logoMark from "@/assets/logo-mark.png";
 import heroVineyard from "@/assets/hero-pavilion-clean.jpg";
-import heroVideo from "@/assets/hero-pavilion-clean.mp4.asset.json";
+import heroVideo from "@/assets/hero-pavilion-cinematic.mp4.asset.json";
 
 const title = "WIJURO Group | Marketing, Business & Investments";
 const description =
@@ -141,7 +141,7 @@ function Index() {
   const barStyle = { "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties;
   return (
     <div id="top" className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
-      <div className="nav-stone pointer-events-none absolute inset-y-0 left-0 z-40 w-2 bg-stone md:w-3" style={barStyle} aria-hidden="true" />
+      <div className="nav-stone pointer-events-none absolute inset-y-0 left-0 z-40 w-3 bg-stone md:w-5" style={barStyle} aria-hidden="true" />
       {/* Horizontal natural-stone top bar */}
       <header
         className={`nav-stone fixed inset-x-0 top-0 z-50 isolate bg-stone text-stone-foreground transition-transform duration-500 ease-[cubic-bezier(.19,.8,.18,1)] ${navHidden && !menuOpen ? "-translate-y-full" : "translate-y-0"}`}
@@ -184,7 +184,6 @@ function Index() {
             </p>
             <div className="intro-up mt-10 flex flex-col gap-3 sm:flex-row" style={{ "--d": "2.3s" } as React.CSSProperties}>
               <a className="button-hero-light lux-hover" href="#o-nas">Poznat WIJURO</a>
-              <a className="button-ghost lux-hover lux-arrow" href="#kontakt">Pojďme se spojit <ArrowUpRight size={14} className="ml-2" /></a>
             </div>
           </div>
           <div className="relative lg:col-span-6 lg:-mr-16 lg:-mt-10 xl:-mr-24">

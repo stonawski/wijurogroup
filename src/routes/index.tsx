@@ -3,7 +3,8 @@ import { ArrowUpRight, Linkedin, Mail, Menu, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
-import stoneTile from "@/assets/stone-tile.png.asset.json";
+import stoneSeamless from "@/assets/stone-seamless.png";
+import logoMark from "@/assets/logo-mark.png";
 import heroStone from "@/assets/hero-stone.jpg";
 
 const title = "WIJURO Group | Marketing, Business & Investments";
@@ -82,12 +83,12 @@ function Index() {
   return (
     <div id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <header
-        className={`fixed inset-x-0 top-0 z-50 bg-stone text-stone-foreground transition-shadow duration-500 ${scrolled ? "shadow-[0_8px_30px_-18px_oklch(0.25_0.02_70/0.5)]" : ""}`}
-        style={{ backgroundImage: `url(${stoneTile.url})`, backgroundSize: "480px", backgroundRepeat: "repeat" }}
+        className={`nav-stone fixed inset-x-0 top-0 z-50 bg-stone text-stone-foreground transition-shadow duration-500 ${scrolled ? "shadow-[0_8px_30px_-18px_oklch(0.25_0.02_70/0.5)]" : ""}`}
+        style={{ "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties}
       >
-        <div className="mx-auto flex h-20 max-w-[1480px] items-center justify-between px-5 md:h-24 md:px-10 lg:px-16">
-          <a href="#top" aria-label="WIJURO Group — úvod" className="h-20 w-20 shrink-0 md:h-24 md:w-24">
-            <img src={logoAsset.url} alt="WIJURO Group" className="h-full w-full object-contain" width="780" height="780" />
+        <div className="mx-auto flex h-24 max-w-[1480px] items-center justify-between px-5 md:h-28 md:px-10 lg:px-16">
+          <a href="#top" aria-label="WIJURO Group — úvod" className="flex h-24 shrink-0 items-center md:h-28">
+            <img src={logoMark} alt="WIJURO Group" className="h-[4.5rem] w-auto md:h-[5.5rem]" width="405" height="591" />
           </a>
           <nav className="hidden items-center gap-9 lg:flex" aria-label="Hlavní navigace">
             {navItems.map(([label, href]) => <a key={href} href={href} className="nav-link">{label}</a>)}
@@ -100,7 +101,7 @@ function Index() {
           </button>
         </div>
         {menuOpen && (
-          <nav className="fixed inset-x-0 bottom-0 top-20 flex flex-col bg-stone px-5 pb-10 pt-6 md:top-24 lg:hidden" aria-label="Mobilní navigace" style={{ backgroundImage: `url(${stoneTile.url})`, backgroundSize: "480px", backgroundRepeat: "repeat" }}>
+          <nav className="nav-stone fixed inset-x-0 bottom-0 top-24 flex flex-col bg-stone px-5 pb-10 pt-6 md:top-28 lg:hidden" aria-label="Mobilní navigace" style={{ "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties}>
             {navItems.map(([label, href]) => (
               <a key={href} href={href} onClick={() => setMenuOpen(false)} className="border-b border-stone-foreground/15 py-4 text-3xl font-light tracking-tight">{label}</a>
             ))}

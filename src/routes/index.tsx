@@ -154,7 +154,6 @@ function Index() {
             {navItems.map(([label, href]) => <a key={href} href={href} className="nav-link">{label}</a>)}
           </nav>
           <div className="flex items-center gap-4">
-            <a href="#kontakt" className="button-primary intro-up hidden lg:inline-flex" style={{ "--d": "0.7s" } as React.CSSProperties}>Pojďme se spojit</a>
             <button type="button" aria-label={menuOpen ? "Zavřít menu" : "Otevřít menu"} aria-expanded={menuOpen} aria-controls="mobile-menu" className="relative z-10 inline-flex h-11 w-11 shrink-0 items-center justify-center lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
               {menuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>

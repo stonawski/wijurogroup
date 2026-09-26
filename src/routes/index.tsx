@@ -3,6 +3,7 @@ import { ArrowUpRight, Linkedin, Mail, Menu, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
+import stoneSeamless from "@/assets/stone-seamless.png";
 import heroStone from "@/assets/hero-stone.jpg";
 
 const title = "WIJURO Group | Marketing, Business & Investments";

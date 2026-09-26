@@ -125,7 +125,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .glass-etch { position: absolute; left: 53%; top: 34%; width: 11%; aspect-ratio: 406 / 567; transform: translate(-50%, -50%); pointer-events: none;
   -webkit-mask: var(--logo) center / contain no-repeat; mask: var(--logo) center / contain no-repeat;
   background: linear-gradient(105deg, oklch(1 0 0 / .38) 0%, oklch(1 0 0 / .38) 40%, oklch(1 0 0 / .85) 50%, oklch(1 0 0 / .38) 60%, oklch(1 0 0 / .38) 100%) 160% 0 / 250% 100% no-repeat;
-  filter: drop-shadow(0 0 .6px oklch(0.3 0.01 80 / .35)); backdrop-filter: blur(1.5px) brightness(1.08);
+  filter: drop-shadow(0 0 .6px oklch(0.3 0.01 80 / .35));
   animation: etch-in 4s ease-out 4.5s both, etch-sheen 14s ease-in-out 6s infinite; }
 @media (prefers-reduced-motion: reduce) { .hero-dolly, .glass-etch { animation: none; } }
 

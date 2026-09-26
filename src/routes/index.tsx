@@ -155,7 +155,12 @@ function Index() {
               <p className="eyebrow lg:col-span-3">O nás</p>
               <div className="lg:col-span-9">
                 <h2 className="display-heading">Dva lidé, jedna společná vize.</h2>
-                <p className="mx-auto mt-12 max-w-2xl text-center leading-8 text-muted-foreground">WIJURO Group jsme založili jako manželé s vizí vybudovat něco vlastního – společnost, která propojuje naše zkušenosti, zájmy a pohled na podnikání. Spojuje nás podnikavost, chuť vytvářet nové příležitosti a přesvědčení, že dobré nápady mají největší hodnotu tehdy, když se promění v něco skutečného.</p>
+                <div className="mt-12 max-w-2xl space-y-6 leading-8 text-muted-foreground">
+                  <p>WIJURO vzniklo z naší společné vize budovat něco vlastního. Jako manželský pár jsme se rozhodli spojit své zkušenosti, energii a společné hodnoty a vytvořit firmu, která bude od začátku stát na pevných základech.</p>
+                  <p>Důvěra, individualita, svoboda rozhodování a osobní odpovědnost jsou pro nás hodnoty, na kterých chceme WIJURO stavět. Věříme, že každý člověk má svou vlastní cestu, nápady a potenciál – a právě prostor pro vlastní iniciativu považujeme za důležitou součást podnikání.</p>
+                  <p>WIJURO je pro nás rodinná firma v pravém slova smyslu. Chceme ji budovat dlouhodobě, společně a způsobem, který bude odrážet to, kým jsme a čemu věříme.</p>
+                  <p>Naším cílem je vytvářet vlastní projekty, rozvíjet zajímavé příležitosti a investovat do toho, co podle nás má skutečný potenciál.</p>
+                </div>
               </div>
             </div>
 

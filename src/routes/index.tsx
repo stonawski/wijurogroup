@@ -5,8 +5,8 @@ import { useEffect, useState, useRef } from "react";
 import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
 import stoneSeamless from "@/assets/stone-raw.jpg";
 import logoMark from "@/assets/logo-mark.png";
-import heroVineyard from "@/assets/hero-pavilion-portrait.jpg";
-import heroVideo from "@/assets/hero-pavilion-portrait.mp4.asset.json";
+import heroVineyard from "@/assets/hero-daylight.jpg";
+import heroVideo from "@/assets/hero-daylight.mp4.asset.json";
 
 const title = "WIJURO Group | Marketing, Business & Investments";
 const description =
@@ -194,7 +194,12 @@ function Index() {
           <div className="relative lg:col-span-6 lg:-mr-16 xl:-mr-24">
             <div className="hero-media">
               <div className="intro-clip relative overflow-hidden">
-                <video src={heroVideo.url} poster={heroVineyard} autoPlay muted loop playsInline preload="auto" aria-label="Prosklený prostor s logem WIJURO vyleptaným do skla" className="intro-zoom aspect-[4/5] max-h-[68svh] w-full object-cover md:max-h-[72svh] lg:aspect-[5/6] lg:max-h-[82svh]" />
+                <div className="intro-zoom">
+                  <div className="hero-dolly relative">
+                    <video src={heroVideo.url} poster={heroVineyard} autoPlay muted loop playsInline preload="auto" aria-label="Prosklený prostor s výhledem do krajiny a logem WIJURO vyrytým do skla" className="block aspect-[4/5] max-h-[68svh] w-full object-cover md:max-h-[72svh] lg:aspect-[5/6] lg:max-h-[82svh]" />
+                    <div className="glass-etch" aria-hidden="true" style={{ "--logo": `url(${logoMark})` } as React.CSSProperties} />
+                  </div>
+                </div>
                 <div className="hero-light" aria-hidden="true" />
               </div>
             </div>

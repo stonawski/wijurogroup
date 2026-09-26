@@ -244,7 +244,7 @@ function Index() {
         </section>
 
         {/* INVESTICE */}
-        <section id="investice" className="scroll-mt-24 bg-footer text-footer-foreground" data-reveal>
+        <section id="investice" className="scroll-mt-24 bg-footer text-footer-foreground" data-reveal="clip">
           <div className="section-shell">
             <div className="grid gap-10 lg:grid-cols-12">
               <p className="eyebrow !text-footer-foreground/60 lg:col-span-3">Investice</p>
@@ -266,7 +266,7 @@ function Index() {
         </section>
 
         {/* PROJEKTY */}
-        <section id="projekty" className="section-shell scroll-mt-24" data-reveal>
+        <section id="projekty" className="section-shell scroll-mt-24" data-reveal="scale">
           <div className="mb-16 grid gap-6 lg:grid-cols-12">
             <p className="eyebrow lg:col-span-3">Projekty</p>
             <div className="lg:col-span-9">
@@ -308,7 +308,7 @@ function Index() {
         </section>
 
         {/* HODNOTY */}
-        <section className="bg-stone/45" data-reveal>
+        <section className="bg-stone/45" data-reveal="clip">
           <div className="section-shell">
             <h2 className="display-heading mb-16">Na čem nám záleží</h2>
             <div className="grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">

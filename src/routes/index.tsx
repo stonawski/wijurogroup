@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 
 import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
 import stoneSeamless from "@/assets/stone-raw.jpg";
+import stoneField from "@/assets/stone-field.jpg";
 import logoMark from "@/assets/logo-mark.png";
 import heroVineyard from "@/assets/hero-pavilion-clean.jpg";
 import heroVideo from "@/assets/hero-pavilion-smooth.mp4.asset.json";
@@ -168,7 +169,7 @@ function Index() {
     };
   }, [activeHeroVideo]);
 
-  const barStyle = { "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties;
+  const fieldStyle = { "--nav-stone-image": `url(${stoneField})` } as React.CSSProperties;
   return (
     <div id="top" className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       <div className="nav-stone pointer-events-none absolute inset-y-0 left-0 z-40 w-3 bg-stone md:w-5" style={barStyle} aria-hidden="true" />

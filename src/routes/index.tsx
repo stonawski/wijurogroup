@@ -154,11 +154,8 @@ function Index() {
             <div className="grid gap-12 lg:grid-cols-12">
               <p className="eyebrow lg:col-span-3">O nás</p>
               <div className="lg:col-span-9">
-                <h2 className="display-heading">Za WIJURO stojí dva lidé. Jedna společná vize.</h2>
-                <div className="mt-14 grid gap-8 border-t border-foreground/15 pt-8 md:grid-cols-2">
-                  <p className="text-xl leading-8">WIJURO Group jsme založili jako manželé s vizí vybudovat něco vlastního – společnost, která propojuje naše zkušenosti, zájmy a pohled na podnikání. Spojuje nás podnikavost, chuť vytvářet nové příležitosti a přesvědčení, že dobré nápady mají největší hodnotu tehdy, když se promění v něco skutečného.</p>
-                  <p className="leading-7 text-muted-foreground">WIJURO pro nás není jen společnost. Je to prostor pro naše vlastní projekty, nápady, spolupráce a investice a zároveň platforma, která nám umožňuje postupně vytvářet nové příležitosti.</p>
-                </div>
+                <h2 className="display-heading">Dva lidé, jedna společná vize.</h2>
+                <p className="mx-auto mt-12 max-w-2xl text-center leading-8 text-muted-foreground">WIJURO Group jsme založili jako manželé s vizí vybudovat něco vlastního – společnost, která propojuje naše zkušenosti, zájmy a pohled na podnikání. Spojuje nás podnikavost, chuť vytvářet nové příležitosti a přesvědčení, že dobré nápady mají největší hodnotu tehdy, když se promění v něco skutečného.</p>
               </div>
             </div>
 

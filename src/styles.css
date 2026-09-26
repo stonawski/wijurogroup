@@ -132,7 +132,9 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 }
 
 @media (max-width: 1023px), (pointer: coarse) {
-  .hero-text, .hero-media { transform: none; opacity: 1; will-change: auto; }
+  /* Touch devices: keep scroll-driven hero motion, only soften it */
+  .hero-text { transform: translate3d(0, calc(var(--p, 0) * -60px), 0); }
+  .hero-media { transform: translate3d(0, calc(var(--p, 0) * 40px), 0) scale(calc(1 + var(--p, 0) * .1)); }
 }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } [data-reveal], .reveal-item, .mask-line > span, .mobile-menu, .mobile-menu-link { opacity: 1; transform: none; clip-path: none; transition: none; } .mobile-menu:not(.is-open) { visibility: hidden; pointer-events: none; } .hero-text, .hero-media { transform: none; opacity: 1; } * { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .01ms !important; } }

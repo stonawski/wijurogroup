@@ -176,7 +176,7 @@ function Index() {
         <section ref={heroRef} className="relative mx-auto grid min-h-[100svh] max-w-[1480px] items-center gap-10 px-5 pb-14 pt-28 md:px-10 md:pt-36 lg:grid-cols-12 lg:gap-12 lg:px-16 lg:py-16">
           <div className="hero-text relative z-10 lg:col-span-6">
             <p className="eyebrow intro-up" style={{ "--d": "1.2s" } as React.CSSProperties}>Marketing · Business Development · Investice</p>
-            <h1 className="mt-7 text-[2.75rem] font-light leading-[0.98] sm:text-6xl md:mt-8 md:text-7xl lg:whitespace-nowrap lg:text-[clamp(3.5rem,6vw,6.6rem)]">
+            <h1 className="mt-7 text-[2.75rem] font-light leading-[0.98] sm:text-6xl md:mt-8 md:text-7xl lg:text-[clamp(3.2rem,5vw,6rem)]">
               <span className="intro-line"><span style={{ "--d": "1.4s" } as React.CSSProperties}>Building ideas.</span></span>
               <span className="intro-line"><span className="text-muted-foreground" style={{ "--d": "1.65s" } as React.CSSProperties}>Growing value.</span></span>
             </h1>

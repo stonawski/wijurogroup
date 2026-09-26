@@ -109,7 +109,7 @@ function Index() {
 
       <main>
         {/* HERO */}
-        <section className="relative mx-auto grid min-h-[100svh] max-w-[1480px] items-end gap-12 px-5 pb-14 pt-32 md:px-10 md:pt-40 lg:grid-cols-12 lg:px-16 lg:pb-20">
+        <section className="relative mx-auto grid min-h-[100svh] max-w-[1480px] items-center gap-12 px-5 pb-14 pt-32 md:px-10 md:pt-40 lg:grid-cols-12 lg:px-16 lg:pb-20">
           <div className="animate-fade-in lg:col-span-7">
             <p className="eyebrow">Marketing · Business Development · Investice</p>
             <h1 className="mt-8 text-[clamp(3rem,7.6vw,7.4rem)] font-light leading-[0.95] tracking-[-0.045em]">

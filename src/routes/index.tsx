@@ -66,7 +66,29 @@ const values = [
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [navHidden, setNavHidden] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
+
+  // Hide the top bar when scrolling down, reveal it when scrolling up
+  useEffect(() => {
+    let lastY = window.scrollY;
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        const goingDown = y > lastY && y - lastY > 4;
+        const goingUp = y < lastY && lastY - y > 4;
+        if (goingDown && y > 140) setNavHidden(true);
+        else if (goingUp || y <= 140) setNavHidden(false);
+        lastY = y;
+        ticking = false;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
@@ -114,7 +136,7 @@ function Index() {
   return (
     <div id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <header
-        className="nav-stone fixed inset-x-0 top-0 z-50 isolate bg-stone text-stone-foreground"
+        className={`nav-stone fixed inset-x-0 top-0 z-50 isolate bg-stone text-stone-foreground transition-transform duration-500 ease-[cubic-bezier(.19,.8,.18,1)] ${navHidden && !menuOpen ? "-translate-y-full" : "translate-y-0"}`}
         style={{ "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties}
       >
         <div className="mx-auto flex h-24 max-w-[1480px] items-center justify-between px-5 md:h-28 md:px-10 lg:px-16">

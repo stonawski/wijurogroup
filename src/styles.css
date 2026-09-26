@@ -119,15 +119,15 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .hero-video-layer { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.35s linear; }
 .hero-video-layer.is-active { opacity: 1; }
 .hero-light { position: absolute; inset: -30%; z-index: 2; pointer-events: none; background: radial-gradient(28% 24% at 50% 45%, oklch(0.99 0.018 85 / .3), transparent 74%); mix-blend-mode: screen; animation: light-drift 10s linear infinite; }
-.hero-glass-logo { position: absolute; left: 50%; top: 48%; z-index: 3; width: clamp(4.5rem, 15%, 7.5rem); transform: translate(-50%, -50%) scale(.97); opacity: .68; mix-blend-mode: screen; filter: sepia(.12) brightness(1.5) contrast(.95) drop-shadow(0 0 7px oklch(0.99 0.015 85 / .3)); animation: glass-logo-camera 20s linear infinite alternate; }
+.hero-glass-logo { position: absolute; left: 50%; top: 48%; z-index: 3; width: clamp(4.5rem, 15%, 7.5rem); transform: translate(-50%, -50%) scale(.97); opacity: .82; mix-blend-mode: screen; filter: sepia(.12) brightness(1.6) contrast(1.18) drop-shadow(0 0 10px oklch(0.99 0.015 85 / .45)); animation: glass-logo-camera 20s linear infinite alternate; }
 .hero-glass-logo img { display: block; width: 100%; height: auto; }
-.hero-glass-logo .hero-logo-glint { position: absolute; inset: 0; opacity: 0; filter: brightness(1.75) contrast(.72); clip-path: inset(0 100% 0 0); animation: glass-edge-light 10s linear infinite; }
-@keyframes glass-logo-camera { from { transform: translate(-50%, -50%) scale(.97); } to { transform: translate(-50%, -50%) scale(1.14); } }
+.hero-glass-logo .hero-logo-glint { position: absolute; inset: 0; opacity: 0; filter: brightness(2.1) contrast(.85); clip-path: inset(0 100% 0 0); animation: glass-edge-light 10s linear infinite; }
+@keyframes glass-logo-camera { from { transform: translate(-50%, -50%) scale(.97); } to { transform: translate(-50%, -50%) scale(1.34); } }
 @keyframes glass-edge-light {
   0%, 43%, 58%, 100% { opacity: 0; clip-path: inset(0 100% 0 0); }
-  46% { opacity: .08; clip-path: inset(0 74% 0 8%); }
-  50% { opacity: .42; clip-path: inset(0 36% 0 36%); }
-  54% { opacity: .1; clip-path: inset(0 8% 0 74%); }
+  46% { opacity: .14; clip-path: inset(0 74% 0 8%); }
+  50% { opacity: .58; clip-path: inset(0 36% 0 36%); }
+  54% { opacity: .16; clip-path: inset(0 8% 0 74%); }
 }
 
 /* Scroll/cursor driven hero (vars set via rAF) */

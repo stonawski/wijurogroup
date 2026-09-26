@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Linkedin, Mail, Menu, Phone, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Linkedin, Mail, Menu, Phone, X } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 
 import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
@@ -29,6 +29,10 @@ export const Route = createFileRoute("/")({
 const navItems = [
   ["O nás", "#o-nas"], ["Co děláme", "#sluzby"], ["Projekty", "#projekty"],
   ["Odpovědnost", "#odpovednost"], ["Kontakt", "#kontakt"],
+];
+
+const moreItems = [
+  ["Investice", "#investice"], ["Náš přístup", "#pristup"], ["Hodnoty", "#hodnoty"],
 ];
 
 const services = [

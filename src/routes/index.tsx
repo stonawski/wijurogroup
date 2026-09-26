@@ -82,8 +82,8 @@ function Index() {
   return (
     <div id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <header
-        className={`fixed inset-x-0 top-0 z-50 bg-stone text-stone-foreground transition-shadow duration-500 ${scrolled ? "shadow-[0_8px_30px_-18px_oklch(0.25_0.02_70/0.5)]" : ""}`}
-        style={{ backgroundImage: `url(${stoneTile.url})`, backgroundSize: "480px", backgroundRepeat: "repeat" }}
+        className={`nav-stone fixed inset-x-0 top-0 z-50 bg-stone text-stone-foreground transition-shadow duration-500 ${scrolled ? "shadow-[0_8px_30px_-18px_oklch(0.25_0.02_70/0.5)]" : ""}`}
+        style={{ "--nav-stone-image": `url(${logoAsset.url})` } as React.CSSProperties}
       >
         <div className="mx-auto flex h-20 max-w-[1480px] items-center justify-between px-5 md:h-24 md:px-10 lg:px-16">
           <a href="#top" aria-label="WIJURO Group — úvod" className="h-20 w-20 shrink-0 md:h-24 md:w-24">

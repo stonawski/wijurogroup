@@ -6,7 +6,6 @@ import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
 import stoneSeamless from "@/assets/stone-seamless.png";
 import logoMark from "@/assets/logo-mark.png";
 import heroStone from "@/assets/hero-stone.jpg";
-import stoneSlab from "@/assets/stone-slab.jpg";
 
 const title = "WIJURO Group | Marketing, Business & Investments";
 const description =
@@ -193,7 +192,7 @@ function Index() {
 
       <main>
         {/* HERO */}
-        <section ref={heroRef} className="relative mx-auto grid min-h-[100svh] max-w-[1480px] items-center gap-10 px-5 pb-14 pt-28 md:px-10 md:pt-36 lg:grid-cols-12 lg:gap-12 lg:px-16 lg:py-16">
+        <section ref={heroRef} className="relative mx-auto grid min-h-[100svh] max-w-[1480px] items-center gap-10 px-5 pb-14 pt-28 md:px-10 md:pt-36 lg:grid-cols-12 lg:gap-12 lg:px-16 lg:pb-16 lg:pt-32">
           <div className="hero-text relative z-10 lg:col-span-6">
             <p className="eyebrow intro-up" style={{ "--d": "1.2s" } as React.CSSProperties}>Marketing · Business Development · Investice</p>
             <h1 className="mt-7 text-[2.75rem] font-light leading-[0.98] sm:text-6xl md:mt-8 md:text-7xl lg:text-[clamp(3.2rem,5vw,6rem)]">

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight, Linkedin, Mail, Menu, Phone, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
 import stoneSeamless from "@/assets/stone-seamless.png";
@@ -67,18 +67,42 @@ const values = [
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("is-visible")),
-      { threshold: 0.1 },
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
     );
     elements.forEach((el) => observer.observe(el));
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => { observer.disconnect(); window.removeEventListener("scroll", onScroll); };
+  }, []);
+
+  // Cinematic hero: scroll + cursor driven camera (lerped via rAF)
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const fine = window.matchMedia("(pointer: fine)").matches;
+    let tx = 0, ty = 0, cx = 0, cy = 0, cp = 0, raf = 0;
+    const onMove = (e: MouseEvent) => {
+      tx = (e.clientX / window.innerWidth - 0.5) * 2;
+      ty = (e.clientY / window.innerHeight - 0.5) * 2;
+    };
+    const tick = () => {
+      const tp = Math.min(Math.max(window.scrollY / (window.innerHeight * 0.9), 0), 1);
+      cx += (tx - cx) * 0.05; cy += (ty - cy) * 0.05; cp += (tp - cp) * 0.12;
+      hero.style.setProperty("--mx", cx.toFixed(4));
+      hero.style.setProperty("--my", cy.toFixed(4));
+      hero.style.setProperty("--p", cp.toFixed(4));
+      raf = requestAnimationFrame(tick);
+    };
+    if (fine) window.addEventListener("mousemove", onMove, { passive: true });
+    raf = requestAnimationFrame(tick);
+    return () => { cancelAnimationFrame(raf); window.removeEventListener("mousemove", onMove); };
   }, []);
 
   useEffect(() => {
@@ -88,16 +112,16 @@ function Index() {
   return (
     <div id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <header
-        className={`nav-stone fixed inset-x-0 top-0 z-50 bg-stone text-stone-foreground transition-shadow duration-500 ${scrolled ? "shadow-[0_8px_30px_-18px_oklch(0.25_0.02_70/0.5)]" : ""}`}
+        className={`nav-stone fixed inset-x-0 top-0 z-50 bg-stone text-stone-foreground transition-[box-shadow,backdrop-filter] duration-700 ${scrolled ? "shadow-[0_10px_34px_-20px_oklch(0.25_0.02_70/0.55),inset_0_0_0_999px_oklch(0.3_0.02_70/0.045)] backdrop-blur-md" : ""}`}
         style={{ "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties}
       >
         <div className="mx-auto flex h-24 max-w-[1480px] items-center justify-between px-5 md:h-28 md:px-10 lg:px-16">
-          <a href="#top" aria-label="WIJURO Group — úvod" className="flex h-24 shrink-0 items-center md:h-28">
+          <a href="#top" aria-label="WIJURO Group — úvod" className="intro-logo flex h-24 shrink-0 items-center md:h-28">
             <img src={logoMark} alt="WIJURO Group" className="h-[4.5rem] w-auto md:h-[5.5rem]" width="405" height="591" />
           </a>
-          <nav className="hidden items-center gap-9 lg:flex" aria-label="Hlavní navigace">
+          <nav className="intro-up hidden items-center gap-9 lg:flex" style={{ "--d": "0.5s" } as React.CSSProperties} aria-label="Hlavní navigace">
             {navItems.map(([label, href]) => <a key={href} href={href} className="nav-link">{label}</a>)}
-            <a href="#kontakt" className="ml-3 inline-flex h-11 items-center gap-2 rounded-[2px] bg-stone-foreground px-5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-stone transition-opacity hover:opacity-85">
+            <a href="#kontakt" className="lux-hover lux-arrow ml-3 inline-flex h-11 items-center gap-2 rounded-[2px] bg-stone-foreground px-5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-stone hover:opacity-90">
               Pojďme se spojit <ArrowUpRight size={14} />
             </a>
           </nav>
@@ -119,37 +143,51 @@ function Index() {
 
       <main>
         {/* HERO */}
-        <section className="relative mx-auto grid min-h-[100svh] max-w-[1480px] items-center gap-12 px-5 pb-14 pt-32 md:px-10 md:pt-40 lg:grid-cols-12 lg:px-16 lg:pb-20">
-          <div className="animate-fade-in lg:col-span-7">
-            <p className="eyebrow">Marketing · Business Development · Investice</p>
-            <h1 className="mt-8 text-[clamp(3rem,7.6vw,7.4rem)] font-light leading-[0.95] tracking-[-0.045em]">
-              Building ideas.<br /><span className="text-muted-foreground">Growing value.</span>
+        <section ref={heroRef} className="relative mx-auto grid min-h-[100svh] max-w-[1480px] items-center gap-10 px-5 pb-14 pt-32 md:px-10 md:pt-40 lg:grid-cols-12 lg:gap-12 lg:px-16 lg:pb-16">
+          <div className="hero-text relative z-10 lg:col-span-6">
+            <p className="eyebrow intro-up" style={{ "--d": "1.2s" } as React.CSSProperties}>Marketing · Business Development · Investice</p>
+            <h1 className="mt-8 text-[clamp(3rem,7.6vw,7.4rem)] font-light leading-[0.95] lg:whitespace-nowrap lg:text-[clamp(3.5rem,6vw,6.6rem)] tracking-[-0.045em]">
+              <span className="intro-line"><span style={{ "--d": "1.4s" } as React.CSSProperties}>Building ideas.</span></span>
+              <span className="intro-line"><span className="text-muted-foreground" style={{ "--d": "1.65s" } as React.CSSProperties}>Growing value.</span></span>
             </h1>
-            <p className="mt-9 max-w-xl text-lg leading-8 text-muted-foreground">
+            <p className="intro-up mt-9 max-w-xl text-lg leading-8 text-muted-foreground" style={{ "--d": "2.05s" } as React.CSSProperties}>
               WIJURO Group propojuje marketing, business development a investice s cílem vytvářet příležitosti s dlouhodobou hodnotou.
             </p>
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <a className="button-primary" href="#o-nas">Poznat WIJURO</a>
-              <a className="button-ghost" href="#kontakt">Pojďme se spojit <ArrowUpRight size={14} className="ml-2" /></a>
+            <div className="intro-up mt-10 flex flex-col gap-3 sm:flex-row" style={{ "--d": "2.3s" } as React.CSSProperties}>
+              <a className="button-primary lux-hover" href="#o-nas">Poznat WIJURO</a>
+              <a className="button-ghost lux-hover lux-arrow" href="#kontakt">Pojďme se spojit <ArrowUpRight size={14} className="ml-2" /></a>
             </div>
           </div>
-          <div className="relative overflow-hidden lg:col-span-5">
-            <img src={heroStone} alt="Travertinové schodiště v moderní architektuře" width={1200} height={1504} className="aspect-[4/5] h-full w-full object-cover animate-[fade-in_1.6s_ease]" />
+          <div className="relative lg:col-span-6 lg:-mr-16 xl:-mr-24">
+            <div className="hero-media">
+              <div className="intro-clip relative overflow-hidden">
+                <img src={heroStone} alt="Travertinové schodiště v moderní architektuře" width={1200} height={1504} className="intro-zoom aspect-[4/5] max-h-[82svh] w-full object-cover lg:aspect-[5/6]" />
+                <div className="hero-light" aria-hidden="true" />
+              </div>
+            </div>
+          </div>
+          <div className="hero-cue intro-up pointer-events-none absolute bottom-6 left-16 hidden flex-col items-center gap-3 lg:flex" style={{ "--d": "2.8s" } as React.CSSProperties} aria-hidden="true">
+            <span className="text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-muted-foreground">Scroll</span>
+            <span className="h-10 w-px bg-foreground/30" />
           </div>
         </section>
 
         {/* INTRO */}
-        <section className="section-shell border-t border-border" data-reveal>
+        <section className="section-shell relative z-10 border-t border-border bg-background" data-reveal="none">
           <div className="grid gap-10 lg:grid-cols-12">
-            <h2 className="display-heading lg:col-span-8">Nápady mají hodnotu, když se promění v něco skutečného.</h2>
-            <p className="self-end text-lg leading-8 text-muted-foreground lg:col-span-4">
+            <h2 className="display-heading lg:col-span-8">
+              {["Nápady mají hodnotu,", "když se promění", "v něco skutečného."].map((l, i) => (
+                <span key={l} className="mask-line" style={{ "--i": i } as React.CSSProperties}><span>{l}</span></span>
+              ))}
+            </h2>
+            <p className="reveal-item self-end text-lg leading-8 text-muted-foreground lg:col-span-4" style={{ "--i": 4 } as React.CSSProperties}>
               WIJURO Group propojuje strategické myšlení, marketing, business development a investice. Hledáme příležitosti, propojujeme správné lidi a pomáháme vytvářet projekty s dlouhodobým potenciálem.
             </p>
           </div>
         </section>
 
         {/* O NÁS */}
-        <section id="o-nas" className="scroll-mt-24 bg-stone/45" data-reveal>
+        <section id="o-nas" className="scroll-mt-24 bg-stone/45" data-reveal="scale">
           <div className="section-shell">
             <div className="grid gap-12 lg:grid-cols-12">
               <p className="eyebrow lg:col-span-3">O nás</p>
@@ -162,17 +200,17 @@ function Index() {
               </div>
             </div>
 
-            <div className="mt-24 grid gap-20 md:grid-cols-2 md:gap-12 lg:gap-28">
-              {founders.map((f) => (
+            <div className="mt-24 grid gap-20 md:grid-cols-2 md:gap-12 lg:gap-28" data-reveal="none">
+              {founders.map((f, k) => (
                 <article key={f.name} className="text-center">
-                  <div className="mx-auto aspect-square w-52 overflow-hidden rounded-full border border-foreground/15 bg-stone md:w-64">
-                    <div className="flex h-full w-full items-center justify-center">
+                  <div className="reveal-item img-hover mx-auto aspect-square w-52 rounded-full border border-foreground/15 bg-stone md:w-64" style={{ "--i": k } as React.CSSProperties}>
+                    <div className="img-inner flex h-full w-full items-center justify-center">
                       <span className="font-display text-5xl font-light tracking-[0.12em] text-stone-foreground/25">{f.initials}</span>
                     </div>
                   </div>
-                  <h3 className="mt-10 text-2xl font-medium tracking-tight md:text-3xl">{f.name}</h3>
-                  <p className="mt-3 eyebrow">{f.role}</p>
-                  <p className="mx-auto mt-6 max-w-md leading-7 text-muted-foreground">{f.text}</p>
+                  <h3 className="reveal-item mt-10 text-2xl font-medium tracking-tight md:text-3xl" style={{ "--i": k + 2 } as React.CSSProperties}>{f.name}</h3>
+                  <p className="reveal-item mt-3 eyebrow" style={{ "--i": k + 3 } as React.CSSProperties}>{f.role}</p>
+                  <p className="reveal-item mx-auto mt-6 max-w-md leading-7 text-muted-foreground" style={{ "--i": k + 4 } as React.CSSProperties}>{f.text}</p>
                 </article>
               ))}
             </div>
@@ -206,7 +244,7 @@ function Index() {
         </section>
 
         {/* INVESTICE */}
-        <section id="investice" className="scroll-mt-24 bg-footer text-footer-foreground" data-reveal>
+        <section id="investice" className="scroll-mt-24 bg-footer text-footer-foreground" data-reveal="clip">
           <div className="section-shell">
             <div className="grid gap-10 lg:grid-cols-12">
               <p className="eyebrow !text-footer-foreground/60 lg:col-span-3">Investice</p>
@@ -228,7 +266,7 @@ function Index() {
         </section>
 
         {/* PROJEKTY */}
-        <section id="projekty" className="section-shell scroll-mt-24" data-reveal>
+        <section id="projekty" className="section-shell scroll-mt-24" data-reveal="scale">
           <div className="mb-16 grid gap-6 lg:grid-cols-12">
             <p className="eyebrow lg:col-span-3">Projekty</p>
             <div className="lg:col-span-9">
@@ -270,7 +308,7 @@ function Index() {
         </section>
 
         {/* HODNOTY */}
-        <section className="bg-stone/45" data-reveal>
+        <section className="bg-stone/45" data-reveal="clip">
           <div className="section-shell">
             <h2 className="display-heading mb-16">Na čem nám záleží</h2>
             <div className="grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">

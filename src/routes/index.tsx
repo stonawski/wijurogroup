@@ -187,7 +187,7 @@ function Index() {
               <a className="button-ghost lux-hover lux-arrow" href="#kontakt">Pojďme se spojit <ArrowUpRight size={14} className="ml-2" /></a>
             </div>
           </div>
-          <div className="relative lg:col-span-6 lg:-mr-16 lg:-mt-8 xl:-mr-24">
+          <div className="relative lg:col-span-6 lg:-mr-16 lg:-mt-10 xl:-mr-24">
             <div className="hero-media">
               <div className="intro-clip relative overflow-hidden">
                 <video src={heroVideo.url} poster={heroVineyard} autoPlay muted loop playsInline preload="auto" aria-label="Prosklený prostor s logem WIJURO vyleptaným do skla" className="intro-zoom aspect-[4/5] max-h-[68svh] w-full object-cover md:max-h-[72svh] lg:aspect-[5/6] lg:max-h-[82svh]" />

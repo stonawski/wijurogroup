@@ -172,11 +172,11 @@ function Index() {
   const fieldStyle = { "--nav-stone-image": `url(${stoneField})` } as React.CSSProperties;
   return (
     <div id="top" className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
-      <div className="nav-stone pointer-events-none absolute inset-y-0 left-0 z-40 w-3 bg-stone md:w-5" style={barStyle} aria-hidden="true" />
+      <div className="stone-field pointer-events-none fixed inset-y-0 left-0 z-40 w-3 bg-stone md:w-5" style={fieldStyle} aria-hidden="true" />
       {/* Horizontal natural-stone top bar */}
       <header
-        className={`nav-stone fixed inset-x-0 top-0 z-50 isolate bg-stone text-stone-foreground transition-transform duration-500 ease-[cubic-bezier(.19,.8,.18,1)] ${navHidden && !menuOpen ? "-translate-y-full" : "translate-y-0"}`}
-        style={barStyle}
+        className={`stone-field-bar fixed inset-x-0 top-0 z-50 isolate text-stone-foreground transition-transform duration-500 ease-[cubic-bezier(.19,.8,.18,1)] ${navHidden && !menuOpen ? "-translate-y-full" : ""}`}
+        style={fieldStyle}
       >
         <div className="mx-auto flex h-20 max-w-[1480px] items-center justify-between px-5 md:h-24 md:px-10 lg:px-16">
           <a href="#top" aria-label="WIJURO Group — úvod" className="intro-logo flex items-center">
@@ -191,7 +191,7 @@ function Index() {
             </button>
           </div>
         </div>
-        <nav id="mobile-menu" className={`mobile-menu nav-stone fixed inset-x-0 bottom-0 top-20 flex flex-col overflow-y-auto bg-stone px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-6 md:top-24 md:px-10 lg:hidden ${menuOpen ? "is-open" : "invisible pointer-events-none"}`} aria-label="Mobilní navigace" aria-hidden={!menuOpen} style={barStyle}>
+        <nav id="mobile-menu" className={`mobile-menu stone-field-menu fixed inset-x-0 bottom-0 top-20 flex flex-col overflow-y-auto px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-6 md:top-24 md:px-10 lg:hidden ${menuOpen ? "is-open" : "invisible pointer-events-none"}`} aria-label="Mobilní navigace" aria-hidden={!menuOpen} style={fieldStyle}>
           {navItems.map(([label, href]) => (
             <a key={href} href={href} tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mobile-menu-link border-b border-stone-foreground/15 py-4 text-2xl font-light sm:text-3xl">{label}</a>
           ))}
@@ -423,7 +423,7 @@ function Index() {
         </section>
       </main>
 
-      <footer className="nav-stone bg-stone text-stone-foreground" style={{ "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties}>
+      <footer className="stone-field text-stone-foreground" style={fieldStyle}>
         <div className="mx-auto max-w-[1480px] px-5 pb-10 pt-20 md:px-10 lg:px-16">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-6">

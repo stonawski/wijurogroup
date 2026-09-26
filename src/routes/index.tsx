@@ -6,7 +6,7 @@ import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
 import stoneSeamless from "@/assets/stone-raw.jpg";
 import logoMark from "@/assets/logo-mark.png";
 import heroVineyard from "@/assets/hero-pavilion-clean.jpg";
-import heroVideo from "@/assets/hero-pavilion-cinematic.mp4.asset.json";
+import heroVideo from "@/assets/hero-pavilion-smooth.mp4.asset.json";
 
 const title = "WIJURO Group | Marketing, Business & Investments";
 const description =
@@ -72,7 +72,10 @@ const values = [
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [navHidden, setNavHidden] = useState(false);
+  const [activeHeroVideo, setActiveHeroVideo] = useState<0 | 1>(0);
   const heroRef = useRef<HTMLElement>(null);
+  const heroVideoARef = useRef<HTMLVideoElement>(null);
+  const heroVideoBRef = useRef<HTMLVideoElement>(null);
 
   // Hide the top bar when scrolling down, reveal it when scrolling up
   useEffect(() => {
@@ -138,6 +141,33 @@ function Index() {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    const videos = [heroVideoARef.current, heroVideoBRef.current];
+    const active = videos[activeHeroVideo];
+    const nextIndex = activeHeroVideo === 0 ? 1 : 0;
+    const next = videos[nextIndex];
+    if (!active || !next) return;
+
+    let transitioning = false;
+    const beginCrossfade = () => {
+      if (transitioning || !Number.isFinite(active.duration) || active.duration - active.currentTime > 1.35) return;
+      transitioning = true;
+      next.currentTime = 0;
+      void next.play().then(() => setActiveHeroVideo(nextIndex));
+    };
+    const restartIfNeeded = () => {
+      if (transitioning) return;
+      active.currentTime = 0;
+      void active.play();
+    };
+    active.addEventListener("timeupdate", beginCrossfade);
+    active.addEventListener("ended", restartIfNeeded);
+    return () => {
+      active.removeEventListener("timeupdate", beginCrossfade);
+      active.removeEventListener("ended", restartIfNeeded);
+    };
+  }, [activeHeroVideo]);
+
   const barStyle = { "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties;
   return (
     <div id="top" className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
@@ -189,9 +219,13 @@ function Index() {
           <div className="relative lg:col-span-6 lg:-mr-16 lg:-mt-10 xl:-mr-24">
             <div className="hero-media">
               <div className="intro-clip relative overflow-hidden">
-                <video src={heroVideo.url} poster={heroVineyard} autoPlay muted loop playsInline preload="auto" aria-label="Prosklený prostor s logem WIJURO vyleptaným do skla" className="intro-zoom aspect-[4/5] max-h-[68svh] w-full object-cover md:max-h-[72svh] lg:aspect-[5/6] lg:max-h-[82svh]" />
+                <div className="intro-zoom relative aspect-[4/5] max-h-[68svh] w-full md:max-h-[72svh] lg:aspect-[5/6] lg:max-h-[82svh]">
+                  <video ref={heroVideoARef} src={heroVideo.url} poster={heroVineyard} autoPlay muted playsInline preload="auto" aria-label="Prosklený prostor s logem WIJURO vyleptaným do skla" className={`hero-video-layer ${activeHeroVideo === 0 ? "is-active" : ""}`} />
+                  <video ref={heroVideoBRef} src={heroVideo.url} muted playsInline preload="auto" aria-hidden="true" className={`hero-video-layer ${activeHeroVideo === 1 ? "is-active" : ""}`} />
+                </div>
                 <div className="hero-glass-logo" aria-hidden="true">
                   <img src={logoMark} alt="" />
+                  <img src={logoMark} alt="" className="hero-logo-glint" />
                 </div>
                 <div className="hero-light" aria-hidden="true" />
               </div>

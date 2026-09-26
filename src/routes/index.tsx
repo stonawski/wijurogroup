@@ -131,7 +131,7 @@ function Index() {
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
-          <nav id="mobile-menu" className={`mobile-menu nav-stone fixed inset-x-0 bottom-0 top-24 flex flex-col overflow-y-auto bg-stone px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-6 md:top-28 md:px-10 lg:hidden ${menuOpen ? "is-open" : ""}`} aria-label="Mobilní navigace" aria-hidden={!menuOpen} style={{ "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties}>
+          <nav id="mobile-menu" className={`mobile-menu nav-stone fixed inset-x-0 bottom-0 top-24 flex flex-col overflow-y-auto bg-stone px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-6 md:top-28 md:px-10 lg:hidden ${menuOpen ? "is-open" : "invisible pointer-events-none"}`} aria-label="Mobilní navigace" aria-hidden={!menuOpen} style={{ "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties}>
             {navItems.map(([label, href]) => (
               <a key={href} href={href} tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mobile-menu-link border-b border-stone-foreground/15 py-4 text-2xl font-light sm:text-3xl">{label}</a>
             ))}

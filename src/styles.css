@@ -73,6 +73,16 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .mobile-menu.is-open .mobile-menu-link:nth-child(5) { transition-delay: 200ms; }
 .mobile-menu.is-open .mobile-menu-link:nth-child(6) { transition-delay: 250ms; }
 
+/* Collapsible "Více" menu in the stone rail */
+@utility more-toggle { display: inline-flex; align-items: center; gap: .45rem; font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .24em; color: var(--color-stone-foreground); opacity: .6; transition: opacity .4s; &:hover { opacity: 1; } }
+.more-panel { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .7s var(--ease-lux), opacity .55s var(--ease-lux); }
+.more-panel.is-open { grid-template-rows: 1fr; opacity: 1; }
+.more-panel > div { min-height: 0; }
+.more-link { font-size: .62rem; font-weight: 600; text-transform: uppercase; letter-spacing: .18em; color: var(--color-stone-foreground); opacity: 0; transform: translateY(8px); transition: opacity .5s var(--ease-lux), transform .6s var(--ease-lux), color .3s; transition-delay: 0s; }
+.more-link:hover { color: var(--color-accent); }
+.more-panel.is-open .more-link { opacity: .78; transform: none; transition-delay: calc(var(--i, 0) * 70ms + 120ms); }
+.more-panel.is-open .more-link:hover { opacity: 1; }
+
 /* ---------- Motion system ---------- */
 :root { --ease-lux: cubic-bezier(.19, .8, .18, 1); }
 

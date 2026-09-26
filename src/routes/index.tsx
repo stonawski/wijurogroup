@@ -185,7 +185,7 @@ function Index() {
               WIJURO Group propojuje kreativitu, strategii a investiční myšlení.
             </p>
             <div className="intro-up mt-10 flex flex-col gap-3 sm:flex-row" style={{ "--d": "2.3s" } as React.CSSProperties}>
-              <a className="button-primary lux-hover" href="#o-nas">Poznat WIJURO</a>
+              <a className="button-primary lux-hover" href="#o-nas" style={{ background: "color-mix(in oklch, var(--color-primary) 78%, white)" }}>Poznat WIJURO</a>
               <a className="button-ghost lux-hover lux-arrow" href="#kontakt">Pojďme se spojit <ArrowUpRight size={14} className="ml-2" /></a>
             </div>
           </div>

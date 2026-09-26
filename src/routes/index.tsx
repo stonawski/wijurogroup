@@ -3,7 +3,6 @@ import { ArrowUpRight, Linkedin, Mail, Menu, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
-import stoneTile from "@/assets/stone-tile.png.asset.json";
 import heroStone from "@/assets/hero-stone.jpg";
 
 const title = "WIJURO Group | Marketing, Business & Investments";
@@ -100,7 +99,7 @@ function Index() {
           </button>
         </div>
         {menuOpen && (
-          <nav className="fixed inset-x-0 bottom-0 top-20 flex flex-col bg-stone px-5 pb-10 pt-6 md:top-24 lg:hidden" aria-label="Mobilní navigace" style={{ backgroundImage: `url(${stoneTile.url})`, backgroundSize: "480px", backgroundRepeat: "repeat" }}>
+          <nav className="nav-stone fixed inset-x-0 bottom-0 top-20 flex flex-col bg-stone px-5 pb-10 pt-6 md:top-24 lg:hidden" aria-label="Mobilní navigace" style={{ "--nav-stone-image": `url(${logoAsset.url})` } as React.CSSProperties}>
             {navItems.map(([label, href]) => (
               <a key={href} href={href} onClick={() => setMenuOpen(false)} className="border-b border-stone-foreground/15 py-4 text-3xl font-light tracking-tight">{label}</a>
             ))}

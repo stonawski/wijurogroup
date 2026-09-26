@@ -66,7 +66,6 @@ const values = [
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -76,10 +75,7 @@ function Index() {
       { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
     );
     elements.forEach((el) => observer.observe(el));
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => { observer.disconnect(); window.removeEventListener("scroll", onScroll); };
+    return () => observer.disconnect();
   }, []);
 
   // Cinematic hero: scroll + cursor driven camera (lerped via rAF)
@@ -107,12 +103,18 @@ function Index() {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
+    const closeOnEscape = (event: KeyboardEvent) => event.key === "Escape" && setMenuOpen(false);
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", closeOnEscape);
+    };
   }, [menuOpen]);
 
   return (
     <div id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <header
-        className={`nav-stone fixed inset-x-0 top-0 z-50 bg-stone text-stone-foreground transition-[box-shadow,backdrop-filter] duration-700 ${scrolled ? "shadow-[0_10px_34px_-20px_oklch(0.25_0.02_70/0.55),inset_0_0_0_999px_oklch(0.3_0.02_70/0.045)] backdrop-blur-md" : ""}`}
+        className="nav-stone fixed inset-x-0 top-0 z-50 isolate bg-stone text-stone-foreground"
         style={{ "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties}
       >
         <div className="mx-auto flex h-24 max-w-[1480px] items-center justify-between px-5 md:h-28 md:px-10 lg:px-16">
@@ -125,20 +127,18 @@ function Index() {
               Pojďme se spojit <ArrowUpRight size={14} />
             </a>
           </nav>
-          <button type="button" aria-label={menuOpen ? "Zavřít menu" : "Otevřít menu"} aria-expanded={menuOpen} className="inline-flex h-11 w-11 items-center justify-center lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+          <button type="button" aria-label={menuOpen ? "Zavřít menu" : "Otevřít menu"} aria-expanded={menuOpen} aria-controls="mobile-menu" className="relative z-10 inline-flex h-11 w-11 shrink-0 items-center justify-center lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
-        {menuOpen && (
-          <nav className="nav-stone fixed inset-x-0 bottom-0 top-24 flex flex-col bg-stone px-5 pb-10 pt-6 md:top-28 lg:hidden" aria-label="Mobilní navigace" style={{ "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties}>
+          <nav id="mobile-menu" className={`mobile-menu nav-stone fixed inset-x-0 bottom-0 top-24 flex flex-col overflow-y-auto bg-stone px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-6 md:top-28 md:px-10 lg:hidden ${menuOpen ? "is-open" : ""}`} aria-label="Mobilní navigace" aria-hidden={!menuOpen} style={{ "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties}>
             {navItems.map(([label, href]) => (
-              <a key={href} href={href} onClick={() => setMenuOpen(false)} className="border-b border-stone-foreground/15 py-4 text-3xl font-light tracking-tight">{label}</a>
+              <a key={href} href={href} tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mobile-menu-link border-b border-stone-foreground/15 py-4 text-2xl font-light sm:text-3xl">{label}</a>
             ))}
-            <a href="#kontakt" onClick={() => setMenuOpen(false)} className="mt-auto inline-flex h-13 items-center justify-center gap-2 rounded-[2px] bg-stone-foreground py-4 text-xs font-semibold uppercase tracking-[0.14em] text-stone">
+            <a href="#kontakt" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mt-auto inline-flex min-h-12 items-center justify-center gap-2 rounded-[2px] bg-stone-foreground px-4 py-3 text-center text-xs font-semibold uppercase text-stone">
               Pojďme se spojit <ArrowUpRight size={14} />
             </a>
           </nav>
-        )}
       </header>
 
       <main>
@@ -146,7 +146,7 @@ function Index() {
         <section ref={heroRef} className="relative mx-auto grid min-h-[100svh] max-w-[1480px] items-center gap-10 px-5 pb-14 pt-32 md:px-10 md:pt-40 lg:grid-cols-12 lg:gap-12 lg:px-16 lg:pb-16">
           <div className="hero-text relative z-10 lg:col-span-6">
             <p className="eyebrow intro-up" style={{ "--d": "1.2s" } as React.CSSProperties}>Marketing · Business Development · Investice</p>
-            <h1 className="mt-8 text-[clamp(3rem,7.6vw,7.4rem)] font-light leading-[0.95] lg:whitespace-nowrap lg:text-[clamp(3.5rem,6vw,6.6rem)] tracking-[-0.045em]">
+            <h1 className="mt-7 text-[2.75rem] font-light leading-[0.98] sm:text-6xl md:mt-8 md:text-7xl lg:whitespace-nowrap lg:text-[clamp(3.5rem,6vw,6.6rem)]">
               <span className="intro-line"><span style={{ "--d": "1.4s" } as React.CSSProperties}>Building ideas.</span></span>
               <span className="intro-line"><span className="text-muted-foreground" style={{ "--d": "1.65s" } as React.CSSProperties}>Growing value.</span></span>
             </h1>
@@ -161,7 +161,7 @@ function Index() {
           <div className="relative lg:col-span-6 lg:-mr-16 xl:-mr-24">
             <div className="hero-media">
               <div className="intro-clip relative overflow-hidden">
-                <img src={heroStone} alt="Travertinové schodiště v moderní architektuře" width={1200} height={1504} className="intro-zoom aspect-[4/5] max-h-[82svh] w-full object-cover lg:aspect-[5/6]" />
+                <img src={heroStone} alt="Travertinové schodiště v moderní architektuře" width={1200} height={1504} className="intro-zoom aspect-[4/5] max-h-[68svh] w-full object-cover md:max-h-[72svh] lg:aspect-[5/6] lg:max-h-[82svh]" />
                 <div className="hero-light" aria-hidden="true" />
               </div>
             </div>
@@ -346,7 +346,7 @@ function Index() {
               {[[Mail, "E-mail"], [Phone, "Telefon"], [Linkedin, "LinkedIn"]].map(([Icon, label]) => {
                 const I = Icon as typeof Mail;
                 return (
-                  <li key={label as string} className="flex items-center justify-between border-b border-stone-foreground/20 py-6 first:border-t">
+                  <li key={label as string} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-stone-foreground/20 py-6 first:border-t">
                     <span className="flex items-center gap-4"><I size={18} strokeWidth={1.4} />{label as string}</span>
                     <span className="text-sm opacity-60">Bude doplněno</span>
                   </li>

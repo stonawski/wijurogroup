@@ -10,4 +10,5 @@
 - [x] Tlačítko „Poznat WIJURO“ má světlejší výplň
 - [x] Levou stranou webu vede zesílená kamenná linka navazující na horní lištu a patičku
 - [x] Pravá část hero animace přímo navazuje na spodní hranu horní kamenné lišty
+- [x] Původní vodorovný znak v hero scéně je zcela odstraněn a nahrazen přesným originálním logem WIJURO
 - [ ] Doplnit skutečné kontakty (e-mail, telefon, LinkedIn) — čeká na údaje od uživatele

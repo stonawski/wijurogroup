@@ -172,6 +172,8 @@ function Index() {
         </nav>
       </header>
 
+      <div aria-hidden="true" className="nav-stone fixed inset-y-0 left-0 z-40 hidden w-[14px] bg-stone lg:block" style={barStyle} />
+
       <main>
         {/* HERO */}
         <section ref={heroRef} className="relative mx-auto grid min-h-[100svh] max-w-[1480px] items-center gap-10 px-5 pb-14 pt-28 md:px-10 md:pt-36 lg:grid-cols-12 lg:gap-12 lg:px-16 lg:pb-16 lg:pt-32">

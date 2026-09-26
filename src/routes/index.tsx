@@ -43,6 +43,11 @@ const investPrinciples = [
   ["03", "Dlouhodobá hodnota", "Soustřeďujeme se na udržitelný růst, ne na krátkodobý hluk."],
 ];
 
+const founders = [
+  { name: "David W. Juras", role: "Spoluzakladatel", initials: "D", text: "David se zaměřuje na business development, obchod, strategické příležitosti a investice. Baví ho hledat nové možnosti, propojovat lidi a přemýšlet nad tím, jak jednotlivé příležitosti rozvíjet v dlouhodobě hodnotné projekty." },
+  { name: "Julie W. Juras", role: "Spoluzakladatelka", initials: "J", text: "Julie se zaměřuje především na marketing, branding, kreativní projekty a komunikaci. Baví ji budovat značky s vlastní identitou a hledat způsoby, jak dobrý nápad proměnit v něco, co má skutečný potenciál a funguje i v praxi." },
+];
+
 const projects = ["Ve vývoji", "Vybraná příležitost", "Coming soon"];
 
 const approach = [
@@ -145,14 +150,37 @@ function Index() {
 
         {/* O NÁS */}
         <section id="o-nas" className="scroll-mt-24 bg-stone/45" data-reveal>
-          <div className="section-shell grid gap-12 lg:grid-cols-12">
-            <p className="eyebrow lg:col-span-3">O nás</p>
-            <div className="lg:col-span-9">
-              <h2 className="display-heading">Stavíme s výhledem do budoucna.</h2>
-              <div className="mt-14 grid gap-8 border-t border-foreground/15 pt-8 md:grid-cols-2">
-                <p className="text-xl leading-8">WIJURO Group vzniká na jednoduché myšlence: vytvářet hodnotu, která má dlouhodobý význam.</p>
-                <p className="leading-7 text-muted-foreground">Propojujeme kreativitu s obchodním myšlením, strategii s realizací a ambici s odpovědností. Jsme aktivní business group, která vyhledává příležitosti, vytváří projekty a podílí se na jejich rozvoji.</p>
+          <div className="section-shell">
+            <div className="grid gap-12 lg:grid-cols-12">
+              <p className="eyebrow lg:col-span-3">O nás</p>
+              <div className="lg:col-span-9">
+                <h2 className="display-heading">Za WIJURO stojí dva lidé. Jedna společná vize.</h2>
+                <div className="mt-14 grid gap-8 border-t border-foreground/15 pt-8 md:grid-cols-2">
+                  <p className="text-xl leading-8">WIJURO Group jsme založili jako manželé s vizí vybudovat něco vlastního – společnost, která propojuje naše zkušenosti, zájmy a pohled na podnikání. Spojuje nás podnikavost, chuť vytvářet nové příležitosti a přesvědčení, že dobré nápady mají největší hodnotu tehdy, když se promění v něco skutečného.</p>
+                  <p className="leading-7 text-muted-foreground">WIJURO pro nás není jen společnost. Je to prostor pro naše vlastní projekty, nápady, spolupráce a investice a zároveň platforma, která nám umožňuje postupně vytvářet nové příležitosti.</p>
+                </div>
               </div>
+            </div>
+
+            <div className="mt-24 grid gap-20 md:grid-cols-2 md:gap-12 lg:gap-28">
+              {founders.map((f) => (
+                <article key={f.name} className="text-center">
+                  <div className="mx-auto aspect-square w-52 overflow-hidden rounded-full border border-foreground/15 bg-stone md:w-64">
+                    <div className="flex h-full w-full items-center justify-center">
+                      <span className="font-display text-5xl font-light tracking-[0.12em] text-stone-foreground/25">{f.initials}</span>
+                    </div>
+                  </div>
+                  <h3 className="mt-10 text-2xl font-medium tracking-tight md:text-3xl">{f.name}</h3>
+                  <p className="mt-3 eyebrow">{f.role}</p>
+                  <p className="mx-auto mt-6 max-w-md leading-7 text-muted-foreground">{f.text}</p>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-28 border-t border-foreground/15 pt-14 text-center md:pt-20">
+              <h3 className="text-3xl font-light tracking-tight md:text-4xl">Dvě perspektivy. Jeden směr.</h3>
+              <p className="mx-auto mt-8 max-w-2xl text-xl leading-8">Právě rozdílné pohledy považujeme za jednu z našich největších výhod. Kreativita a strategie. Marketing a obchod. Nápad a jeho realizace.</p>
+              <p className="mx-auto mt-6 max-w-2xl leading-7 text-muted-foreground">WIJURO vzniklo z touhy tyto světy propojit a postupně kolem nich vybudovat něco vlastního.</p>
             </div>
           </div>
         </section>
@@ -295,8 +323,7 @@ function Index() {
         <div className="mx-auto max-w-[1480px] px-5 pb-10 pt-20 md:px-10 lg:px-16">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-6">
-              <img src={logoAsset.url} alt="WIJURO Group" width="780" height="780" loading="lazy" className="h-28 w-28 object-contain" />
-              <p className="mt-8 text-3xl font-light tracking-tight md:text-4xl">Marketing. Business. Investments.</p>
+              <p className="text-3xl font-light tracking-tight md:text-4xl">Marketing. Business. Investments.</p>
             </div>
             <nav className="grid grid-cols-2 gap-4 self-end lg:col-span-6 lg:justify-items-end" aria-label="Navigace v patičce">
               {navItems.map(([label, href]) => <a key={href} href={href} className="text-footer-foreground/70 transition-colors hover:text-footer-foreground">{label}</a>)}

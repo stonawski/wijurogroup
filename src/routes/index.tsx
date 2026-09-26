@@ -87,7 +87,7 @@ function Index() {
       >
         <div className="mx-auto flex h-20 max-w-[1480px] items-center justify-between px-5 md:h-24 md:px-10 lg:px-16">
           <a href="#top" aria-label="WIJURO Group — úvod" className="h-20 w-20 shrink-0 md:h-24 md:w-24">
-            <img src={logoAsset.url} alt="WIJURO Group" className="h-full w-full object-contain mix-blend-multiply [mask-image:radial-gradient(closest-side,black_74%,transparent_100%)]" width="780" height="780" />
+            <img src={logoAsset.url} alt="WIJURO Group" className="h-full w-full object-contain [mask-image:radial-gradient(closest-side,black_62%,transparent_96%)]" width="780" height="780" />
           </a>
           <nav className="hidden items-center gap-9 lg:flex" aria-label="Hlavní navigace">
             {navItems.map(([label, href]) => <a key={href} href={href} className="nav-link">{label}</a>)}

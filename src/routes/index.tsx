@@ -151,23 +151,6 @@ function Index() {
           </a>
           <nav className="intro-up hidden items-center gap-9 lg:flex" style={{ "--d": "0.5s" } as React.CSSProperties} aria-label="Hlavní navigace">
             {navItems.map(([label, href]) => <a key={href} href={href} className="nav-link">{label}</a>)}
-            <div className="relative">
-              <button
-                type="button"
-                onClick={() => setMoreOpen(!moreOpen)}
-                aria-expanded={moreOpen}
-                aria-controls="nav-more"
-                className="nav-link inline-flex items-center gap-1.5"
-              >
-                Více
-                <ChevronDown size={13} strokeWidth={1.6} className={`transition-transform duration-500 ease-[cubic-bezier(.19,.8,.18,1)] ${moreOpen ? "rotate-180" : ""}`} />
-              </button>
-              <div id="nav-more" className={`nav-stone absolute right-0 top-full mt-5 min-w-52 border border-stone-foreground/15 bg-stone shadow-[0_24px_50px_-24px_rgba(40,32,22,0.35)] transition-all duration-500 ease-[cubic-bezier(.19,.8,.18,1)] ${moreOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0"}`} style={barStyle}>
-                {moreItems.map(([label, href]) => (
-                  <a key={href} href={href} onClick={() => setMoreOpen(false)} className="block px-6 py-4 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-stone-foreground/75 transition-colors first:border-b first:border-stone-foreground/10 hover:text-stone-foreground [&:not(:first-child)]:border-t [&:not(:first-child)]:border-stone-foreground/10">{label}</a>
-                ))}
-              </div>
-            </div>
           </nav>
           <div className="flex items-center gap-4">
             <a href="#kontakt" className="button-primary intro-up hidden lg:inline-flex" style={{ "--d": "0.7s" } as React.CSSProperties}>Pojďme se spojit</a>

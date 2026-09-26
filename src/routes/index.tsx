@@ -5,8 +5,8 @@ import { useEffect, useState, useRef } from "react";
 import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
 import stoneSeamless from "@/assets/stone-raw.jpg";
 import logoMark from "@/assets/logo-mark.png";
-import heroVineyard from "@/assets/hero-daylight.jpg";
-import heroVideo from "@/assets/hero-daylight.mp4.asset.json";
+import heroVineyard from "@/assets/hero-pavilion-portrait.jpg";
+import heroVideo from "@/assets/hero-pavilion-portrait.mp4.asset.json";
 
 const title = "WIJURO Group | Marketing, Business & Investments";
 const description =
@@ -154,6 +154,7 @@ function Index() {
             {navItems.map(([label, href]) => <a key={href} href={href} className="nav-link">{label}</a>)}
           </nav>
           <div className="flex items-center gap-4">
+            <a href="#kontakt" className="button-primary intro-up hidden lg:inline-flex" style={{ "--d": "0.7s" } as React.CSSProperties}>Pojďme se spojit</a>
             <button type="button" aria-label={menuOpen ? "Zavřít menu" : "Otevřít menu"} aria-expanded={menuOpen} aria-controls="mobile-menu" className="relative z-10 inline-flex h-11 w-11 shrink-0 items-center justify-center lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
               {menuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
@@ -172,8 +173,6 @@ function Index() {
         </nav>
       </header>
 
-      <div aria-hidden="true" className="nav-stone fixed inset-y-0 left-0 z-40 hidden w-[14px] bg-stone lg:block" style={barStyle} />
-
       <main>
         {/* HERO */}
         <section ref={heroRef} className="relative mx-auto grid min-h-[100svh] max-w-[1480px] items-center gap-10 px-5 pb-14 pt-28 md:px-10 md:pt-36 lg:grid-cols-12 lg:gap-12 lg:px-16 lg:pb-16 lg:pt-32">
@@ -187,19 +186,14 @@ function Index() {
               WIJURO Group propojuje kreativitu, strategii a investiční myšlení.
             </p>
             <div className="intro-up mt-10 flex flex-col gap-3 sm:flex-row" style={{ "--d": "2.3s" } as React.CSSProperties}>
-              <a className="button-primary lux-hover" href="#o-nas" style={{ background: "color-mix(in oklch, var(--color-primary) 78%, white)" }}>Poznat WIJURO</a>
+              <a className="button-primary lux-hover" href="#o-nas">Poznat WIJURO</a>
               <a className="button-ghost lux-hover lux-arrow" href="#kontakt">Pojďme se spojit <ArrowUpRight size={14} className="ml-2" /></a>
             </div>
           </div>
           <div className="relative lg:col-span-6 lg:-mr-16 xl:-mr-24">
             <div className="hero-media">
               <div className="intro-clip relative overflow-hidden">
-                <div className="intro-zoom">
-                  <div className="hero-dolly relative">
-                    <video src={heroVideo.url} poster={heroVineyard} autoPlay muted loop playsInline preload="auto" aria-label="Prosklený prostor s výhledem do krajiny a logem WIJURO vyrytým do skla" className="block aspect-[4/5] max-h-[68svh] w-full object-cover md:max-h-[72svh] lg:aspect-[5/6] lg:max-h-[82svh]" />
-                    <div className="glass-etch" aria-hidden="true" style={{ "--logo": `url(${logoMark})` } as React.CSSProperties} />
-                  </div>
-                </div>
+                <video src={heroVideo.url} poster={heroVineyard} autoPlay muted loop playsInline preload="auto" aria-label="Prosklený prostor s logem WIJURO vyleptaným do skla" className="intro-zoom aspect-[4/5] max-h-[68svh] w-full object-cover md:max-h-[72svh] lg:aspect-[5/6] lg:max-h-[82svh]" />
                 <div className="hero-light" aria-hidden="true" />
               </div>
             </div>

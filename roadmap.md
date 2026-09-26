@@ -16,3 +16,4 @@
 - [x] Levá kamenná lišta je silnější a používá stejnou texturu jako horní a spodní lišta
 - [x] Tlačítko „Pojďme se spojit“ zůstává pouze ve spodní části stránky
 - [ ] Doplnit skutečné kontakty (e-mail, telefon, LinkedIn) — čeká na údaje od uživatele
+- [x] Horní lišta, levá lišta a patička sdílí jeden souvislý kamenný povrch (stone-field utility + stone-field.jpg), navazují na sebe beze švu

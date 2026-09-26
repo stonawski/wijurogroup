@@ -140,7 +140,8 @@ function Index() {
 
   const barStyle = { "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties;
   return (
-    <div id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground">
+    <div id="top" className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
+      <div className="nav-stone pointer-events-none absolute inset-y-0 left-0 z-40 w-1.5 bg-stone md:w-2" style={barStyle} aria-hidden="true" />
       {/* Horizontal natural-stone top bar */}
       <header
         className={`nav-stone fixed inset-x-0 top-0 z-50 isolate bg-stone text-stone-foreground transition-transform duration-500 ease-[cubic-bezier(.19,.8,.18,1)] ${navHidden && !menuOpen ? "-translate-y-full" : "translate-y-0"}`}
@@ -154,7 +155,6 @@ function Index() {
             {navItems.map(([label, href]) => <a key={href} href={href} className="nav-link">{label}</a>)}
           </nav>
           <div className="flex items-center gap-4">
-            <a href="#kontakt" className="button-primary intro-up hidden lg:inline-flex" style={{ "--d": "0.7s" } as React.CSSProperties}>Pojďme se spojit</a>
             <button type="button" aria-label={menuOpen ? "Zavřít menu" : "Otevřít menu"} aria-expanded={menuOpen} aria-controls="mobile-menu" className="relative z-10 inline-flex h-11 w-11 shrink-0 items-center justify-center lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
               {menuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
@@ -167,9 +167,6 @@ function Index() {
           {moreItems.map(([label, href]) => (
             <a key={href} href={href} tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mobile-menu-link border-b border-stone-foreground/15 py-4 text-xl font-light text-stone-foreground/70 sm:text-2xl">{label}</a>
           ))}
-          <a href="#kontakt" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mt-auto inline-flex min-h-12 items-center justify-center gap-2 rounded-[2px] bg-stone-foreground px-4 py-3 text-center text-xs font-semibold uppercase text-stone">
-            Pojďme se spojit <ArrowUpRight size={14} />
-          </a>
         </nav>
       </header>
 
@@ -186,7 +183,7 @@ function Index() {
               WIJURO Group propojuje kreativitu, strategii a investiční myšlení.
             </p>
             <div className="intro-up mt-10 flex flex-col gap-3 sm:flex-row" style={{ "--d": "2.3s" } as React.CSSProperties}>
-              <a className="button-primary lux-hover" href="#o-nas">Poznat WIJURO</a>
+              <a className="button-hero-light lux-hover" href="#o-nas">Poznat WIJURO</a>
               <a className="button-ghost lux-hover lux-arrow" href="#kontakt">Pojďme se spojit <ArrowUpRight size={14} className="ml-2" /></a>
             </div>
           </div>
@@ -194,6 +191,9 @@ function Index() {
             <div className="hero-media">
               <div className="intro-clip relative overflow-hidden">
                 <video src={heroVideo.url} poster={heroVineyard} autoPlay muted loop playsInline preload="auto" aria-label="Prosklený prostor s logem WIJURO vyleptaným do skla" className="intro-zoom aspect-[4/5] max-h-[68svh] w-full object-cover md:max-h-[72svh] lg:aspect-[5/6] lg:max-h-[82svh]" />
+                <div className="hero-glass-logo" aria-hidden="true">
+                  <img src={logoMark} alt="" />
+                </div>
                 <div className="hero-light" aria-hidden="true" />
               </div>
             </div>

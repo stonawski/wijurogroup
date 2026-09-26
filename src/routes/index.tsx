@@ -175,27 +175,32 @@ function Index() {
 
       <main>
         {/* HERO */}
-        <section ref={heroRef} className="relative flex min-h-[100svh] items-end overflow-hidden">
-          <div className="absolute inset-0 intro-fade" aria-hidden="true">
-            <div className="absolute inset-[-3%]" style={{ transform: "translate3d(calc(var(--mx,0) * -14px), calc(var(--my,0) * -10px + var(--p,0) * 60px), 0) scale(1.04)" }}>
-              <video className="h-full w-full object-cover" src={heroVideo.url} poster={heroVineyard} autoPlay muted loop playsInline preload="auto" />
-            </div>
-            <div className="absolute inset-0 bg-foreground/35" />
-            <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-foreground/70 to-transparent" />
-          </div>
-          <div className="relative z-10 mx-auto w-full max-w-[1480px] px-5 pb-16 pt-32 text-background md:px-10 md:pb-20 lg:px-16 lg:pb-24">
-            <p className="eyebrow intro-up !text-background/80" style={{ "--d": "2.2s" } as React.CSSProperties}>Marketing · Business Development · Investice</p>
-            <h1 className="mt-6 max-w-4xl text-[2.75rem] font-light leading-[0.98] sm:text-6xl md:text-7xl lg:text-[clamp(3.4rem,6vw,6.5rem)]">
-              <span className="intro-line"><span style={{ "--d": "2.5s" } as React.CSSProperties}>Tvoříme to,</span></span>
-              <span className="intro-line"><span className="text-background/75" style={{ "--d": "2.75s" } as React.CSSProperties}>co přichází.</span></span>
+        <section ref={heroRef} className="relative mx-auto grid min-h-[100svh] max-w-[1480px] items-center gap-10 px-5 pb-14 pt-28 md:px-10 md:pt-36 lg:grid-cols-12 lg:gap-12 lg:px-16 lg:pb-16 lg:pt-32">
+          <div className="hero-text relative z-10 lg:col-span-6">
+            <p className="eyebrow intro-up" style={{ "--d": "1.2s" } as React.CSSProperties}>Marketing · Business Development · Investice</p>
+            <h1 className="mt-7 text-[2.75rem] font-light leading-[0.98] sm:text-6xl md:mt-8 md:text-7xl lg:text-[clamp(3.2rem,5vw,6rem)]">
+              <span className="intro-line"><span style={{ "--d": "1.4s" } as React.CSSProperties}>Tvoříme to,</span></span>
+              <span className="intro-line"><span className="text-muted-foreground" style={{ "--d": "1.65s" } as React.CSSProperties}>co přichází.</span></span>
             </h1>
-            <p className="intro-up mt-8 max-w-xl text-lg leading-8 text-background/85" style={{ "--d": "3.1s" } as React.CSSProperties}>
+            <p className="intro-up mt-9 max-w-xl text-lg leading-8 text-muted-foreground" style={{ "--d": "2.05s" } as React.CSSProperties}>
               WIJURO Group propojuje kreativitu, strategii a investiční myšlení.
             </p>
-            <div className="intro-up mt-10 flex flex-col gap-3 sm:flex-row" style={{ "--d": "3.4s" } as React.CSSProperties}>
+            <div className="intro-up mt-10 flex flex-col gap-3 sm:flex-row" style={{ "--d": "2.3s" } as React.CSSProperties}>
               <a className="button-primary lux-hover" href="#o-nas">Poznat WIJURO</a>
-              <a className="lux-hover inline-flex items-center justify-center border border-background/60 px-7 py-4 text-xs font-semibold uppercase tracking-[0.22em] text-background transition-colors hover:bg-background hover:text-foreground" href="#kontakt">Pojďme se spojit <ArrowUpRight size={14} className="ml-2" /></a>
+              <a className="button-ghost lux-hover lux-arrow" href="#kontakt">Pojďme se spojit <ArrowUpRight size={14} className="ml-2" /></a>
             </div>
+          </div>
+          <div className="relative lg:col-span-6 lg:-mr-16 xl:-mr-24">
+            <div className="hero-media">
+              <div className="intro-clip relative overflow-hidden">
+                <video src={heroVideo.url} poster={heroVineyard} autoPlay muted loop playsInline preload="auto" aria-label="Prosklený prostor s logem WIJURO vyleptaným do skla" className="intro-zoom aspect-[4/5] max-h-[68svh] w-full object-cover md:max-h-[72svh] lg:aspect-[5/6] lg:max-h-[82svh]" />
+                <div className="hero-light" aria-hidden="true" />
+              </div>
+            </div>
+          </div>
+          <div className="hero-cue intro-up pointer-events-none absolute bottom-6 left-16 hidden flex-col items-center gap-3 lg:flex" style={{ "--d": "2.8s" } as React.CSSProperties} aria-hidden="true">
+            <span className="text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-muted-foreground">Scroll</span>
+            <span className="h-10 w-px bg-foreground/30" />
           </div>
         </section>
 

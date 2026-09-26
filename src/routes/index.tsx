@@ -1,20 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowDown, ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowUpRight, Linkedin, Mail, Menu, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import { Button } from "@/components/ui/button";
 import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
-import royalSweet from "@/assets/royal-sweet.jpg";
-import panTrdelnik from "@/assets/pan-trdelnik.jpg";
-import sushiPoint from "@/assets/sushi-point.jpg";
+import heroStone from "@/assets/hero-stone.jpg";
+
+const title = "WIJURO Group | Marketing, Business & Investments";
+const description =
+  "WIJURO Group propojuje marketing, business development, strategické projekty a investiční příležitosti s cílem vytvářet dlouhodobou hodnotu.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "WIJURO Group — Tvoříme to, co přichází" },
-      { name: "description", content: "WIJURO Group propojuje marketing, investiční myšlení a business development. Budujeme a rozvíjíme projekty s potenciálem." },
-      { property: "og:title", content: "WIJURO Group — Tvoříme to, co přichází" },
-      { property: "og:description", content: "Moderní česká business group zaměřená na marketing, investice a business development." },
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -23,178 +24,280 @@ export const Route = createFileRoute("/")({
 });
 
 const navItems = [
-  ["O nás", "#o-nas"], ["Co děláme", "#co-delame"], ["Projekty", "#projekty"],
-  ["Odpovědnost", "#odpovednost"], ["Kontakt", "#kontakt"],
+  ["Domů", "#top"], ["O nás", "#o-nas"], ["Služby", "#sluzby"],
+  ["Investice", "#investice"], ["Projekty", "#projekty"], ["Kontakt", "#kontakt"],
 ];
 
 const services = [
-  { no: "01", title: "Marketing", text: "Budujeme značky, které mají důvod být vidět." },
-  { no: "02", title: "Investice", text: "Hledáme příležitosti s potenciálem dlouhodobého růstu." },
-  { no: "03", title: "Business development", text: "Propojujeme nápady, lidi a příležitosti." },
+  ["01", "Marketing", "Tvoříme značky, které si lidé pamatují.", "Strategický marketing, branding, digitální prezentace a komunikace zaměřené na skutečný obchodní dopad."],
+  ["02", "Business Development", "Proměňujeme kontakty v příležitosti.", "Vyhledáváme příležitosti, budujeme vztahy a propojujeme lidi, nápady a společnosti s potenciálem růstu."],
+  ["03", "Investice", "Kapitál s dlouhodobou perspektivou.", "Vyhledáváme vybrané příležitosti, kde může kombinace kapitálu, strategie a aktivního přístupu vytvářet dlouhodobou hodnotu."],
+  ["04", "Strategické projekty", "Od myšlenky k realizaci.", "Rozvíjíme a podporujeme vybrané projekty od prvotního konceptu až po realizaci a růst."],
 ];
 
-const projects = [
-  { image: royalSweet, category: "Brand development", name: "Royal Sweet Bakery", text: "Rozvoj značky v segmentu prémiového pekařství s důrazem na jasný koncept a dlouhodobou hodnotu." },
-  { image: panTrdelnik, category: "Business concept", name: "Pan Trdelník", text: "Projekt propojující výraznou identitu, tradici a současné obchodní uvažování." },
-  { image: sushiPoint, category: "Growth strategy", name: "Sushi Point", text: "Značka rozvíjená s důrazem na konzistentní zkušenost a prostor pro další růst." },
+const investPrinciples = [
+  ["01", "Potenciál", "Díváme se za současný stav a hledáme, čím se může příležitost stát."],
+  ["02", "Strategie", "Věříme, že kapitál vytváří větší hodnotu, pokud je spojený s jasným strategickým myšlením."],
+  ["03", "Dlouhodobá hodnota", "Soustřeďujeme se na udržitelný růst, ne na krátkodobý hluk."],
 ];
 
-const principles = [
-  ["01", "Strategie", "Směr, který dává každému kroku smysl."],
-  ["02", "Kreativita", "Nový pohled mění možnosti v příležitosti."],
-  ["03", "Příležitosti", "Potenciál hledáme tam, kde má co růst."],
-  ["04", "Dlouhodobý růst", "Rozhodujeme se s výhledem za další horizont."],
+const projects = ["Ve vývoji", "Vybraná příležitost", "Coming soon"];
+
+const approach = [
+  ["01", "Vidíme", "Identifikujeme nápady, příležitosti a potenciál."],
+  ["02", "Propojujeme", "Spojujeme správné lidi, zdroje a perspektivy."],
+  ["03", "Budujeme", "Proměňujeme příležitosti v konkrétní projekty."],
+  ["04", "Rozvíjíme", "Zaměřujeme se na dlouhodobou a udržitelnou hodnotu."],
+];
+
+const values = [
+  ["Vize", "Přemýšlíme dál než za okamžitou příležitost."],
+  ["Integrita", "Důvěra je základem každého vztahu."],
+  ["Růst", "Věříme, že dobré nápady mají mít prostor růst."],
+  ["Dlouhodobost", "Zaměřujeme se na hodnotu, ne na krátkodobý hluk."],
 ];
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
     const observer = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("is-visible")),
-      { threshold: 0.12 },
+      (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("is-visible")),
+      { threshold: 0.1 },
     );
-    elements.forEach((element) => observer.observe(element));
-    return () => observer.disconnect();
+    elements.forEach((el) => observer.observe(el));
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => { observer.disconnect(); window.removeEventListener("scroll", onScroll); };
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+  }, [menuOpen]);
+
   return (
-    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-border/80 bg-background/90 backdrop-blur-md">
-        <div className="mx-auto grid h-20 max-w-[1480px] grid-cols-[auto_1fr_auto] items-center px-5 md:h-24 md:px-10 lg:px-16">
-          <a href="#top" aria-label="WIJURO Group — úvod" className="relative h-14 w-14 shrink-0 overflow-hidden md:h-17 md:w-17">
-            <img src={logoAsset.url} alt="WIJURO Group" className="h-full w-full object-cover" width="768" height="768" />
+    <div id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground">
+      <header className={`fixed inset-x-0 top-0 z-50 bg-stone text-stone-foreground transition-shadow duration-500 ${scrolled ? "shadow-[0_8px_30px_-18px_oklch(0.25_0.02_70/0.5)]" : ""}`}>
+        <div className="mx-auto flex h-20 max-w-[1480px] items-center justify-between px-5 md:h-24 md:px-10 lg:px-16">
+          <a href="#top" aria-label="WIJURO Group — úvod" className="h-20 w-20 shrink-0 md:h-24 md:w-24">
+            <img src={logoAsset.url} alt="WIJURO Group" className="h-full w-full object-contain" width="780" height="780" />
           </a>
-          <nav className="hidden items-center justify-center gap-8 lg:flex" aria-label="Hlavní navigace">
+          <nav className="hidden items-center gap-9 lg:flex" aria-label="Hlavní navigace">
             {navItems.map(([label, href]) => <a key={href} href={href} className="nav-link">{label}</a>)}
+            <a href="#kontakt" className="ml-3 inline-flex h-11 items-center gap-2 rounded-[2px] bg-stone-foreground px-5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-stone transition-opacity hover:opacity-85">
+              Pojďme se spojit <ArrowUpRight size={14} />
+            </a>
           </nav>
-          <a href="#kontakt" className="hidden h-11 items-center border border-primary px-5 text-[0.68rem] font-semibold uppercase tracking-[0.16em] transition-colors hover:bg-primary hover:text-primary-foreground lg:inline-flex">Kontakt</a>
-          <Button variant="ghost" aria-label={menuOpen ? "Zavřít menu" : "Otevřít menu"} className="ml-auto h-11 w-11 px-0 lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
-            {menuOpen ? <X size={19} /> : <Menu size={19} />}
-          </Button>
+          <button type="button" aria-label={menuOpen ? "Zavřít menu" : "Otevřít menu"} aria-expanded={menuOpen} className="inline-flex h-11 w-11 items-center justify-center lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
         {menuOpen && (
-          <nav className="border-t border-border bg-background px-5 py-5 lg:hidden" aria-label="Mobilní navigace">
-            {navItems.map(([label, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)} className="block border-b border-border py-4 font-serif text-2xl">{label}</a>)}
+          <nav className="fixed inset-x-0 bottom-0 top-20 flex flex-col bg-stone px-5 pb-10 pt-6 md:top-24 lg:hidden" aria-label="Mobilní navigace">
+            {navItems.map(([label, href]) => (
+              <a key={href} href={href} onClick={() => setMenuOpen(false)} className="border-b border-stone-foreground/15 py-4 text-3xl font-light tracking-tight">{label}</a>
+            ))}
+            <a href="#kontakt" onClick={() => setMenuOpen(false)} className="mt-auto inline-flex h-13 items-center justify-center gap-2 rounded-[2px] bg-stone-foreground py-4 text-xs font-semibold uppercase tracking-[0.14em] text-stone">
+              Pojďme se spojit <ArrowUpRight size={14} />
+            </a>
           </nav>
         )}
       </header>
 
-      <main id="top">
-        <section className="relative flex min-h-[92svh] items-end overflow-hidden border-b border-border px-5 pb-12 pt-36 md:px-10 md:pb-16 lg:px-16">
-          <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[42%] border-l border-border lg:block" />
-          <div className="pointer-events-none absolute -right-32 top-28 h-[42rem] w-[42rem] rounded-full border border-border/70 lg:block" />
-          <div className="pointer-events-none absolute right-16 top-44 h-[28rem] w-[28rem] rounded-full border border-border/60 lg:block" />
-          <div className="relative mx-auto grid w-full max-w-[1480px] items-end gap-14 lg:grid-cols-[1.45fr_.55fr]">
-            <div className="animate-fade-in">
-              <p className="eyebrow">Marketing · Investice · Business development</p>
-              <h1 className="mt-7 max-w-5xl font-serif text-[clamp(4rem,9vw,9.5rem)] leading-[0.86] font-normal">Tvoříme to,<br /><em className="text-accent">co přichází.</em></h1>
-              <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-                <a className="button-primary" href="#projekty">Naše projekty <ArrowUpRight size={15} /></a>
-                <a className="button-ghost" href="#o-nas">Poznejte WIJURO</a>
+      <main>
+        {/* HERO */}
+        <section className="relative mx-auto grid min-h-[100svh] max-w-[1480px] items-center gap-12 px-5 pb-14 pt-32 md:px-10 md:pt-40 lg:grid-cols-12 lg:px-16 lg:pb-20">
+          <div className="animate-fade-in lg:col-span-7">
+            <p className="eyebrow">Marketing · Business Development · Investice</p>
+            <h1 className="mt-8 text-[clamp(3rem,7.6vw,7.4rem)] font-light leading-[0.95] tracking-[-0.045em]">
+              Building ideas.<br /><span className="text-muted-foreground">Growing value.</span>
+            </h1>
+            <p className="mt-9 max-w-xl text-lg leading-8 text-muted-foreground">
+              WIJURO Group propojuje marketing, business development a investice s cílem vytvářet příležitosti s dlouhodobou hodnotou.
+            </p>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <a className="button-primary" href="#o-nas">Poznat WIJURO</a>
+              <a className="button-ghost" href="#kontakt">Pojďme se spojit <ArrowUpRight size={14} className="ml-2" /></a>
+            </div>
+          </div>
+          <div className="relative overflow-hidden lg:col-span-5">
+            <img src={heroStone} alt="Travertinové schodiště v moderní architektuře" width={1200} height={1504} className="aspect-[4/5] h-full w-full object-cover animate-[fade-in_1.6s_ease]" />
+          </div>
+        </section>
+
+        {/* INTRO */}
+        <section className="section-shell border-t border-border" data-reveal>
+          <div className="grid gap-10 lg:grid-cols-12">
+            <h2 className="display-heading lg:col-span-8">Nápady mají hodnotu, když se promění v něco skutečného.</h2>
+            <p className="self-end text-lg leading-8 text-muted-foreground lg:col-span-4">
+              WIJURO Group propojuje strategické myšlení, marketing, business development a investice. Hledáme příležitosti, propojujeme správné lidi a pomáháme vytvářet projekty s dlouhodobým potenciálem.
+            </p>
+          </div>
+        </section>
+
+        {/* O NÁS */}
+        <section id="o-nas" className="scroll-mt-24 bg-stone/45" data-reveal>
+          <div className="section-shell grid gap-12 lg:grid-cols-12">
+            <p className="eyebrow lg:col-span-3">O nás</p>
+            <div className="lg:col-span-9">
+              <h2 className="display-heading">Stavíme s výhledem do budoucna.</h2>
+              <div className="mt-14 grid gap-8 border-t border-foreground/15 pt-8 md:grid-cols-2">
+                <p className="text-xl leading-8">WIJURO Group vzniká na jednoduché myšlence: vytvářet hodnotu, která má dlouhodobý význam.</p>
+                <p className="leading-7 text-muted-foreground">Propojujeme kreativitu s obchodním myšlením, strategii s realizací a ambici s odpovědností. Jsme aktivní business group, která vyhledává příležitosti, vytváří projekty a podílí se na jejich rozvoji.</p>
               </div>
             </div>
-            <div className="relative border-l border-border pl-6 lg:mb-4 lg:pl-9">
-              <p className="max-w-md text-base leading-7 text-muted-foreground">WIJURO Group propojuje kreativitu, strategii a investiční myšlení. Budujeme, rozvíjíme a propojujeme projekty s potenciálem.</p>
-              <a href="#o-nas" aria-label="Pokračovat na sekci O nás" className="mt-10 inline-flex h-12 w-12 items-center justify-center border border-border transition-colors hover:bg-primary hover:text-primary-foreground"><ArrowDown size={17} /></a>
-            </div>
           </div>
         </section>
 
-        <section id="o-nas" className="section-shell" data-reveal>
-          <div className="section-grid">
-            <div><p className="eyebrow">01 — O nás</p></div>
-            <div>
-              <h2 className="display-heading">Vidíme potenciál tam, kde jiní vidí pouze nápad.</h2>
-              <div className="mt-12 grid gap-8 border-t border-border pt-8 md:grid-cols-2">
-                <p className="text-lg leading-8">WIJURO je česká business skupina, která propojuje marketing, investiční myšlení a business development.</p>
-                <p className="leading-7 text-muted-foreground">Díváme se za horizont jednotlivých oborů. Hledáme souvislosti, tvoříme strategie a rozvíjíme projekty, které mají skutečný potenciál.</p>
-              </div>
-            </div>
+        {/* SLUŽBY */}
+        <section id="sluzby" className="section-shell scroll-mt-24" data-reveal>
+          <div className="mb-16 grid gap-6 lg:grid-cols-12">
+            <p className="eyebrow lg:col-span-3">Služby</p>
+            <h2 className="display-heading lg:col-span-9">Co děláme</h2>
           </div>
-        </section>
-
-        <section id="co-delame" className="border-y border-border bg-secondary" data-reveal>
-          <div className="mx-auto max-w-[1480px] px-5 py-24 md:px-10 lg:px-16 lg:py-36">
-            <div className="mb-16 grid gap-8 lg:grid-cols-[1fr_3fr]"><p className="eyebrow">02 — Co děláme</p><h2 className="display-heading max-w-4xl">Tři disciplíny.<br />Jeden směr.</h2></div>
-            <div className="grid border-t border-border lg:grid-cols-3">
-              {services.map((item) => (
-                <article key={item.no} className="group flex min-h-80 flex-col border-b border-border py-8 transition-colors hover:bg-background lg:border-b-0 lg:border-r lg:px-8 first:lg:pl-0 last:lg:border-r-0">
-                  <span className="text-xs text-muted-foreground">{item.no}</span>
-                  <h3 className="mt-auto max-w-xs font-serif text-4xl uppercase leading-tight md:text-5xl">{item.title}</h3>
-                  <p className="mt-6 max-w-sm leading-7 text-muted-foreground">{item.text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="projekty" className="section-shell" data-reveal>
-          <div className="mb-16 grid gap-8 lg:grid-cols-[1fr_3fr]"><p className="eyebrow">03 — Portfolio</p><div><h2 className="display-heading">Projekty</h2><p className="mt-6 text-lg text-muted-foreground">Od nápadu k projektu. Od projektu k růstu.</p></div></div>
-          <div className="space-y-20 lg:space-y-28">
-            {projects.map((project, index) => (
-              <article key={project.name} className="group grid items-stretch gap-0 lg:grid-cols-12">
-                <div className={`relative aspect-[4/3] overflow-hidden lg:col-span-8 ${index % 2 === 1 ? "lg:order-2" : ""}`}>
-                  <img src={project.image} alt={`Abstraktní vizuál projektu ${project.name}`} loading="lazy" width={1408} height={992} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]" />
-                  <span className="absolute left-5 top-5 bg-background px-3 py-2 text-[0.62rem] uppercase tracking-[0.16em]">0{index + 1}</span>
-                </div>
-                <div className="flex flex-col justify-between border border-border p-7 lg:col-span-4 lg:p-10">
-                  <p className="eyebrow">{project.category}</p>
-                  <div className="mt-20 lg:mt-0">
-                    <h3 className="font-serif text-4xl uppercase leading-none md:text-5xl">{project.name}</h3>
-                    <p className="mt-6 leading-7 text-muted-foreground">{project.text}</p>
-                    <a href="#kontakt" className="mt-8 inline-flex items-center gap-3 border-b border-foreground pb-2 text-xs uppercase tracking-[0.14em]">Zjistit více <ArrowUpRight size={14} /></a>
-                  </div>
+          <div className="border-t border-border">
+            {services.map(([no, name, claim, text]) => (
+              <article key={no} className="group grid gap-4 border-b border-border py-10 transition-colors duration-500 hover:bg-stone/25 md:grid-cols-12 md:gap-8 md:px-4">
+                <span className="text-5xl font-extralight tracking-tight text-muted-foreground md:col-span-2 md:text-6xl">{no}</span>
+                <h3 className="text-2xl font-normal tracking-tight md:col-span-4 md:text-3xl">{name}</h3>
+                <div className="md:col-span-6">
+                  <p className="text-lg">{claim}</p>
+                  <p className="mt-3 leading-7 text-muted-foreground">{text}</p>
                 </div>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="bg-primary text-primary-foreground" data-reveal>
-          <div className="mx-auto max-w-[1480px] px-5 py-24 md:px-10 lg:px-16 lg:py-36">
-            <p className="eyebrow text-primary-foreground/60">04 — Proč WIJURO</p>
-            <div className="mt-16 grid border-t border-primary-foreground/20 md:grid-cols-2 lg:grid-cols-4">
-              {principles.map(([no, title, text]) => (
-                <div key={no} className="min-h-64 border-b border-primary-foreground/20 py-7 md:px-7 md:first:pl-0 lg:border-r lg:last:border-r-0">
-                  <span className="text-xs text-primary-foreground/45">{no}</span><h3 className="mt-16 font-serif text-3xl uppercase">{title}</h3><p className="mt-4 text-sm leading-6 text-primary-foreground/65">{text}</p>
+        {/* INVESTICE */}
+        <section id="investice" className="scroll-mt-24 bg-footer text-footer-foreground" data-reveal>
+          <div className="section-shell">
+            <div className="grid gap-10 lg:grid-cols-12">
+              <p className="eyebrow !text-footer-foreground/60 lg:col-span-3">Investice</p>
+              <div className="lg:col-span-9">
+                <h2 className="display-heading">Investujeme do potenciálu.</h2>
+                <p className="mt-8 max-w-2xl text-lg leading-8 text-footer-foreground/70">Zajímají nás příležitosti, kde může kapitál, strategické myšlení a aktivní přístup společně vytvářet dlouhodobou hodnotu.</p>
+              </div>
+            </div>
+            <div className="mt-20 grid border-t border-footer-foreground/15 md:grid-cols-3">
+              {investPrinciples.map(([no, name, text]) => (
+                <div key={no} className="border-b border-footer-foreground/15 py-10 md:border-b-0 md:border-r md:px-8 md:first:pl-0 md:last:border-r-0">
+                  <span className="text-sm text-footer-foreground/50">{no}</span>
+                  <h3 className="mt-10 text-2xl font-light tracking-tight">{name}</h3>
+                  <p className="mt-4 leading-7 text-footer-foreground/65">{text}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="odpovednost" className="section-shell" data-reveal>
-          <div className="section-grid">
-            <p className="eyebrow">05 — Odpovědnost</p>
-            <div>
-              <h2 className="display-heading max-w-5xl">Růst, který má smysl i za hranicí businessu.</h2>
-              <blockquote className="mt-12 max-w-3xl border-l border-accent pl-7 font-serif text-2xl leading-snug md:text-3xl">„Věříme, že dlouhodobě úspěšné podnikání má smysl pouze tehdy, pokud má pozitivní dopad i mimo samotný business.“</blockquote>
-              <p className="mt-9 max-w-2xl leading-7 text-muted-foreground">Stavíme na odpovědném růstu, respektu k lidem, komunitám a prostředí. Ne jako na frázi, ale jako na přístupu k rozhodování.</p>
+        {/* PROJEKTY */}
+        <section id="projekty" className="section-shell scroll-mt-24" data-reveal>
+          <div className="mb-16 grid gap-6 lg:grid-cols-12">
+            <p className="eyebrow lg:col-span-3">Projekty</p>
+            <div className="lg:col-span-9">
+              <h2 className="display-heading">Vybrané projekty</h2>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">Výběr projektů, nápadů a příležitostí, které vytváříme, rozvíjíme nebo prozkoumáváme.</p>
+            </div>
+          </div>
+          <div className="grid gap-5 md:grid-cols-3">
+            {projects.map((label, i) => (
+              <div key={label} className={`relative flex aspect-[4/5] flex-col justify-between overflow-hidden border border-border bg-stone/35 p-7 ${i === 1 ? "md:translate-y-12" : ""}`}>
+                <span className="text-sm text-muted-foreground">0{i + 1}</span>
+                <div className="pointer-events-none absolute inset-10 border border-foreground/10" />
+                <div className="relative">
+                  <p className="eyebrow">WIJURO Group</p>
+                  <p className="mt-3 text-2xl font-light tracking-tight">{label}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* PŘÍSTUP */}
+        <section className="border-t border-border" data-reveal>
+          <div className="section-shell grid gap-12 lg:grid-cols-12">
+            <div className="lg:col-span-4">
+              <p className="eyebrow">Přístup</p>
+              <h2 className="display-heading mt-6">Náš přístup</h2>
+            </div>
+            <ol className="lg:col-span-8">
+              {approach.map(([no, name, text]) => (
+                <li key={no} className="grid grid-cols-[3rem_1fr] gap-4 border-b border-border py-8 first:border-t md:grid-cols-[5rem_14rem_1fr] md:items-baseline">
+                  <span className="text-sm text-muted-foreground">{no}</span>
+                  <h3 className="text-3xl font-light tracking-tight md:text-4xl">{name}</h3>
+                  <p className="col-start-2 leading-7 text-muted-foreground md:col-start-3">{text}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        {/* HODNOTY */}
+        <section className="bg-stone/45" data-reveal>
+          <div className="section-shell">
+            <h2 className="display-heading mb-16">Na čem nám záleží</h2>
+            <div className="grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
+              {values.map(([name, text]) => (
+                <div key={name} className="border-t border-foreground/20 pt-6">
+                  <h3 className="text-2xl font-normal tracking-tight">{name}</h3>
+                  <p className="mt-4 leading-7 text-muted-foreground">{text}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        <section id="kontakt" className="border-t border-border bg-secondary px-5 py-24 md:px-10 lg:px-16 lg:py-36" data-reveal>
-          <div className="mx-auto max-w-[1480px]">
-            <p className="eyebrow">06 — Kontakt</p>
-            <div className="mt-10 grid items-end gap-10 lg:grid-cols-[1fr_auto]">
-              <div><h2 className="max-w-5xl font-serif text-[clamp(3.5rem,7vw,8rem)] leading-[0.9]">Máte projekt<br /><em className="text-accent">s potenciálem?</em></h2><p className="mt-8 text-lg text-muted-foreground">Rádi si poslechneme váš nápad.</p></div>
-              <a href="mailto:info@wijuro.cz" className="button-primary">Kontaktujte nás <ArrowUpRight size={15} /></a>
+        {/* ODPOVĚDNOST */}
+        <section className="section-shell" data-reveal>
+          <div className="grid gap-10 lg:grid-cols-12">
+            <p className="eyebrow lg:col-span-3">Odpovědnost</p>
+            <div className="lg:col-span-8">
+              <h2 className="text-3xl font-light tracking-tight md:text-4xl">Business s odpovědností</h2>
+              <p className="mt-8 text-xl leading-9 text-muted-foreground">Věříme, že odpovědné podnikání začíná způsobem, jakým pracujeme — férově, promyšleně a s respektem k lidem, partnerům i prostředí kolem nás. S růstem WIJURO chceme postupně rozvíjet i pozitivní dopad, který může naše podnikání vytvářet.</p>
             </div>
-            <div className="mt-20 grid gap-6 border-t border-border pt-7 text-sm sm:grid-cols-2"><div><span className="text-muted-foreground">E-mail</span><a href="mailto:info@wijuro.cz" className="mt-2 block">info@wijuro.cz</a></div><div><span className="text-muted-foreground">Působnost</span><p className="mt-2">Česká republika</p></div></div>
+          </div>
+        </section>
+
+        {/* KONTAKT */}
+        <section id="kontakt" className="scroll-mt-24 bg-stone text-stone-foreground" data-reveal>
+          <div className="section-shell grid gap-14 lg:grid-cols-12">
+            <div className="lg:col-span-7">
+              <p className="eyebrow !text-stone-foreground/70">Kontakt</p>
+              <h2 className="display-heading mt-6">Máte nápad, který stojí za to rozvíjet?</h2>
+              <p className="mt-8 max-w-xl text-lg leading-8 opacity-80">Řekněte nám, na čem pracujete. Zajímají nás zajímaví lidé, nápady a příležitosti.</p>
+              <a href="#kontakt" className="button-primary mt-10">Pojďme se spojit <ArrowUpRight size={14} /></a>
+            </div>
+            <ul className="self-end lg:col-span-5">
+              {[[Mail, "E-mail"], [Phone, "Telefon"], [Linkedin, "LinkedIn"]].map(([Icon, label]) => {
+                const I = Icon as typeof Mail;
+                return (
+                  <li key={label as string} className="flex items-center justify-between border-b border-stone-foreground/20 py-6 first:border-t">
+                    <span className="flex items-center gap-4"><I size={18} strokeWidth={1.4} />{label as string}</span>
+                    <span className="text-sm opacity-60">Bude doplněno</span>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </section>
       </main>
 
       <footer className="bg-footer text-footer-foreground">
-        <div className="mx-auto max-w-[1480px] px-5 py-12 md:px-10 lg:px-16">
-          <div className="grid gap-10 border-b border-footer-foreground/15 pb-10 md:grid-cols-[auto_1fr] md:items-end">
-            <img src={logoAsset.url} alt="WIJURO Group" className="h-24 w-24 object-cover opacity-80" width="768" height="768" />
-            <nav className="flex flex-wrap gap-x-8 gap-y-4 text-xs uppercase tracking-[0.14em] md:justify-end">{navItems.filter(([label]) => label !== "Odpovědnost").map(([label, href]) => <a key={href} href={href} className="transition-opacity hover:opacity-55">{label}</a>)}</nav>
+        <div className="mx-auto max-w-[1480px] px-5 pb-10 pt-20 md:px-10 lg:px-16">
+          <div className="grid gap-12 lg:grid-cols-12">
+            <div className="lg:col-span-6">
+              <img src={logoAsset.url} alt="WIJURO Group" width="780" height="780" loading="lazy" className="h-28 w-28 object-contain" />
+              <p className="mt-8 text-3xl font-light tracking-tight md:text-4xl">Marketing. Business. Investments.</p>
+            </div>
+            <nav className="grid grid-cols-2 gap-4 self-end lg:col-span-6 lg:justify-items-end" aria-label="Navigace v patičce">
+              {navItems.map(([label, href]) => <a key={href} href={href} className="text-footer-foreground/70 transition-colors hover:text-footer-foreground">{label}</a>)}
+            </nav>
           </div>
-          <div className="mt-7 flex flex-col gap-3 text-xs text-footer-foreground/55 sm:flex-row sm:justify-between"><p>© 2026 WIJURO Group</p><a href="#kontakt" className="hover:text-footer-foreground">Ochrana osobních údajů</a></div>
+          <p className="mt-20 border-t border-footer-foreground/15 pt-8 text-sm text-footer-foreground/55">© 2026 WIJURO Group. Všechna práva vyhrazena.</p>
         </div>
       </footer>
     </div>

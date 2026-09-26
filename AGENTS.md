@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the WIJURO website as a focused single-page presentation because its primary journey is narrative brand discovery.
+- Use the uploaded WIJURO logo asset unchanged wherever the brand mark appears because preserving the supplied identity is mandatory.

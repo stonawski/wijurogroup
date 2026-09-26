@@ -76,7 +76,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .is-visible .reveal-item { opacity: 1; transform: none; }
 
 /* Masked line reveal */
-.mask-line { display: block; overflow: hidden; padding-bottom: .08em; margin-bottom: -.08em; }
+.mask-line { display: block; overflow: hidden; padding-bottom: .18em; margin-bottom: -.18em; }
 .mask-line > span { display: block; transform: translateY(108%); transition: transform 1.4s var(--ease-lux); transition-delay: calc(var(--i, 0) * 150ms); }
 .is-visible .mask-line > span { transform: none; }
 
@@ -89,7 +89,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 @keyframes light-drift { 0%, 100% { transform: translate3d(-18%, -6%, 0); opacity: .55; } 50% { transform: translate3d(14%, 8%, 0); opacity: .9; } }
 .intro-logo { animation: intro-fade 1.4s var(--ease-lux) .15s both; }
 .intro-up { animation: intro-up 1.3s var(--ease-lux) both; animation-delay: var(--d, 0s); }
-.intro-line { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.1em; }
+.intro-line { display: block; overflow: hidden; padding-bottom: .2em; margin-bottom: -.2em; }
 .intro-line > span { display: block; animation: intro-line 1.6s var(--ease-lux) both; animation-delay: var(--d, 0s); }
 .intro-clip { animation: intro-clip 2s var(--ease-lux) .55s both; }
 .intro-zoom { animation: intro-zoom 4.5s var(--ease-lux) .55s both; }

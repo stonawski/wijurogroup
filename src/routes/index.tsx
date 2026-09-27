@@ -223,10 +223,6 @@ function Index() {
                   <video ref={heroVideoARef} src={heroVideo.url} poster={heroVineyard} autoPlay muted playsInline preload="auto" aria-label="Prosklený prostor s logem WIJURO vyleptaným do skla" className={`hero-video-layer ${activeHeroVideo === 0 ? "is-active" : ""}`} />
                   <video ref={heroVideoBRef} src={heroVideo.url} muted playsInline preload="auto" aria-hidden="true" className={`hero-video-layer ${activeHeroVideo === 1 ? "is-active" : ""}`} />
                 </div>
-                <div className="hero-glass-logo" aria-hidden="true">
-                  <img src={logoMark} alt="" />
-                  <img src={logoMark} alt="" className="hero-logo-glint" />
-                </div>
                 <div className="hero-light" aria-hidden="true" />
               </div>
             </div>

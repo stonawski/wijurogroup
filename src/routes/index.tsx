@@ -5,7 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
 import stoneSeamless from "@/assets/stone-raw.jpg";
 import logoMark from "@/assets/logo-mark.png";
-import heroVineyard from "@/assets/hero-clean-master.png";
+import heroVineyard from "@/assets/hero-pavilion-poster.png";
 import heroVideo from "@/assets/hero-pavilion-portrait.mp4.asset.json";
 
 const title = "WIJURO Group | Marketing, Business & Investments";

@@ -116,7 +116,8 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .intro-clip { animation: intro-clip 2s var(--ease-lux) .55s both; }
 .intro-zoom { animation: intro-zoom 4.5s var(--ease-lux) .55s both; }
 .hero-light { position: absolute; inset: -30%; pointer-events: none; background: radial-gradient(40% 35% at 50% 40%, oklch(0.99 0.02 85 / .35), transparent 70%); mix-blend-mode: soft-light; animation: light-drift 18s ease-in-out infinite; }
-.hero-symbol-cover { position: absolute; left: 50%; top: 27.5%; width: 11%; aspect-ratio: 1.35; transform: translateX(-50%); pointer-events: none; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: color-mix(in oklab, var(--color-primary-foreground) 4%, transparent); mask-image: radial-gradient(ellipse, black 30%, transparent 74%); -webkit-mask-image: radial-gradient(ellipse, black 30%, transparent 74%); }
+.hero-symbol-cover { position: absolute; left: 50%; top: 28.2%; display: grid; width: 15%; aspect-ratio: 1.8; place-items: center; transform: translateX(-50%); pointer-events: none; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); background: color-mix(in oklab, var(--color-primary-foreground) 7%, transparent); mask-image: radial-gradient(ellipse, black 35%, transparent 76%); -webkit-mask-image: radial-gradient(ellipse, black 35%, transparent 76%); }
+.hero-symbol-cover > span { font-family: Georgia, serif; font-size: clamp(.55rem, 1.15vw, 1.05rem); font-weight: 400; letter-spacing: .16em; color: color-mix(in oklab, var(--color-primary-foreground) 62%, transparent); text-shadow: 0 1px 7px color-mix(in oklab, var(--color-foreground) 20%, transparent); }
 
 /* Scroll/cursor driven hero (vars set via rAF) */
 .hero-text { transform: translate3d(calc(var(--mx, 0) * -3px), calc(var(--p, 0) * -110px + var(--my, 0) * -2px), 0); opacity: calc(1 - var(--p, 0) * 1.4); will-change: transform, opacity; }

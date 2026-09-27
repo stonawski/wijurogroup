@@ -3,10 +3,10 @@ import { ArrowUpRight, Linkedin, Mail, Menu, Phone, X } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 
 import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
-import stoneField from "@/assets/stone-field.jpg";
+import stoneSeamless from "@/assets/stone-raw.jpg";
 import logoMark from "@/assets/logo-mark.png";
-import heroVineyard from "@/assets/hero-pavilion-clean.jpg";
-import heroVideo from "@/assets/hero-pavilion-smooth.mp4.asset.json";
+import heroVineyard from "@/assets/hero-pavilion-portrait.jpg";
+import heroVideo from "@/assets/hero-pavilion-portrait.mp4.asset.json";
 
 const title = "WIJURO Group | Marketing, Business & Investments";
 const description =
@@ -72,10 +72,7 @@ const values = [
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [navHidden, setNavHidden] = useState(false);
-  const [activeHeroVideo, setActiveHeroVideo] = useState<0 | 1>(0);
   const heroRef = useRef<HTMLElement>(null);
-  const heroVideoARef = useRef<HTMLVideoElement>(null);
-  const heroVideoBRef = useRef<HTMLVideoElement>(null);
 
   // Hide the top bar when scrolling down, reveal it when scrolling up
   useEffect(() => {
@@ -141,41 +138,13 @@ function Index() {
     };
   }, [menuOpen]);
 
-  useEffect(() => {
-    const videos = [heroVideoARef.current, heroVideoBRef.current];
-    const active = videos[activeHeroVideo];
-    const nextIndex = activeHeroVideo === 0 ? 1 : 0;
-    const next = videos[nextIndex];
-    if (!active || !next) return;
-
-    let transitioning = false;
-    const beginCrossfade = () => {
-      if (transitioning || !Number.isFinite(active.duration) || active.duration - active.currentTime > 1.35) return;
-      transitioning = true;
-      next.currentTime = 0;
-      void next.play().then(() => setActiveHeroVideo(nextIndex));
-    };
-    const restartIfNeeded = () => {
-      if (transitioning) return;
-      active.currentTime = 0;
-      void active.play();
-    };
-    active.addEventListener("timeupdate", beginCrossfade);
-    active.addEventListener("ended", restartIfNeeded);
-    return () => {
-      active.removeEventListener("timeupdate", beginCrossfade);
-      active.removeEventListener("ended", restartIfNeeded);
-    };
-  }, [activeHeroVideo]);
-
-  const fieldStyle = { "--nav-stone-image": `url(${stoneField})` } as React.CSSProperties;
+  const barStyle = { "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties;
   return (
-    <div id="top" className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
-      <div className="stone-field pointer-events-none fixed inset-y-0 left-0 z-40 w-3 bg-stone md:w-5" style={fieldStyle} aria-hidden="true" />
+    <div id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground">
       {/* Horizontal natural-stone top bar */}
       <header
-        className={`stone-field-bar fixed inset-x-0 top-0 z-50 isolate text-stone-foreground transition-transform duration-500 ease-[cubic-bezier(.19,.8,.18,1)] ${navHidden && !menuOpen ? "-translate-y-full" : ""}`}
-        style={fieldStyle}
+        className={`nav-stone fixed inset-x-0 top-0 z-50 isolate bg-stone text-stone-foreground transition-transform duration-500 ease-[cubic-bezier(.19,.8,.18,1)] ${navHidden && !menuOpen ? "-translate-y-full" : "translate-y-0"}`}
+        style={barStyle}
       >
         <div className="mx-auto flex h-20 max-w-[1480px] items-center justify-between px-5 md:h-24 md:px-10 lg:px-16">
           <a href="#top" aria-label="WIJURO Group — úvod" className="intro-logo flex items-center">
@@ -185,18 +154,22 @@ function Index() {
             {navItems.map(([label, href]) => <a key={href} href={href} className="nav-link">{label}</a>)}
           </nav>
           <div className="flex items-center gap-4">
+            <a href="#kontakt" className="button-primary intro-up hidden lg:inline-flex" style={{ "--d": "0.7s" } as React.CSSProperties}>Pojďme se spojit</a>
             <button type="button" aria-label={menuOpen ? "Zavřít menu" : "Otevřít menu"} aria-expanded={menuOpen} aria-controls="mobile-menu" className="relative z-10 inline-flex h-11 w-11 shrink-0 items-center justify-center lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
               {menuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
-        <nav id="mobile-menu" className={`mobile-menu stone-field-menu fixed inset-x-0 bottom-0 top-20 flex flex-col overflow-y-auto px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-6 md:top-24 md:px-10 lg:hidden ${menuOpen ? "is-open" : "invisible pointer-events-none"}`} aria-label="Mobilní navigace" aria-hidden={!menuOpen} style={fieldStyle}>
+        <nav id="mobile-menu" className={`mobile-menu nav-stone fixed inset-x-0 bottom-0 top-20 flex flex-col overflow-y-auto bg-stone px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-6 md:top-24 md:px-10 lg:hidden ${menuOpen ? "is-open" : "invisible pointer-events-none"}`} aria-label="Mobilní navigace" aria-hidden={!menuOpen} style={barStyle}>
           {navItems.map(([label, href]) => (
             <a key={href} href={href} tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mobile-menu-link border-b border-stone-foreground/15 py-4 text-2xl font-light sm:text-3xl">{label}</a>
           ))}
           {moreItems.map(([label, href]) => (
             <a key={href} href={href} tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mobile-menu-link border-b border-stone-foreground/15 py-4 text-xl font-light text-stone-foreground/70 sm:text-2xl">{label}</a>
           ))}
+          <a href="#kontakt" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mt-auto inline-flex min-h-12 items-center justify-center gap-2 rounded-[2px] bg-stone-foreground px-4 py-3 text-center text-xs font-semibold uppercase text-stone">
+            Pojďme se spojit <ArrowUpRight size={14} />
+          </a>
         </nav>
       </header>
 
@@ -204,7 +177,7 @@ function Index() {
         {/* HERO */}
         <section ref={heroRef} className="relative mx-auto grid min-h-[100svh] max-w-[1480px] items-center gap-10 px-5 pb-14 pt-28 md:px-10 md:pt-36 lg:grid-cols-12 lg:gap-12 lg:px-16 lg:pb-16 lg:pt-32">
           <div className="hero-text relative z-10 lg:col-span-6">
-            <p className="eyebrow intro-up" style={{ "--d": "1.2s" } as React.CSSProperties}>MARKETING · PROJECTS · BUSINESS DEVELOPMENT</p>
+            <p className="eyebrow intro-up" style={{ "--d": "1.2s" } as React.CSSProperties}>Marketing · Business Development · Investice</p>
             <h1 className="mt-7 text-[2.75rem] font-light leading-[0.98] sm:text-6xl md:mt-8 md:text-7xl lg:text-[clamp(3.2rem,5vw,6rem)]">
               <span className="intro-line"><span style={{ "--d": "1.4s" } as React.CSSProperties}>Tvoříme to,</span></span>
               <span className="intro-line"><span className="text-muted-foreground" style={{ "--d": "1.65s" } as React.CSSProperties}>co přichází.</span></span>
@@ -213,16 +186,14 @@ function Index() {
               WIJURO Group propojuje kreativitu, strategii a investiční myšlení.
             </p>
             <div className="intro-up mt-10 flex flex-col gap-3 sm:flex-row" style={{ "--d": "2.3s" } as React.CSSProperties}>
-              <a className="button-hero-light lux-hover" href="#o-nas">Poznat WIJURO</a>
+              <a className="button-primary lux-hover" href="#o-nas">Poznat WIJURO</a>
+              <a className="button-ghost lux-hover lux-arrow" href="#kontakt">Pojďme se spojit <ArrowUpRight size={14} className="ml-2" /></a>
             </div>
           </div>
-          <div className="relative lg:col-span-6 lg:-mr-16 lg:-mt-10 xl:-mr-24">
+          <div className="relative lg:col-span-6 lg:-mr-16 xl:-mr-24">
             <div className="hero-media">
               <div className="intro-clip relative overflow-hidden">
-                <div className="intro-zoom relative aspect-[4/5] max-h-[68svh] w-full md:max-h-[72svh] lg:aspect-[5/6] lg:max-h-[82svh]">
-                  <video ref={heroVideoARef} src={heroVideo.url} poster={heroVineyard} autoPlay muted playsInline preload="auto" aria-label="Prosklený prostor s logem WIJURO vyleptaným do skla" className={`hero-video-layer ${activeHeroVideo === 0 ? "is-active" : ""}`} />
-                  <video ref={heroVideoBRef} src={heroVideo.url} muted playsInline preload="auto" aria-hidden="true" className={`hero-video-layer ${activeHeroVideo === 1 ? "is-active" : ""}`} />
-                </div>
+                <video src={heroVideo.url} poster={heroVineyard} autoPlay muted loop playsInline preload="auto" aria-label="Prosklený prostor s logem WIJURO vyleptaným do skla" className="intro-zoom aspect-[4/5] max-h-[68svh] w-full object-cover md:max-h-[72svh] lg:aspect-[5/6] lg:max-h-[82svh]" />
                 <div className="hero-light" aria-hidden="true" />
               </div>
             </div>
@@ -418,7 +389,7 @@ function Index() {
         </section>
       </main>
 
-      <footer className="stone-field text-stone-foreground" style={fieldStyle}>
+      <footer className="nav-stone bg-stone text-stone-foreground" style={{ "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties}>
         <div className="mx-auto max-w-[1480px] px-5 pb-10 pt-20 md:px-10 lg:px-16">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-6">

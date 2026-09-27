@@ -194,6 +194,7 @@ function Index() {
             <div className="hero-media">
               <div className="intro-clip relative overflow-hidden">
                 <video src={heroVideo.url} poster={heroVineyard} autoPlay muted loop playsInline preload="auto" aria-label="Prosklený prostor s logem WIJURO vyleptaným do skla" className="intro-zoom aspect-[4/5] max-h-[68svh] w-full object-cover md:max-h-[72svh] lg:aspect-[5/6] lg:max-h-[82svh]" />
+                 <span className="hero-symbol-cover" aria-hidden="true" />
                 <div className="hero-light" aria-hidden="true" />
               </div>
             </div>

@@ -33,7 +33,7 @@ const navItems = [
 ];
 
 const moreItems = [
-  ["Investice", "#investice"], ["Náš přístup", "#pristup"], ["Hodnoty", "#hodnoty"],
+  ["Strategy", "#investice"], ["Náš přístup", "#pristup"], ["Hodnoty", "#hodnoty"],
 ];
 
 

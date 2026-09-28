@@ -36,12 +36,6 @@ const moreItems = [
   ["Investice", "#investice"], ["Náš přístup", "#pristup"], ["Hodnoty", "#hodnoty"],
 ];
 
-const services = [
-  ["01", "Marketing", "Tvoříme značky, které si lidé pamatují.", "Strategický marketing, branding, digitální prezentace a komunikace zaměřené na skutečný obchodní dopad."],
-  ["02", "Business Development", "Proměňujeme kontakty v příležitosti.", "Vyhledáváme příležitosti, budujeme vztahy a propojujeme lidi, nápady a společnosti s potenciálem růstu."],
-  ["03", "Investice", "Kapitál s dlouhodobou perspektivou.", "Vyhledáváme vybrané příležitosti, kde může kombinace kapitálu, strategie a aktivního přístupu vytvářet dlouhodobou hodnotu."],
-  ["04", "Strategické projekty", "Od myšlenky k realizaci.", "Rozvíjíme a podporujeme vybrané projekty od prvotního konceptu až po realizaci a růst."],
-];
 
 const investPrinciples = [
   ["01", "Potenciál", "Díváme se za současný stav a hledáme, čím se může příležitost stát."],
@@ -261,17 +255,21 @@ function Index() {
             <p className="eyebrow lg:col-span-3">Služby</p>
             <h2 className="display-heading lg:col-span-9">Co děláme</h2>
           </div>
-          <div className="border-t border-border">
-            {services.map(([no, name, claim, text]) => (
-              <article key={no} className="group grid gap-4 border-b border-border py-10 transition-colors duration-500 hover:bg-stone/25 md:grid-cols-12 md:gap-8 md:px-4">
-                <span className="text-5xl font-extralight tracking-tight text-muted-foreground md:col-span-2 md:text-6xl">{no}</span>
-                <h3 className="text-2xl font-normal tracking-tight md:col-span-4 md:text-3xl">{name}</h3>
-                <div className="md:col-span-6">
-                  <p className="text-lg">{claim}</p>
-                  <p className="mt-3 leading-7 text-muted-foreground">{text}</p>
-                </div>
-              </article>
-            ))}
+          <div className="border-t border-border pt-14 md:pt-20">
+            <h3 className="font-display text-3xl font-light leading-tight tracking-tight md:text-5xl">Divize korporátního fundraisingu a expanze</h3>
+            <p className="mt-4 text-sm leading-6 tracking-[0.04em] text-muted-foreground md:text-base">Získávání peněz přes marketing + nastartování růstu firmy</p>
+
+            <p className="mt-14 max-w-3xl text-2xl font-light leading-[1.35] tracking-tight md:mt-20 md:text-4xl">
+              Zvyšujeme tržní hodnotu firem.
+              <span className="block text-muted-foreground">Propojujeme strategický marketing s akvizicí rozvojového kapitálu.</span>
+            </p>
+
+            <div className="mt-16 grid gap-6 border-t border-border pt-10 md:mt-24 md:grid-cols-12 md:gap-8 md:pt-14">
+              <h4 className="eyebrow md:col-span-4">Jak to funguje?</h4>
+              <p className="text-lg leading-8 text-muted-foreground md:col-span-8">
+                Prostřednictvím cílených marketingových kampaní oslovujeme relevantní investorské skupiny a zajišťujeme externí financování pro malé a střední podniky. Alokovaný kapitál následně efektivně transformujeme do realizace projektů a tržní expanze.
+              </p>
+            </div>
           </div>
         </section>
 

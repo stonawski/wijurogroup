@@ -260,9 +260,12 @@ function Index() {
           <div className="mb-10 grid gap-6 lg:grid-cols-12">
             <p className="eyebrow lg:col-span-3">Co děláme</p>
           </div>
+
+          {/* DIVIZE 01 */}
           <div className="border-t border-border pt-14 md:pt-20">
-            <h3 className="font-display text-3xl font-light leading-tight tracking-tight md:text-5xl">Divize korporátního fundraisingu a expanze</h3>
-            <p className="mt-4 text-sm leading-6 tracking-[0.04em] text-muted-foreground md:text-base">Získávání peněz přes marketing + nastartování růstu firmy</p>
+            <p className="eyebrow">Divize 01</p>
+            <p className="mt-6 text-sm uppercase leading-6 tracking-[0.18em] text-muted-foreground md:text-base">Korporátní fundraising &amp; expanze</p>
+            <h3 className="mt-6 font-display text-3xl font-light leading-tight tracking-tight md:text-5xl">Kapitál pro růst. Strategie pro expanzi.</h3>
 
             <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl md:leading-9">
               Zvyšujeme tržní hodnotu firem. Propojujeme strategický marketing s akvizicí rozvojového kapitálu.
@@ -274,6 +277,77 @@ function Index() {
                 Prostřednictvím cílených marketingových kampaní oslovujeme relevantní investorské skupiny a zajišťujeme externí financování pro malé a střední podniky. Alokovaný kapitál následně efektivně transformujeme do realizace projektů a tržní expanze.
               </p>
             </div>
+
+            <div className="mt-16 grid gap-12 md:mt-24 md:grid-cols-3 md:gap-10">
+              {[
+                ["01", "Strategie", "Propojení strategického marketingu s kapitálovou strategií společnosti."],
+                ["02", "Kapitál", "Vyhledání a oslovení relevantních investorských skupin a zajištění externího financování."],
+                ["03", "Expanze", "Transformace získaného kapitálu do realizace projektů, rozvoje společnosti a tržní expanze."],
+              ].map(([no, name, text]) => (
+                <div key={no}>
+                  <span className="text-sm text-muted-foreground">{no}</span>
+                  <h4 className="mt-6 text-2xl font-light tracking-tight">{name}</h4>
+                  <p className="mt-4 leading-7 text-muted-foreground">{text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* DIVIZE 02 */}
+          <div className="mt-28 border-t border-border pt-14 md:mt-40 md:pt-20">
+            <p className="eyebrow">Divize 02</p>
+            <p className="mt-6 text-sm uppercase leading-6 tracking-[0.18em] text-muted-foreground md:text-base">M&amp;A</p>
+            <h3 className="mt-6 font-display text-3xl font-light leading-tight tracking-tight md:text-5xl">Prodej firmy. Strategický kupující. Nová kapitola.</h3>
+
+            <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl md:leading-9">
+              Zajišťujeme kompletní proces při realizaci prodeje firem. Zastupujeme majitele, kteří plánují kapitálový exit, a aktivně vyhledáváme strategické kupující.
+            </p>
+
+            <div className="mt-16 grid gap-6 border-t border-border pt-10 md:mt-24 md:grid-cols-12 md:gap-8 md:pt-14">
+              <h4 className="eyebrow md:col-span-4">Jak to funguje?</h4>
+              <p className="text-lg leading-8 text-muted-foreground md:col-span-8">
+                Spolupracujeme s vlastníky podniků v jakékoliv fázi jejich cyklu. Pomáháme úspěšným a profitabilním firmám, kde majitelé chtějí bezpečně prodat svůj byznys a zhodnotit tržní hodnotu dlouholeté práce.
+              </p>
+            </div>
+
+            <div className="mt-16 grid gap-14 md:mt-24 md:grid-cols-2 md:gap-16">
+              {[
+                ["01", "Kapitálový exit", "Úspěšná a profitabilní společnost, jejíž majitel chce bezpečně prodat svůj byznys a zhodnotit tržní hodnotu dlouholeté práce."],
+                ["02", "Kapitálová tíseň", "Podnik, který se ocitl v kapitálové tísni a potřebuje strategického investora pro zachování kontinuity provozu, hodnoty značky a dalšího fungování společnosti."],
+              ].map(([no, name, text]) => (
+                <div key={no}>
+                  <span className="text-sm text-muted-foreground">{no}</span>
+                  <h4 className="mt-6 font-display text-3xl font-light tracking-tight md:text-4xl">{name}</h4>
+                  <p className="mt-5 max-w-md leading-7 text-muted-foreground">{text}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* M&A PROCES */}
+            <div className="mt-20 border-t border-border pt-10 md:mt-28 md:pt-14">
+              <h4 className="eyebrow">M&amp;A proces</h4>
+              <ol className="mt-10 grid md:grid-cols-5">
+                {[
+                  ["01", "Analýza"],
+                  ["02", "Strategie"],
+                  ["03", "Vyhledání investora"],
+                  ["04", "Vyjednávání"],
+                  ["05", "Transakce"],
+                ].map(([no, name]) => (
+                  <li key={no} className="border-b border-border py-6 md:border-b-0 md:border-r md:px-6 md:py-0 md:first:pl-0 md:last:border-r-0">
+                    <span className="text-sm text-muted-foreground">{no}</span>
+                    <p className="mt-4 text-lg font-light tracking-tight">{name}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+
+          {/* ZÁVĚR */}
+          <div className="mt-28 border-t border-border pt-14 md:mt-40 md:pt-20">
+            <h3 className="font-display text-3xl font-light leading-tight tracking-tight md:text-4xl">Máte firmu s potenciálem?</h3>
+            <p className="mt-5 max-w-xl leading-7 text-muted-foreground">Promluvme si o možnostech jejího dalšího růstu, financování nebo prodeje.</p>
+            <a href="#kontakt" className="button-ghost lux-arrow mt-10 inline-flex">Kontakt</a>
           </div>
         </section>
 

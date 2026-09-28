@@ -251,17 +251,15 @@ function Index() {
 
         {/* SLUŽBY */}
         <section id="sluzby" className="section-shell scroll-mt-24" data-reveal>
-          <div className="mb-16 grid gap-6 lg:grid-cols-12">
-            <p className="eyebrow lg:col-span-3">Služby</p>
-            <h2 className="display-heading lg:col-span-9">Co děláme</h2>
+          <div className="mb-10 grid gap-6 lg:grid-cols-12">
+            <p className="eyebrow lg:col-span-3">Co děláme</p>
           </div>
           <div className="border-t border-border pt-14 md:pt-20">
             <h3 className="font-display text-3xl font-light leading-tight tracking-tight md:text-5xl">Divize korporátního fundraisingu a expanze</h3>
             <p className="mt-4 text-sm leading-6 tracking-[0.04em] text-muted-foreground md:text-base">Získávání peněz přes marketing + nastartování růstu firmy</p>
 
-            <p className="mt-14 max-w-3xl text-2xl font-light leading-[1.35] tracking-tight md:mt-20 md:text-4xl">
-              Zvyšujeme tržní hodnotu firem.
-              <span className="block text-muted-foreground">Propojujeme strategický marketing s akvizicí rozvojového kapitálu.</span>
+            <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl md:leading-9">
+              Zvyšujeme tržní hodnotu firem. Propojujeme strategický marketing s akvizicí rozvojového kapitálu.
             </p>
 
             <div className="mt-16 grid gap-6 border-t border-border pt-10 md:mt-24 md:grid-cols-12 md:gap-8 md:pt-14">

@@ -33,7 +33,7 @@ const navItems = [
 ];
 
 const moreItems = [
-  ["Investice", "#investice"], ["Náš přístup", "#pristup"], ["Hodnoty", "#hodnoty"],
+  ["Strategy", "#investice"], ["Náš přístup", "#pristup"], ["Hodnoty", "#hodnoty"],
 ];
 
 
@@ -199,7 +199,7 @@ function Index() {
             </div>
           </div>
           <div className="hero-cue intro-up pointer-events-none absolute bottom-6 left-16 hidden flex-col items-center gap-3 lg:flex" style={{ "--d": "2.8s" } as React.CSSProperties} aria-hidden="true">
-            <span className="text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-muted-foreground">Scroll</span>
+            <span aria-hidden="true" />
             <span className="h-10 w-px bg-foreground/30" />
           </div>
         </section>

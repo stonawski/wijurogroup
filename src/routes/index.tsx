@@ -135,7 +135,13 @@ function Index() {
 
   const barStyle = { "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties;
   return (
-    <div id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground">
+    <div id="top" className="relative min-h-screen overflow-x-hidden bg-background pl-4 text-foreground md:pl-5">
+      {/* Vertical natural-stone left rail, matching top bar and footer */}
+      <div
+        className="nav-stone pointer-events-none fixed inset-y-0 left-0 z-[60] w-4 bg-stone md:w-5"
+        style={barStyle}
+        aria-hidden="true"
+      />
       {/* Horizontal natural-stone top bar */}
       <header
         className={`nav-stone fixed inset-x-0 top-0 z-50 isolate bg-stone text-stone-foreground transition-transform duration-500 ease-[cubic-bezier(.19,.8,.18,1)] ${navHidden && !menuOpen ? "-translate-y-full" : "translate-y-0"}`}
@@ -183,7 +189,7 @@ function Index() {
               <a className="button-primary lux-hover" href="#o-nas">Poznat WIJURO</a>
             </div>
           </div>
-          <div className="relative lg:col-span-6 lg:-mr-16 xl:-mr-24">
+          <div className="relative lg:col-span-6 lg:-mr-16 lg:-mt-8 lg:self-start xl:-mr-24">
             <div className="hero-media">
               <div className="intro-clip relative overflow-hidden">
                 <video src={heroVideo.url} poster={heroVineyard} autoPlay muted loop playsInline preload="auto" aria-label="Prosklený prostor s logem WIJURO vyleptaným do skla" className="intro-zoom aspect-[4/5] max-h-[68svh] w-full object-cover md:max-h-[72svh] lg:aspect-[5/6] lg:max-h-[82svh]" />

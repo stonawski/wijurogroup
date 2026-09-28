@@ -36,12 +36,6 @@ const moreItems = [
   ["Investice", "#investice"], ["Náš přístup", "#pristup"], ["Hodnoty", "#hodnoty"],
 ];
 
-const services = [
-  ["01", "Marketing", "Tvoříme značky, které si lidé pamatují.", "Strategický marketing, branding, digitální prezentace a komunikace zaměřené na skutečný obchodní dopad."],
-  ["02", "Business Development", "Proměňujeme kontakty v příležitosti.", "Vyhledáváme příležitosti, budujeme vztahy a propojujeme lidi, nápady a společnosti s potenciálem růstu."],
-  ["03", "Investice", "Kapitál s dlouhodobou perspektivou.", "Vyhledáváme vybrané příležitosti, kde může kombinace kapitálu, strategie a aktivního přístupu vytvářet dlouhodobou hodnotu."],
-  ["04", "Strategické projekty", "Od myšlenky k realizaci.", "Rozvíjíme a podporujeme vybrané projekty od prvotního konceptu až po realizaci a růst."],
-];
 
 const investPrinciples = [
   ["01", "Potenciál", "Díváme se za současný stav a hledáme, čím se může příležitost stát."],

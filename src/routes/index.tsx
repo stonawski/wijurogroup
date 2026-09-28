@@ -343,12 +343,6 @@ function Index() {
             </div>
           </div>
 
-          {/* ZÁVĚR */}
-          <div className="mt-28 border-t border-border pt-14 md:mt-40 md:pt-20">
-            <h3 className="font-display text-3xl font-light leading-tight tracking-tight md:text-4xl">Máte firmu s potenciálem?</h3>
-            <p className="mt-5 max-w-xl leading-7 text-muted-foreground">Promluvme si o možnostech jejího dalšího růstu, financování nebo prodeje.</p>
-            <a href="#kontakt" className="button-ghost lux-arrow mt-10 inline-flex">Kontakt</a>
-          </div>
         </section>
 
         {/* INVESTICE */}

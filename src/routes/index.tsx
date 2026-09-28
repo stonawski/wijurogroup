@@ -208,12 +208,12 @@ function Index() {
         <section className="section-shell relative z-10 border-t border-border bg-background" data-reveal="none">
           <div className="grid gap-10 lg:grid-cols-12">
             <h2 className="display-heading lg:col-span-8">
-              {["Nápady mají hodnotu,", "když se promění", "v něco skutečného."].map((l, i) => (
+              {["WIJURO Group", "", ""].map((l, i) => (
                 <span key={l} className="mask-line" style={{ "--i": i } as React.CSSProperties}><span>{l}</span></span>
               ))}
             </h2>
             <p className="reveal-item self-end text-lg leading-8 text-muted-foreground lg:col-span-4" style={{ "--i": 4 } as React.CSSProperties}>
-              WIJURO Group propojuje strategické myšlení, marketing, business development a investice. Hledáme příležitosti, propojujeme správné lidi a pomáháme vytvářet projekty s dlouhodobým potenciálem.
+              Naším úkolem ve WIJURO Group je vzít váš podnikatelský záměr, vizi nebo majetek, připravit z nich srozumitelný obchodní projekt a úspěšně jej uplatnit na trhu. Jsme obchodní firma, která pomáhá podnikům se zajištěním kapitálu, prodejem a nákupem. Nejsme finanční makléři ani regulovaná instituce – zaměřujeme se na reálné propojení vašeho byznysu s tržními příležitostmi.
             </p>
           </div>
         </section>

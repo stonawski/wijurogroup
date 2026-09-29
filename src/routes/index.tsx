@@ -3,6 +3,8 @@ import { ArrowUpRight, Mail, Menu, Phone, X } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 
 import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
+import { submitContact } from "@/lib/contact.functions";
+
 import stoneSeamless from "@/assets/stone-raw.jpg";
 import logoMark from "@/assets/logo-mark.png";
 import heroWordmark from "@/assets/wijuro-wordmark-light.png";

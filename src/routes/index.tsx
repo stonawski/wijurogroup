@@ -373,7 +373,7 @@ function Index() {
                 return (
                   <li key={label as string} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-stone-foreground/20 py-6 first:border-t">
                     <span className="flex items-center gap-4"><I size={18} strokeWidth={1.4} />{label as string}</span>
-                    <span className="text-sm opacity-60">Bude doplněno</span>
+                    <span className="text-sm opacity-60">info@wijurogroup.com</span>
                   </li>
                 );
               })}

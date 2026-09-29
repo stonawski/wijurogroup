@@ -51,6 +51,8 @@ const values = [
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [navHidden, setNavHidden] = useState(false);
+  const [formOpen, setFormOpen] = useState(false);
+  const [sent, setSent] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
 
   // Hide the top bar when scrolling down, reveal it when scrolling up

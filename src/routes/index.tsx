@@ -331,8 +331,8 @@ function Index() {
 
         {/* HODNOTY */}
         <section id="hodnoty" className="scroll-mt-24 bg-stone/45" data-reveal="clip">
-          <div className="section-shell">
-            <h2 className="mb-12 font-display text-3xl font-light tracking-tight md:text-4xl">Na čem nám záleží</h2>
+          <div className="section-shell !py-12 md:!py-16 lg:!py-20">
+            <h2 className="mb-7 font-display text-3xl font-light tracking-tight md:mb-9 md:text-4xl">Na čem nám záleží</h2>
             <div
               className="mx-auto flex flex-col items-center py-2"
               style={{ ["--ring" as string]: "clamp(5.6rem, 21vw, 11.5rem)" }}

@@ -252,8 +252,8 @@ function Index() {
           {/* DIVIZE 01 */}
           <div className="border-t border-border pt-14 md:pt-20">
             <p className="eyebrow">Divize 01</p>
-            <p className="mt-6 text-sm uppercase leading-6 tracking-[0.18em] text-muted-foreground md:text-base">Korporátní fundraising &amp; expanze</p>
-            <h3 className="mt-6 font-display text-3xl font-light leading-tight tracking-tight md:text-5xl">Kapitál pro růst. Strategie pro expanzi.</h3>
+            <p className="mt-6 text-sm uppercase leading-6 tracking-[0.18em] text-muted-foreground md:text-base">{"\n"}</p>
+            <h3 className="mt-6 font-display text-3xl font-light leading-tight tracking-tight md:text-5xl">Korporátní fundraising &amp; expanze</h3>
 
             <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl md:leading-9">
               Zvyšujeme tržní hodnotu firem. Propojujeme strategický marketing s akvizicí rozvojového kapitálu.
@@ -285,8 +285,8 @@ function Index() {
           {/* DIVIZE 02 */}
           <div className="mt-28 border-t border-border pt-14 md:mt-40 md:pt-20">
             <p className="eyebrow">Divize 02</p>
-            <p className="mt-6 text-sm uppercase leading-6 tracking-[0.18em] text-muted-foreground md:text-base">M&amp;A</p>
-            <h3 className="mt-6 font-display text-3xl font-light leading-tight tracking-tight md:text-5xl">Prodej firmy. Strategický kupující. Nová kapitola.</h3>
+            <p className="mt-6 text-sm uppercase leading-6 tracking-[0.18em] text-muted-foreground md:text-base">{"\n"}</p>
+            <h3 className="mt-6 font-display text-3xl font-light leading-tight tracking-tight md:text-5xl">Fůze &amp; akvizice</h3>
 
             <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl md:leading-9">
               Zajišťujeme kompletní proces při realizaci prodeje firem. Zastupujeme majitele, kteří plánují kapitálový exit, a aktivně vyhledáváme strategické kupující.

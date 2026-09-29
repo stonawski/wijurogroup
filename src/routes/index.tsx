@@ -337,19 +337,16 @@ function Index() {
               className="mx-auto flex flex-col items-center py-2"
               style={{ ["--ring" as string]: "clamp(5.6rem, 21vw, 11.5rem)" }}
             >
-              <div className="flex" style={{ gap: "calc(var(--ring) * -0.2)" }}>
-                {valuesTop.map((name) => (
-                  <div key={name} className="value-ring">
+              <div className="flex">
+                {valuesTop.map((name, i) => (
+                  <div key={name} className="value-ring" style={i > 0 ? { marginLeft: "calc(var(--ring) * -0.2)" } : undefined}>
                     <span>{name}</span>
                   </div>
                 ))}
               </div>
-              <div
-                className="flex"
-                style={{ gap: "calc(var(--ring) * -0.2)", marginTop: "calc(var(--ring) * -0.44)" }}
-              >
-                {valuesBottom.map((name) => (
-                  <div key={name} className="value-ring">
+              <div className="flex" style={{ marginTop: "calc(var(--ring) * -0.44)" }}>
+                {valuesBottom.map((name, i) => (
+                  <div key={name} className="value-ring" style={i > 0 ? { marginLeft: "calc(var(--ring) * -0.2)" } : undefined}>
                     <span>{name}</span>
                   </div>
                 ))}

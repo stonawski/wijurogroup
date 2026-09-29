@@ -28,33 +28,17 @@ export const Route = createFileRoute("/")({
 });
 
 const navItems = [
-  ["O nás", "#o-nas"], ["Co děláme", "#sluzby"], ["Projekty", "#projekty"],
+  ["O nás", "#o-nas"], ["Co děláme", "#sluzby"],
   ["Odpovědnost", "#odpovednost"], ["Kontakt", "#kontakt"],
 ];
 
 const moreItems = [
-  ["Strategy", "#investice"], ["Náš přístup", "#pristup"], ["Hodnoty", "#hodnoty"],
-];
-
-
-const investPrinciples = [
-  ["01", "Potenciál", "Díváme se za současný stav a hledáme, čím se může příležitost stát."],
-  ["02", "Strategie", "Věříme, že kapitál vytváří větší hodnotu, pokud je spojený s jasným strategickým myšlením."],
-  ["03", "Dlouhodobá hodnota", "Soustřeďujeme se na udržitelný růst, ne na krátkodobý hluk."],
+  ["Hodnoty", "#hodnoty"],
 ];
 
 const founders = [
   { name: "David W. Juras", role: "Co-Founder", initials: "D", text: "Dívám se na svět s otevřenou myslí cestovatele, tvořím s citem umělce, bojuji s vytrvalostí sportovce a nechávám věci zrát s trpělivostí vinaře." },
   { name: "Julie W. Juras", role: "Co-Founder", initials: "J", text: "Kreativita je mou přirozenou součástí, cit pro detail a strategické myšlení mou silnou stránkou. Ráda propojuji nápady se souvislostmi a hledám cestu, která dává smysl." },
-];
-
-const projects = ["Ve vývoji", "Vybraná příležitost", "Coming soon"];
-
-const approach = [
-  ["01", "Vidíme", "Identifikujeme nápady, příležitosti a potenciál."],
-  ["02", "Propojujeme", "Spojujeme správné lidi, zdroje a perspektivy."],
-  ["03", "Budujeme", "Proměňujeme příležitosti v konkrétní projekty."],
-  ["04", "Rozvíjíme", "Zaměřujeme se na dlouhodobou a udržitelnou hodnotu."],
 ];
 
 const values = [
@@ -346,70 +330,6 @@ function Index() {
             </div>
           </div>
 
-        </section>
-
-        {/* INVESTICE */}
-        <section id="investice" className="scroll-mt-24 bg-footer text-footer-foreground" data-reveal="clip">
-          <div className="section-shell">
-            <div className="grid gap-10 lg:grid-cols-12">
-              <p className="eyebrow !text-footer-foreground/60 lg:col-span-3">Investice</p>
-              <div className="lg:col-span-9">
-                <h2 className="display-heading">Investujeme do potenciálu.</h2>
-                <p className="mt-8 max-w-2xl text-lg leading-8 text-footer-foreground/70">Zajímají nás příležitosti, kde může kapitál, strategické myšlení a aktivní přístup společně vytvářet dlouhodobou hodnotu.</p>
-              </div>
-            </div>
-            <div className="mt-20 grid border-t border-footer-foreground/15 md:grid-cols-3">
-              {investPrinciples.map(([no, name, text]) => (
-                <div key={no} className="border-b border-footer-foreground/15 py-10 md:border-b-0 md:border-r md:px-8 md:first:pl-0 md:last:border-r-0">
-                  <span className="text-sm text-footer-foreground/50">{no}</span>
-                  <h3 className="mt-10 text-2xl font-light tracking-tight">{name}</h3>
-                  <p className="mt-4 leading-7 text-footer-foreground/65">{text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* PROJEKTY */}
-        <section id="projekty" className="section-shell scroll-mt-24" data-reveal="scale">
-          <div className="mb-16 grid gap-6 lg:grid-cols-12">
-            <p className="eyebrow lg:col-span-3">Projekty</p>
-            <div className="lg:col-span-9">
-              <h2 className="display-heading">Vybrané projekty</h2>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">Výběr projektů, nápadů a příležitostí, které vytváříme, rozvíjíme nebo prozkoumáváme.</p>
-            </div>
-          </div>
-          <div className="grid gap-5 md:grid-cols-3">
-            {projects.map((label, i) => (
-              <div key={label} className={`relative flex aspect-[4/5] flex-col justify-between overflow-hidden border border-border bg-stone/35 p-7 ${i === 1 ? "md:translate-y-12" : ""}`}>
-                <span className="text-sm text-muted-foreground">0{i + 1}</span>
-                <div className="pointer-events-none absolute inset-10 border border-foreground/10" />
-                <div className="relative">
-                  <p className="eyebrow">WIJURO Group</p>
-                  <p className="mt-3 text-2xl font-light tracking-tight">{label}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* PŘÍSTUP */}
-        <section id="pristup" className="scroll-mt-24 border-t border-border" data-reveal>
-          <div className="section-shell grid gap-12 lg:grid-cols-12">
-            <div className="lg:col-span-4">
-              <p className="eyebrow">Přístup</p>
-              <h2 className="display-heading mt-6">Náš přístup</h2>
-            </div>
-            <ol className="lg:col-span-8">
-              {approach.map(([no, name, text]) => (
-                <li key={no} className="grid grid-cols-[3rem_1fr] gap-4 border-b border-border py-8 first:border-t md:grid-cols-[5rem_14rem_1fr] md:items-baseline">
-                  <span className="text-sm text-muted-foreground">{no}</span>
-                  <h3 className="text-3xl font-light tracking-tight md:text-4xl">{name}</h3>
-                  <p className="col-start-2 leading-7 text-muted-foreground md:col-start-3">{text}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
         </section>
 
         {/* HODNOTY */}

@@ -337,7 +337,7 @@ function Index() {
         {/* HODNOTY */}
         <section id="hodnoty" className="scroll-mt-24 bg-stone/45" data-reveal="clip">
           <div className="section-shell">
-            <h2 className="font-display text-2xl font-light tracking-tight md:text-3xl mb-12">Na čem nám záleží</h2>
+            <h2 className="mb-12 font-display text-3xl font-light tracking-tight md:text-4xl">Na čem nám záleží</h2>
             <div className="grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
               {values.map(([name, text]) => (
                 <div key={name} className="border-t border-foreground/20 pt-5">

@@ -383,16 +383,8 @@ function Index() {
       </main>
 
       <footer className="nav-stone bg-stone text-stone-foreground" style={{ "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties}>
-        <div className="mx-auto max-w-[1480px] px-5 pb-10 pt-20 md:px-10 lg:px-16">
-          <div className="grid gap-12 lg:grid-cols-12">
-            <div className="lg:col-span-6">
-              <p className="text-3xl font-light tracking-tight md:text-4xl">Marketing. Business. Investments.</p>
-            </div>
-            <nav className="grid grid-cols-2 gap-4 self-end lg:col-span-6 lg:justify-items-end" aria-label="Navigace v patičce">
-              {navItems.map(([label, href]) => <a key={href} href={href} className="text-stone-foreground/70 transition-colors hover:text-stone-foreground">{label}</a>)}
-            </nav>
-          </div>
-          <p className="mt-20 border-t border-stone-foreground/15 pt-8 text-sm text-stone-foreground/55">© 2026 WIJURO Group. Všechna práva vyhrazena.</p>
+        <div className="mx-auto max-w-[1480px] px-5 pb-5 pt-5 md:px-10 lg:px-16">
+          <p className="text-sm text-stone-foreground/55">© 2026 WIJURO Group. Všechna práva vyhrazena.</p>
         </div>
       </footer>
     </div>

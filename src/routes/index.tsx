@@ -3,6 +3,8 @@ import { ArrowUpRight, Mail, Menu, Phone, X } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 
 import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
+import { submitContact } from "@/lib/contact.functions";
+
 import stoneSeamless from "@/assets/stone-raw.jpg";
 import logoMark from "@/assets/logo-mark.png";
 import heroWordmark from "@/assets/wijuro-wordmark-light.png";
@@ -53,6 +55,9 @@ function Index() {
   const [navHidden, setNavHidden] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const heroRef = useRef<HTMLElement>(null);
 
   // Hide the top bar when scrolling down, reveal it when scrolling up
@@ -374,7 +379,26 @@ function Index() {
                     <p className="mt-6 max-w-[360px] text-sm opacity-80">Děkujeme, ozveme se vám.</p>
                   ) : (
                     <form
-                      onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+                      onSubmit={async (e) => {
+                        e.preventDefault();
+                        const fd = new FormData(e.currentTarget);
+                        setSending(true);
+                        setError(null);
+                        try {
+                          await submitContact({
+                            data: {
+                              name: String(fd.get("name") ?? ""),
+                              email: String(fd.get("email") ?? ""),
+                              phone: String(fd.get("phone") ?? ""),
+                            },
+                          });
+                          setSent(true);
+                        } catch {
+                          setError("Odeslání se nepodařilo, zkuste to prosím znovu.");
+                        } finally {
+                          setSending(false);
+                        }
+                      }}
                       className="mt-6 max-w-[360px] space-y-3"
                     >
                       {[["name", "Jméno a příjmení", "text"], ["email", "E-mail", "email"], ["phone", "Telefonní číslo", "tel"]].map(([n, label, type]) => (
@@ -387,9 +411,11 @@ function Index() {
                           className="w-full border-b border-stone-foreground/25 bg-transparent py-2 text-sm placeholder:text-stone-foreground/45 focus:border-stone-foreground/70 focus:outline-none"
                         />
                       ))}
-                      <button type="submit" className="button-primary !mt-5 !px-5 !py-2 text-xs">Odeslat</button>
+                      {error ? <p className="text-xs opacity-80">{error}</p> : null}
+                      <button type="submit" disabled={sending} className="button-primary !mt-5 !px-5 !py-2 text-xs disabled:opacity-60">{sending ? "Odesílám…" : "Odeslat"} </button>
                     </form>
                   )}
+
                 </div>
               </div>
             </div>

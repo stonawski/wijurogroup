@@ -368,8 +368,8 @@ function Index() {
               <h2 className="display-heading mt-6">Máte nápad, který stojí za to rozvíjet?</h2>
               <p className="mt-8 max-w-xl text-lg leading-8 opacity-80">Řekněte nám, na čem pracujete. Zajímají nás zajímaví lidé, nápady a příležitosti.</p>
               <button type="button" onClick={() => setFormOpen((v) => !v)} className="button-primary mt-10">Pojďme se spojit <ArrowUpRight size={14} /></button>
-              <div className="relative grid transition-[grid-template-rows] duration-700 ease-[cubic-bezier(.19,.8,.18,1)]" style={{ gridTemplateRows: formOpen ? "1fr" : "0fr" }}>
-                <div className="absolute left-0 top-0 z-10 overflow-hidden bg-stone">
+              <div className="grid transition-[grid-template-rows] duration-700 ease-[cubic-bezier(.19,.8,.18,1)]" style={{ gridTemplateRows: formOpen ? "1fr" : "0fr" }}>
+                <div className="overflow-hidden">
                   {sent ? (
                     <p className="mt-6 max-w-[360px] text-sm opacity-80">Děkujeme, ozveme se vám.</p>
                   ) : (

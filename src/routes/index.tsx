@@ -206,17 +206,19 @@ function Index() {
 
         {/* INTRO */}
         <section className="section-shell relative z-10 border-t border-border bg-background" data-reveal="none">
-          <div className="grid gap-10 lg:grid-cols-12">
-            <h2 className="display-heading lg:col-span-8">
-              {["WIJURO Group", "", ""].map((l, i) => (
-                <span key={l} className="mask-line" style={{ "--i": i } as React.CSSProperties}><span>{l}</span></span>
-              ))}
-            </h2>
-            <p className="reveal-item self-end text-lg leading-8 text-muted-foreground lg:col-span-4" style={{ "--i": 4 } as React.CSSProperties}>
-              Naším úkolem ve WIJURO Group je vzít váš podnikatelský záměr, vizi nebo majetek, připravit z nich srozumitelný obchodní projekt a úspěšně jej uplatnit na trhu. Jsme obchodní firma, která pomáhá podnikům se zajištěním kapitálu, prodejem a nákupem. Nejsme finanční makléři ani regulovaná instituce – zaměřujeme se na reálné propojení vašeho byznysu s tržními příležitostmi.
-            </p>
+          <div className="grid gap-12 lg:grid-cols-12">
+            <p className="eyebrow lg:col-span-3">O nás</p>
+            <div className="lg:col-span-9">
+              <h2 className="display-heading">WIJURO Group</h2>
+              <div className="mt-12 max-w-2xl space-y-6 leading-8 text-muted-foreground">
+                <p>
+                  Naším úkolem ve WIJURO Group je vzít váš podnikatelský záměr, vizi nebo majetek, připravit z nich srozumitelný obchodní projekt a úspěšně jej uplatnit na trhu. Jsme obchodní firma, která pomáhá podnikům se zajištěním kapitálu, prodejem a nákupem. Nejsme finanční makléři ani regulovaná instituce – zaměřujeme se na reálné propojení vašeho byznysu s tržními příležitostmi.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
+
 
         {/* O NÁS */}
         <section id="o-nas" className="scroll-mt-24 bg-stone/45" data-reveal="scale">

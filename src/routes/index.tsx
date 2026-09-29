@@ -280,19 +280,20 @@ function Index() {
               </p>
             </div>
 
-            <div className="mt-16 grid gap-12 md:mt-24 md:grid-cols-3 md:gap-10">
+            <div className="mt-16 grid grid-cols-3 gap-4 md:mt-24 md:gap-10">
               {[
                 ["01", "Strategie", "Propojení strategického marketingu s kapitálovou strategií společnosti."],
                 ["02", "Kapitál", "Vyhledání a oslovení relevantních investorských skupin a zajištění externího financování."],
                 ["03", "Expanze", "Transformace získaného kapitálu do realizace projektů, rozvoje společnosti a tržní expanze."],
               ].map(([no, name, text]) => (
                 <div key={no}>
-                  <span className="text-sm text-muted-foreground">{no}</span>
-                  <h4 className="mt-6 text-2xl font-light tracking-tight">{name}</h4>
-                  <p className="mt-4 leading-7 text-muted-foreground">{text}</p>
+                  <span className="text-xs text-muted-foreground md:text-sm">{no}</span>
+                  <h4 className="mt-3 text-base font-light tracking-tight md:mt-6 md:text-2xl">{name}</h4>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground md:mt-4 md:text-base md:leading-7">{text}</p>
                 </div>
               ))}
             </div>
+
           </div>
 
           {/* DIVIZE 02 */}

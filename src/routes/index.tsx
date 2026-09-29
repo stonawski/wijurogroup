@@ -31,7 +31,6 @@ export const Route = createFileRoute("/")({
 
 const navItems = [
   ["O nás", "#o-nas"], ["Co děláme", "#sluzby"],
-  ["Odpovědnost", "#odpovednost"], ["Kontakt", "#kontakt"],
 ];
 
 const moreItems = [

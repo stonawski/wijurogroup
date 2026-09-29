@@ -42,12 +42,8 @@ const founders = [
   { name: "Julie W. Juras", role: "Co-Founder", initials: "J", text: "Kreativita je mou přirozenou součástí, cit pro detail a strategické myšlení mou silnou stránkou. Ráda propojuji nápady se souvislostmi a hledám cestu, která dává smysl." },
 ];
 
-const values = [
-  ["Vize", "Přemýšlíme dál než za okamžitou příležitost."],
-  ["Integrita", "Důvěra je základem každého vztahu."],
-  ["Růst", "Věříme, že dobré nápady mají mít prostor růst."],
-  ["Dlouhodobost", "Zaměřujeme se na hodnotu, ne na krátkodobý hluk."],
-];
+const valuesTop = ["Vize", "Integrita", "Růst"];
+const valuesBottom = ["Férovost", "Dlouhodobost"];
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);

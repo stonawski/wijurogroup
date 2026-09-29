@@ -289,7 +289,7 @@ function Index() {
                 <div key={no}>
                   <span className="text-xs text-muted-foreground md:text-sm">{no}</span>
                   <h4 className="mt-3 text-base font-light tracking-tight md:mt-6 md:text-2xl">{name}</h4>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground md:mt-4 md:text-base md:leading-7">{text}</p>
+                  <p className="mt-2 text-xs leading-5 text-muted-foreground md:mt-4 md:text-sm md:leading-6">{text}</p>
                 </div>
               ))}
             </div>

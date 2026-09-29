@@ -126,14 +126,9 @@ function Index() {
 
   const barStyle = { "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties;
   return (
-    <div id="top" className="relative min-h-screen overflow-x-hidden bg-background pl-4 text-foreground md:pl-5">
-      {/* Vertical natural-stone left rail, matching top bar and footer */}
-      <div
-        className="nav-stone pointer-events-none fixed inset-y-0 left-0 z-[60] w-4 bg-stone md:w-5"
-        style={barStyle}
-        aria-hidden="true"
-      />
+    <div id="top" className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       {/* Horizontal natural-stone top bar */}
+
       <header
         className={`nav-stone fixed inset-x-0 top-0 z-50 isolate bg-stone text-stone-foreground transition-transform duration-500 ease-[cubic-bezier(.19,.8,.18,1)] ${navHidden && !menuOpen ? "-translate-y-full" : "translate-y-0"}`}
         style={barStyle}

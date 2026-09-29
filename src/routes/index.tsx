@@ -329,7 +329,7 @@ function Index() {
             {/* M&A PROCES */}
             <div className="mt-20 border-t border-border pt-10 md:mt-28 md:pt-14">
               <h4 className="eyebrow">M&amp;A proces</h4>
-              <ol className="mt-10 grid md:grid-cols-5">
+              <ol className="mt-10 grid grid-cols-5 gap-2 md:gap-0">
                 {[
                   ["01", "Analýza"],
                   ["02", "Strategie"],
@@ -337,9 +337,9 @@ function Index() {
                   ["04", "Vyjednávání"],
                   ["05", "Transakce"],
                 ].map(([no, name]) => (
-                  <li key={no} className="border-b border-border py-6 md:border-b-0 md:border-r md:px-6 md:py-0 md:first:pl-0 md:last:border-r-0">
-                    <span className="text-sm text-muted-foreground">{no}</span>
-                    <p className="mt-4 text-lg font-light tracking-tight">{name}</p>
+                  <li key={no} className="border-r border-border pr-2 last:border-r-0 last:pr-0 md:px-6 md:first:pl-0 md:last:pr-0">
+                    <span className="text-xs text-muted-foreground md:text-sm">{no}</span>
+                    <p className="mt-3 text-xs font-light leading-5 tracking-tight md:mt-4 md:text-sm md:leading-6">{name}</p>
                   </li>
                 ))}
               </ol>

@@ -338,14 +338,26 @@ function Index() {
         <section id="hodnoty" className="scroll-mt-24 bg-stone/45" data-reveal="clip">
           <div className="section-shell">
             <h2 className="mb-12 font-display text-3xl font-light tracking-tight md:text-4xl">Na čem nám záleží</h2>
-            <div className="grid grid-cols-4 gap-x-3 gap-y-8 md:gap-x-10 md:gap-y-10">
-              {values.map(([name, text]) => (
-                <div key={name} className="border-t border-foreground/20 pt-4 md:pt-5">
-                  <h3 className="text-[0.78rem] font-normal leading-tight tracking-tight break-words md:text-lg">{name}</h3>
-                  <p className="mt-2 text-[0.68rem] leading-[1.5] text-muted-foreground break-words md:mt-3 md:text-sm md:leading-6">{text}</p>
-                </div>
-              ))}
+            <div className="relative">
+              {/* kruhy s propojovací linkou */}
+              <div className="relative grid grid-cols-4 items-center gap-x-2 md:gap-x-8">
+                <div className="pointer-events-none absolute left-[12.5%] right-[12.5%] top-1/2 h-px -translate-y-1/2 bg-foreground/20" aria-hidden="true" />
+                {values.map(([name]) => (
+                  <div key={name} className="flex justify-center">
+                    <div className="relative z-10 flex aspect-square w-full max-w-[8.5rem] items-center justify-center rounded-full border border-foreground/25 bg-stone/60 px-1">
+                      <span className="font-display text-[0.72rem] font-light leading-tight tracking-tight md:text-xl">{name}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-3 grid grid-cols-4 gap-x-2 md:mt-5 md:gap-x-8">
+                {values.map(([name, text]) => (
+                  <p key={name} className="text-center text-[0.66rem] leading-[1.5] text-muted-foreground md:text-sm md:leading-6">{text}</p>
+                ))}
+              </div>
             </div>
+
+
           </div>
         </section>
 

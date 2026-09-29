@@ -344,7 +344,7 @@ function Index() {
                 <div className="pointer-events-none absolute left-[12.5%] right-[12.5%] top-1/2 h-px -translate-y-1/2 bg-foreground/20" aria-hidden="true" />
                 {values.map(([name]) => (
                   <div key={name} className="flex justify-center">
-                    <div className="relative z-10 flex aspect-square w-full max-w-[8.5rem] items-center justify-center rounded-full border border-foreground/25 bg-stone/60 px-1">
+                    <div className="relative z-10 flex aspect-square w-full max-w-[8.5rem] items-center justify-center rounded-full border border-foreground/25 px-1" style={{ background: "color-mix(in oklab, var(--color-stone) 78%, var(--color-background))" }}>
                       <span className="font-display text-[0.72rem] font-light leading-tight tracking-tight md:text-xl">{name}</span>
                     </div>
                   </div>

@@ -63,6 +63,10 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 @utility rail-link { position: relative; font-size: .64rem; font-weight: 700; text-transform: uppercase; letter-spacing: .2em; color: var(--color-stone-foreground); opacity: .72; transition: opacity .4s, transform .5s var(--ease-lux); &:hover { opacity: 1; transform: translateY(-1px); } &::after { content: ""; position: absolute; left: 50%; right: 50%; bottom: -.5rem; height: 1px; background: var(--color-stone-foreground); transition: left .4s var(--ease-lux), right .4s var(--ease-lux); } &:hover::after { left: 25%; right: 25%; } }
 @utility nav-stone { background-image: var(--nav-stone-image); background-repeat: no-repeat; background-size: cover; background-position: center; }
 
+.value-ring { position: relative; display: grid; place-items: center; width: var(--ring); height: var(--ring); border-radius: 9999px; border: 1px solid oklch(0.45 0.02 74 / .3); background: oklch(0.78 0.02 74 / .07); text-align: center; padding: .35rem; transition: border-color .6s var(--ease-lux), background-color .6s var(--ease-lux); }
+.value-ring:hover { border-color: oklch(0.45 0.02 74 / .55); background: oklch(0.78 0.02 74 / .14); }
+.value-ring span { font-family: var(--font-display); font-weight: 300; letter-spacing: -0.01em; line-height: 1.1; font-size: clamp(.68rem, 2.2vw, 1.35rem); color: var(--color-foreground); }
+
 .mobile-menu { visibility: hidden; pointer-events: none; opacity: 0; transform: translateY(-1rem); transition: opacity .45s var(--ease-lux), transform .55s var(--ease-lux), visibility 0s linear .55s; }
 .mobile-menu.is-open { visibility: visible; pointer-events: auto; opacity: 1; transform: none; transition-delay: 0s; }
 .mobile-menu-link { opacity: 0; transform: translateY(-.5rem); transition: opacity .45s var(--ease-lux), transform .55s var(--ease-lux); }

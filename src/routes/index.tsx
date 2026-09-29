@@ -30,8 +30,7 @@ export const Route = createFileRoute("/")({
 });
 
 const navItems = [
-  ["O nás", "#o-nas"], ["Co děláme", "#sluzby"],
-  ["Odpovědnost", "#odpovednost"], ["Kontakt", "#kontakt"],
+  ["O nás", "#o-nas"], ["Co děláme", "#sluzby"], ["Kontakt", "#kontakt"],
 ];
 
 const moreItems = [
@@ -358,17 +357,6 @@ function Index() {
             </div>
 
 
-          </div>
-        </section>
-
-        {/* ODPOVĚDNOST */}
-        <section id="odpovednost" className="section-shell" data-reveal>
-          <div className="grid gap-10 lg:grid-cols-12">
-            <p className="eyebrow lg:col-span-3">Odpovědnost</p>
-            <div className="lg:col-span-8">
-              <h2 className="text-3xl font-light tracking-tight md:text-4xl">Business s odpovědností</h2>
-              <p className="mt-8 text-xl leading-9 text-muted-foreground">Věříme, že odpovědné podnikání začíná způsobem, jakým pracujeme — férově, promyšleně a s respektem k lidem, partnerům i prostředí kolem nás. S růstem WIJURO chceme postupně rozvíjet i pozitivní dopad, který může naše podnikání vytvářet.</p>
-            </div>
           </div>
         </section>
 

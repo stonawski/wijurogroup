@@ -51,6 +51,8 @@ const values = [
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [navHidden, setNavHidden] = useState(false);
+  const [formOpen, setFormOpen] = useState(false);
+  const [sent, setSent] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
 
   // Hide the top bar when scrolling down, reveal it when scrolling up
@@ -365,7 +367,31 @@ function Index() {
               <p className="eyebrow !text-stone-foreground/70">Kontakt</p>
               <h2 className="display-heading mt-6">Máte nápad, který stojí za to rozvíjet?</h2>
               <p className="mt-8 max-w-xl text-lg leading-8 opacity-80">Řekněte nám, na čem pracujete. Zajímají nás zajímaví lidé, nápady a příležitosti.</p>
-              <a href="#kontakt" className="button-primary mt-10">Pojďme se spojit <ArrowUpRight size={14} /></a>
+              <button type="button" onClick={() => setFormOpen((v) => !v)} className="button-primary mt-10">Pojďme se spojit <ArrowUpRight size={14} /></button>
+              <div className="grid transition-[grid-template-rows] duration-700 ease-[cubic-bezier(.19,.8,.18,1)]" style={{ gridTemplateRows: formOpen ? "1fr" : "0fr" }}>
+                <div className="overflow-hidden">
+                  {sent ? (
+                    <p className="mt-6 max-w-[360px] text-sm opacity-80">Děkujeme, ozveme se vám.</p>
+                  ) : (
+                    <form
+                      onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+                      className="mt-6 max-w-[360px] space-y-3"
+                    >
+                      {[["name", "Jméno a příjmení", "text"], ["email", "E-mail", "email"], ["phone", "Telefonní číslo", "tel"]].map(([n, label, type]) => (
+                        <input
+                          key={n}
+                          required
+                          name={n}
+                          type={type}
+                          placeholder={label}
+                          className="w-full border-b border-stone-foreground/25 bg-transparent py-2 text-sm placeholder:text-stone-foreground/45 focus:border-stone-foreground/70 focus:outline-none"
+                        />
+                      ))}
+                      <button type="submit" className="button-primary !mt-5 !px-5 !py-2 text-xs">Odeslat</button>
+                    </form>
+                  )}
+                </div>
+              </div>
             </div>
             <ul className="self-end lg:col-span-5">
               {[[Mail, "E-mail", "info@wijurogroup.com", "mailto:info@wijurogroup.com"], [Phone, "Telefon", "+420 771 190 429", "tel:+420771190429"]].map(([Icon, label, value, href]) => {

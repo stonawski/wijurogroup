@@ -339,7 +339,7 @@ function Index() {
                 ].map(([no, name]) => (
                   <li key={no} className="border-r border-border pr-1.5 last:border-r-0 last:pr-0 md:px-6 md:first:pl-0 md:last:pr-0">
                     <span className="text-xs text-muted-foreground md:text-sm">{no}</span>
-                    <p className="mt-3 break-words hyphens-auto text-[0.7rem] font-light leading-[1.6] tracking-tight md:mt-4 md:text-sm md:leading-6">{name}</p>
+                    <p className="mt-3 break-words text-[0.63rem] font-light leading-[1.6] tracking-tight md:mt-4 md:text-sm md:leading-6">{name}</p>
                   </li>
                 ))}
               </ol>

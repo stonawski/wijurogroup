@@ -266,9 +266,9 @@ function Index() {
 
             <div className="mt-16 grid grid-cols-3 gap-4 md:mt-24 md:gap-10">
               {[
-                ["01", "Strategie", "Propojení strategického marketingu s kapitálovou strategií společnosti."],
-                ["02", "Kapitál", "Vyhledání a oslovení relevantních investorských skupin a zajištění externího financování."],
-                ["03", "Expanze", "Transformace získaného kapitálu do realizace projektů, rozvoje společnosti a tržní expanze."],
+                ["1", "Strategie", "Propojení strategického marketingu s kapitálovou strategií společnosti."],
+                ["2", "Kapitál", "Vyhledání a oslovení relevantních investorských skupin a zajištění externího financování."],
+                ["3", "Expanze", "Transformace získaného kapitálu do realizace projektů, rozvoje společnosti a tržní expanze."],
               ].map(([no, name, text]) => (
                 <div key={no}>
                   <span className="text-xs text-muted-foreground md:text-sm">{no}</span>

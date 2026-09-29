@@ -333,26 +333,28 @@ function Index() {
         <section id="hodnoty" className="scroll-mt-24 bg-stone/45" data-reveal="clip">
           <div className="section-shell">
             <h2 className="mb-12 font-display text-3xl font-light tracking-tight md:text-4xl">Na čem nám záleží</h2>
-            <div className="relative">
-              {/* kruhy s propojovací linkou */}
-              <div className="relative grid grid-cols-4 items-center gap-x-2 md:gap-x-8">
-                <div className="pointer-events-none absolute left-[12.5%] right-[12.5%] top-1/2 h-px -translate-y-1/2 bg-foreground/20" aria-hidden="true" />
-                {values.map(([name]) => (
-                  <div key={name} className="flex justify-center">
-                    <div className="relative z-10 flex aspect-square w-full max-w-[8.5rem] items-center justify-center rounded-full border border-foreground/25 px-1" style={{ background: "color-mix(in oklab, var(--color-stone) 78%, var(--color-background))" }}>
-                      <span className="font-display text-[0.72rem] font-light leading-tight tracking-tight md:text-xl">{name}</span>
-                    </div>
+            <div
+              className="mx-auto flex flex-col items-center py-2"
+              style={{ ["--ring" as string]: "clamp(5.6rem, 21vw, 11.5rem)" }}
+            >
+              <div className="flex" style={{ gap: "calc(var(--ring) * -0.2)" }}>
+                {valuesTop.map((name) => (
+                  <div key={name} className="value-ring">
+                    <span>{name}</span>
                   </div>
                 ))}
               </div>
-              <div className="mt-3 grid grid-cols-4 gap-x-2 md:mt-5 md:gap-x-8">
-                {values.map(([name, text]) => (
-                  <p key={name} className="text-center text-[0.66rem] leading-[1.5] text-muted-foreground md:text-sm md:leading-6">{text}</p>
+              <div
+                className="flex"
+                style={{ gap: "calc(var(--ring) * -0.2)", marginTop: "calc(var(--ring) * -0.44)" }}
+              >
+                {valuesBottom.map((name) => (
+                  <div key={name} className="value-ring">
+                    <span>{name}</span>
+                  </div>
                 ))}
               </div>
             </div>
-
-
           </div>
         </section>
 

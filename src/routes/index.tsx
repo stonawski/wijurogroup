@@ -196,7 +196,7 @@ function Index() {
             <p className="eyebrow lg:col-span-3">O nás</p>
             <div className="lg:col-span-9">
               <h2 className="display-heading">WIJURO Group</h2>
-              <div className="mt-12 max-w-2xl space-y-6 leading-8 text-muted-foreground">
+              <div className="mt-12 max-w-2xl space-y-6 text-[0.95rem] leading-[1.9] text-muted-foreground">
                 <p>
                   Naším úkolem ve WIJURO Group je vzít váš podnikatelský záměr, vizi nebo majetek, připravit z nich srozumitelný obchodní projekt a úspěšně jej uplatnit na trhu. Jsme obchodní skupina, která pomáhá podnikům se zajištěním kapitálu, prodejem a nákupem. Nejsme finanční makléři ani regulovaná instituce – zaměřujeme se na reálné propojení vašeho byznysu s tržními příležitostmi.
                 </p>
@@ -213,7 +213,7 @@ function Index() {
               <p className="eyebrow lg:col-span-3">O nás</p>
               <div className="lg:col-span-9">
                 <h2 className="display-heading">Dva lidé, jedna společná vize.</h2>
-                <div className="mt-12 max-w-2xl space-y-6 leading-8 text-muted-foreground">
+                <div className="mt-12 max-w-2xl space-y-6 text-[0.95rem] leading-[1.9] text-muted-foreground">
                   <p>WIJURO vzniklo z naší společné vize budovat něco vlastního. Jako manželský pár jsme se rozhodli spojit své zkušenosti, energii a společné hodnoty a vytvořit skupinu, která bude od začátku stát na pevných základech. Důvěra, individualita, svoboda rozhodování a osobní odpovědnost jsou pro nás hodnoty, na kterých chceme WIJURO stavět. Věříme, že každý člověk má svou vlastní cestu, nápady a potenciál – a právě prostor pro vlastní iniciativu považujeme za důležitou součást podnikání.</p>
                   <p>Je to pro nás rodinná firma v pravém slova smyslu. Chceme ji budovat dlouhodobě, společně a způsobem, který bude odrážet to, kým jsme a čemu věříme. Naším cílem je vytvářet vlastní projekty, rozvíjet zajímavé příležitosti a investovat do toho, co podle nás má skutečný potenciál.</p>
                 </div>

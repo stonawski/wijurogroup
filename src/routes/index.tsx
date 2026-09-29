@@ -368,12 +368,12 @@ function Index() {
               <a href="#kontakt" className="button-primary mt-10">Pojďme se spojit <ArrowUpRight size={14} /></a>
             </div>
             <ul className="self-end lg:col-span-5">
-              {[[Mail, "E-mail", "info@wijurogroup.com"], [Phone, "Telefon", "+420 771 190 429"], [Linkedin, "LinkedIn", "Bude doplněno"]].map(([Icon, label, value]) => {
+              {[[Mail, "E-mail", "info@wijurogroup.com", "mailto:info@wijurogroup.com"], [Phone, "Telefon", "+420 771 190 429", "tel:+420771190429"]].map(([Icon, label, value, href]) => {
                 const I = Icon as typeof Mail;
                 return (
                   <li key={label as string} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-stone-foreground/20 py-6 first:border-t">
                     <span className="flex items-center gap-4"><I size={18} strokeWidth={1.4} />{label as string}</span>
-                    <span className="text-sm opacity-60">{value as string}</span>
+                    <a href={href as string} className="text-sm opacity-60 transition-opacity hover:opacity-100">{value as string}</a>
                   </li>
                 );
               })}

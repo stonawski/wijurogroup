@@ -28,33 +28,17 @@ export const Route = createFileRoute("/")({
 });
 
 const navItems = [
-  ["O nás", "#o-nas"], ["Co děláme", "#sluzby"], ["Projekty", "#projekty"],
+  ["O nás", "#o-nas"], ["Co děláme", "#sluzby"],
   ["Odpovědnost", "#odpovednost"], ["Kontakt", "#kontakt"],
 ];
 
 const moreItems = [
-  ["Strategy", "#investice"], ["Náš přístup", "#pristup"], ["Hodnoty", "#hodnoty"],
-];
-
-
-const investPrinciples = [
-  ["01", "Potenciál", "Díváme se za současný stav a hledáme, čím se může příležitost stát."],
-  ["02", "Strategie", "Věříme, že kapitál vytváří větší hodnotu, pokud je spojený s jasným strategickým myšlením."],
-  ["03", "Dlouhodobá hodnota", "Soustřeďujeme se na udržitelný růst, ne na krátkodobý hluk."],
+  ["Hodnoty", "#hodnoty"],
 ];
 
 const founders = [
   { name: "David W. Juras", role: "Co-Founder", initials: "D", text: "Dívám se na svět s otevřenou myslí cestovatele, tvořím s citem umělce, bojuji s vytrvalostí sportovce a nechávám věci zrát s trpělivostí vinaře." },
   { name: "Julie W. Juras", role: "Co-Founder", initials: "J", text: "Kreativita je mou přirozenou součástí, cit pro detail a strategické myšlení mou silnou stránkou. Ráda propojuji nápady se souvislostmi a hledám cestu, která dává smysl." },
-];
-
-const projects = ["Ve vývoji", "Vybraná příležitost", "Coming soon"];
-
-const approach = [
-  ["01", "Vidíme", "Identifikujeme nápady, příležitosti a potenciál."],
-  ["02", "Propojujeme", "Spojujeme správné lidi, zdroje a perspektivy."],
-  ["03", "Budujeme", "Proměňujeme příležitosti v konkrétní projekty."],
-  ["04", "Rozvíjíme", "Zaměřujeme se na dlouhodobou a udržitelnou hodnotu."],
 ];
 
 const values = [

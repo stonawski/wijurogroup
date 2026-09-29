@@ -237,8 +237,8 @@ function Index() {
 
             <div className="mt-28 border-t border-foreground/15 pt-14 text-center md:pt-20">
               <h3 className="text-3xl font-light tracking-tight md:text-4xl">Dvě perspektivy. Jeden směr.</h3>
-              <p className="mx-auto mt-8 max-w-2xl text-xl leading-8">Právě rozdílné pohledy považujeme za jednu z našich největších výhod. Kreativita a strategie. Marketing a obchod. Nápad a jeho realizace.</p>
-              <p className="mx-auto mt-6 max-w-2xl leading-7 text-muted-foreground">WIJURO vzniklo z touhy tyto světy propojit a postupně kolem nich vybudovat něco vlastního.</p>
+              <p className="mx-auto mt-8 max-w-2xl leading-7 text-muted-foreground">Právě rozdílné pohledy považujeme za jednu z našich největších výhod. Kreativita a strategie. Marketing a obchod. Nápad a jeho realizace.</p>
+              <p className="mx-auto mt-6 max-w-2xl text-xl leading-8">WIJURO vzniklo z touhy tyto světy propojit a postupně kolem nich vybudovat něco vlastního.</p>
             </div>
           </div>
         </section>

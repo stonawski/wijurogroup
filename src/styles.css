@@ -1214,47 +1214,74 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 /* Contact */
 .editorial-contact {
   position: relative;
-  background: #b8a898;
-  color: #26211d;
+  background: #ded2c1;
+  color: #302820;
   overflow: hidden;
+  isolation: isolate;
 }
 .editorial-contact::before {
   content: "";
   position: absolute;
   z-index: 0;
-  inset: 0;
-  background-image: linear-gradient(rgba(184,168,152,.72), rgba(184,168,152,.72)), url("../src/assets/stone-raw.jpg");
-  background-size: cover;
-  background-position: center;
-  opacity: .42;
-  mix-blend-mode: multiply;
+  inset: -4%;
+  background:
+    linear-gradient(100deg,
+      rgba(239,232,221,.96) 0%,
+      rgba(231,220,205,.90) 39%,
+      rgba(221,207,190,.76) 68%,
+      rgba(214,198,180,.67) 100%
+    ),
+    url("../src/assets/stone-raw.jpg");
+  background-size: cover, cover;
+  background-position: center, center;
+  filter: saturate(.62) contrast(.90) brightness(1.12);
+  transform: scale(1.04);
 }
+.editorial-contact::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    radial-gradient(circle at 71% 20%, rgba(255,255,255,.28), transparent 31%),
+    radial-gradient(circle at 75% 65%, rgba(103,77,50,.08), transparent 43%),
+    linear-gradient(90deg, rgba(255,255,255,.12), transparent 54%);
+  pointer-events: none;
+}
+
+/* Oversized WIJURO mark — treated like a limestone relief rather than a watermark. */
 .editorial-contact-watermark {
   position: absolute;
   z-index: 1;
-  left: 60%;
-  top: clamp(1rem, 2.8vw, 2.75rem);
+  left: 66%;
+  top: -11%;
   width: auto;
-  height: 145%;
+  height: 168%;
   max-width: none;
   transform: translateX(-50%);
   object-fit: contain;
   object-position: top center;
-  filter:
-    brightness(0)
-    invert(1)
-    drop-shadow(-2px -2px 1px rgba(255,255,255,.42))
-    drop-shadow(2px 3px 2px rgba(70,55,42,.26))
-    drop-shadow(0 11px 24px rgba(70,55,42,.10));
-  mix-blend-mode: soft-light;
-  opacity: .19;
   pointer-events: none;
   user-select: none;
+  opacity: .31;
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(41%)
+    sepia(15%)
+    saturate(760%)
+    hue-rotate(355deg)
+    brightness(92%)
+    contrast(88%)
+    drop-shadow(-3px -3px 1px rgba(255,255,255,.74))
+    drop-shadow(3px 4px 2px rgba(89,67,46,.34))
+    drop-shadow(8px 12px 15px rgba(89,67,46,.10));
+  mix-blend-mode: multiply;
 }
 
 .editorial-contact-grid {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   display: grid;
   grid-template-columns: minmax(0,7fr) minmax(21rem,4fr);
   gap: clamp(4rem, 8vw, 9rem);
@@ -1267,7 +1294,13 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   line-height: .88;
   letter-spacing: -.05em;
 }
-.editorial-contact-lead { margin-top: 2.5rem; max-width: 35rem; font-size: 1.08rem; line-height: 1.8; opacity: .72; }
+.editorial-contact-lead {
+  margin-top: 2.5rem;
+  max-width: 35rem;
+  font-size: 1.08rem;
+  line-height: 1.8;
+  opacity: .72;
+}
 .editorial-contact-button {
   margin-top: 3rem;
   display: inline-flex;
@@ -1275,30 +1308,39 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   gap: 1.5rem;
   min-height: 3.4rem;
   padding: .9rem 1.3rem;
-  border: 1px solid rgba(38,33,29,.42);
+  border: 1px solid rgba(48,40,32,.42);
   font-size: .66rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .16em;
   transition: background .35s ease, color .35s ease, transform .35s var(--ease-lux);
 }
-.editorial-contact-button:hover { background: #26211d; color: #eee8df; transform: translateY(-2px); }
-.editorial-contact-form { max-width: 30rem; margin-top: 2rem; display: grid; gap: .8rem; }
+.editorial-contact-button:hover {
+  background: #302820;
+  color: #eee8df;
+  transform: translateY(-2px);
+}
+.editorial-contact-form {
+  max-width: 30rem;
+  margin-top: 2rem;
+  display: grid;
+  gap: .8rem;
+}
 .editorial-contact-form input {
   width: 100%;
   padding: .85rem 0;
-  border-bottom: 1px solid rgba(38,33,29,.28);
+  border-bottom: 1px solid rgba(48,40,32,.28);
   background: transparent;
   font-size: .9rem;
   outline: none;
 }
-.editorial-contact-form input::placeholder { color: rgba(38,33,29,.54); }
-.editorial-contact-form input:focus { border-color: rgba(38,33,29,.78); }
+.editorial-contact-form input::placeholder { color: rgba(48,40,32,.54); }
+.editorial-contact-form input:focus { border-color: rgba(48,40,32,.78); }
 .editorial-contact-form button {
   justify-self: start;
   margin-top: 1rem;
   padding: .75rem 1rem;
-  border: 1px solid rgba(38,33,29,.42);
+  border: 1px solid rgba(48,40,32,.42);
   font-size: .66rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -1307,24 +1349,71 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .editorial-contact-form button:disabled { opacity: .45; }
 .editorial-form-message { margin-top: 1.5rem; font-size: .9rem; opacity: .72; }
 .editorial-form-error { font-size: .75rem; opacity: .8; }
+
 .editorial-contact-side {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   min-height: 34rem;
 }
-.editorial-contact-side ul { border-top: 1px solid rgba(38,33,29,.24); }
+.editorial-contact-side ul {
+  border-top: 1px solid rgba(48,40,32,.24);
+  background: rgba(238,230,219,.11);
+  backdrop-filter: blur(2px);
+}
 .editorial-contact-side li {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 2rem;
   align-items: center;
   padding: 1.6rem 0;
-  border-bottom: 1px solid rgba(38,33,29,.24);
+  border-bottom: 1px solid rgba(48,40,32,.24);
 }
-.editorial-contact-side li > span { display: flex; align-items: center; gap: 1rem; font-size: .82rem; }
-.editorial-contact-side li a { font-size: .82rem; opacity: .62; transition: opacity .3s; }
+.editorial-contact-side li > span {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: .82rem;
+}
+.editorial-contact-side li a {
+  font-size: .82rem;
+  opacity: .62;
+  transition: opacity .3s;
+}
 .editorial-contact-side li a:hover { opacity: 1; }
+
+@media (max-width: 1023px) {
+  .editorial-contact-watermark {
+    left: 71%;
+    top: -5%;
+    height: 140%;
+    opacity: .25;
+  }
+}
+
+@media (max-width: 767px) {
+  .editorial-contact-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding-block: 5rem;
+  }
+  .editorial-contact-main h2 {
+    font-size: clamp(3.8rem, 17vw, 5.5rem);
+  }
+  .editorial-contact-watermark {
+    left: 79%;
+    top: 2%;
+    height: 103%;
+    opacity: .19;
+  }
+  .editorial-contact-side {
+    min-height: 18rem;
+  }
+  .editorial-contact-side li {
+    grid-template-columns: 1fr;
+    gap: .7rem;
+  }
+}
 
 /* Footer */
 .editorial-footer {
@@ -1439,13 +1528,6 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   .editorial-ma li:first-child { border-top: 0; }
   .editorial-ma li p { margin-top: .8rem; }
   .editorial-contact-main h2 { font-size: clamp(3.8rem, 17vw, 5.5rem); }
-  .editorial-contact-watermark {
-    left: 62%;
-    top: 1.25rem;
-    height: 112%;
-    transform: translateX(-50%);
-    opacity: .14;
-  }
   .editorial-contact-side { min-height: 20rem; }
   .editorial-contact-side li { grid-template-columns: 1fr; gap: .7rem; }
   .editorial-footer-inner {

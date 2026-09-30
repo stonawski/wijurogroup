@@ -139,8 +139,8 @@ function Index() {
                 </p>
 
                 <h1 className="ref-hero-title">
-                  <span className="intro-line"><span style={{ "--d": "0.8s" } as React.CSSProperties}>Rozvíjíme značky,</span></span>
-                  <span className="intro-line"><span style={{ "--d": "1s" } as React.CSSProperties}>firmy a projekty.</span></span>
+                  <span className="intro-line"><span style={{ "--d": "0.8s" } as React.CSSProperties}>Nápadům dáváme</span></span>
+                  <span className="intro-line"><span style={{ "--d": "1s" } as React.CSSProperties}>směr.</span></span>
                 </h1>
 
                 <p className="intro-up mt-7 max-w-[390px] font-display text-[1.03rem] leading-[1.48] text-foreground/88 md:text-[1.12rem]" style={{ "--d": "1.3s" } as React.CSSProperties}>

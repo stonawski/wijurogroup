@@ -306,11 +306,18 @@ function Index() {
               <h2 className="editorial-display-title">Na čem nám<br />záleží.</h2>
             </div>
 
-            <div className="editorial-values-grid">
+            <div className="editorial-values-cluster" aria-label="Hodnoty WIJURO Group">
+              <div className="editorial-value-center" aria-hidden="true">
+                <span>WIJURO</span>
+                <small>GROUP</small>
+              </div>
+
               {values.map((name, i) => (
-                <div key={name} className="editorial-value">
-                  <span>{String(i + 1).padStart(2, "0")}</span>
-                  <h3>{name}</h3>
+                <div key={name} className={`editorial-value-orbit editorial-value-orbit-${i + 1}`}>
+                  <div className="editorial-value-circle">
+                    <span>{String(i + 1).padStart(2, "0")}</span>
+                    <h3>{name}</h3>
+                  </div>
                 </div>
               ))}
             </div>

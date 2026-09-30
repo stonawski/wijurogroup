@@ -89,6 +89,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 
 /* ---------- Hero matched to supplied customer reference ---------- */
 .wijuro-ref-header {
+  --ref-ivory: #f3eee6;
   color: var(--color-foreground);
 }
 

@@ -390,15 +390,6 @@ function Index() {
 
         {/* KONTAKT */}
         <section id="kontakt" className="editorial-contact scroll-mt-24" data-reveal>
-          <img
-            src={logoMark}
-            alt=""
-            className="editorial-contact-watermark"
-            width="406"
-            height="567"
-            aria-hidden="true"
-          />
-
           <div className="editorial-shell editorial-contact-grid">
             <div className="editorial-contact-main">
               <p className="editorial-eyebrow">Kontakt</p>

@@ -1214,8 +1214,8 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 /* Contact */
 .editorial-contact {
   position: relative;
-  background: #ded2c1;
-  color: #302820;
+  background: #b8a898;
+  color: #26211d;
   overflow: hidden;
   isolation: isolate;
 }
@@ -1223,65 +1223,44 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   content: "";
   position: absolute;
   z-index: 0;
-  inset: -4%;
-  background:
-    linear-gradient(100deg,
-      rgba(239,232,221,.96) 0%,
-      rgba(231,220,205,.90) 39%,
-      rgba(221,207,190,.76) 68%,
-      rgba(214,198,180,.67) 100%
-    ),
-    url("../src/assets/stone-raw.jpg");
-  background-size: cover, cover;
-  background-position: center, center;
-  filter: saturate(.62) contrast(.90) brightness(1.12);
-  transform: scale(1.04);
-}
-.editorial-contact::after {
-  content: "";
-  position: absolute;
-  z-index: 1;
   inset: 0;
-  background:
-    radial-gradient(circle at 71% 20%, rgba(255,255,255,.28), transparent 31%),
-    radial-gradient(circle at 75% 65%, rgba(103,77,50,.08), transparent 43%),
-    linear-gradient(90deg, rgba(255,255,255,.12), transparent 54%);
-  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(184,168,152,.72), rgba(184,168,152,.72)),
+    url("../src/assets/stone-raw.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: .42;
+  mix-blend-mode: multiply;
 }
 
-/* Oversized WIJURO mark — treated like a limestone relief rather than a watermark. */
-.editorial-contact-watermark {
+/* Oversized engraved word — intentionally cropped like lettering carved into stone. */
+.editorial-contact::after {
+  content: "WIJURO";
   position: absolute;
   z-index: 1;
-  left: 66%;
-  top: -11%;
-  width: auto;
-  height: 168%;
-  max-width: none;
-  transform: translateX(-50%);
-  object-fit: contain;
-  object-position: top center;
+  left: 58%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(18rem, 35vw, 39rem);
+  font-weight: 500;
+  line-height: .72;
+  letter-spacing: -.075em;
+  white-space: nowrap;
+  color: rgba(84,64,47,.055);
+  -webkit-text-stroke: 1px rgba(255,255,255,.045);
+  text-shadow:
+    -2px -2px 1px rgba(255,255,255,.20),
+    2px 3px 2px rgba(80,59,41,.13),
+    7px 10px 15px rgba(80,59,41,.035);
+  mix-blend-mode: multiply;
   pointer-events: none;
   user-select: none;
-  opacity: .31;
-  filter:
-    brightness(0)
-    saturate(100%)
-    invert(41%)
-    sepia(15%)
-    saturate(760%)
-    hue-rotate(355deg)
-    brightness(92%)
-    contrast(88%)
-    drop-shadow(-3px -3px 1px rgba(255,255,255,.74))
-    drop-shadow(3px 4px 2px rgba(89,67,46,.34))
-    drop-shadow(8px 12px 15px rgba(89,67,46,.10));
-  mix-blend-mode: multiply;
 }
 
 .editorial-contact-grid {
   position: relative;
-  z-index: 3;
+  z-index: 2;
   display: grid;
   grid-template-columns: minmax(0,7fr) minmax(21rem,4fr);
   gap: clamp(4rem, 8vw, 9rem);
@@ -1308,7 +1287,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   gap: 1.5rem;
   min-height: 3.4rem;
   padding: .9rem 1.3rem;
-  border: 1px solid rgba(48,40,32,.42);
+  border: 1px solid rgba(38,33,29,.42);
   font-size: .66rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -1316,7 +1295,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   transition: background .35s ease, color .35s ease, transform .35s var(--ease-lux);
 }
 .editorial-contact-button:hover {
-  background: #302820;
+  background: #26211d;
   color: #eee8df;
   transform: translateY(-2px);
 }
@@ -1329,18 +1308,18 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .editorial-contact-form input {
   width: 100%;
   padding: .85rem 0;
-  border-bottom: 1px solid rgba(48,40,32,.28);
+  border-bottom: 1px solid rgba(38,33,29,.28);
   background: transparent;
   font-size: .9rem;
   outline: none;
 }
-.editorial-contact-form input::placeholder { color: rgba(48,40,32,.54); }
-.editorial-contact-form input:focus { border-color: rgba(48,40,32,.78); }
+.editorial-contact-form input::placeholder { color: rgba(38,33,29,.54); }
+.editorial-contact-form input:focus { border-color: rgba(38,33,29,.78); }
 .editorial-contact-form button {
   justify-self: start;
   margin-top: 1rem;
   padding: .75rem 1rem;
-  border: 1px solid rgba(48,40,32,.42);
+  border: 1px solid rgba(38,33,29,.42);
   font-size: .66rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -1357,9 +1336,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   min-height: 34rem;
 }
 .editorial-contact-side ul {
-  border-top: 1px solid rgba(48,40,32,.24);
-  background: rgba(238,230,219,.11);
-  backdrop-filter: blur(2px);
+  border-top: 1px solid rgba(38,33,29,.24);
 }
 .editorial-contact-side li {
   display: grid;
@@ -1367,7 +1344,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   gap: 2rem;
   align-items: center;
   padding: 1.6rem 0;
-  border-bottom: 1px solid rgba(48,40,32,.24);
+  border-bottom: 1px solid rgba(38,33,29,.24);
 }
 .editorial-contact-side li > span {
   display: flex;
@@ -1383,11 +1360,10 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .editorial-contact-side li a:hover { opacity: 1; }
 
 @media (max-width: 1023px) {
-  .editorial-contact-watermark {
-    left: 71%;
-    top: -5%;
-    height: 140%;
-    opacity: .25;
+  .editorial-contact::after {
+    left: 63%;
+    font-size: clamp(17rem, 45vw, 29rem);
+    opacity: .9;
   }
 }
 
@@ -1400,11 +1376,14 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   .editorial-contact-main h2 {
     font-size: clamp(3.8rem, 17vw, 5.5rem);
   }
-  .editorial-contact-watermark {
-    left: 79%;
-    top: 2%;
-    height: 103%;
-    opacity: .19;
+  .editorial-contact::after {
+    left: 72%;
+    top: 47%;
+    font-size: clamp(14rem, 64vw, 21rem);
+    color: rgba(84,64,47,.04);
+    text-shadow:
+      -1px -1px 1px rgba(255,255,255,.16),
+      1px 2px 1px rgba(80,59,41,.10);
   }
   .editorial-contact-side {
     min-height: 18rem;

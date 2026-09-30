@@ -93,15 +93,17 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   color: var(--color-foreground);
 }
 
+.ref-header-logo { height: 5.7rem; }
+
 .ref-nav-link {
   position: relative;
-  font-size: .61rem;
+  font-size: .72rem;
   font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
-  letter-spacing: .14em;
+  letter-spacing: .125em;
   color: var(--color-foreground);
-  opacity: .72;
+  opacity: .74;
   transition: opacity .3s ease;
 }
 .ref-nav-link:hover { opacity: 1; }
@@ -111,36 +113,42 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   background: var(--ref-ivory);
 }
 
-.ref-hero-background {
+/* Preserve the full source composition on desktop/ultrawide so the landscape remains visible. */
+.ref-hero-media {
   position: absolute;
-  inset: 0;
-  width: 100%;
+  z-index: 1;
+  inset: 0 0 0 auto;
   height: 100%;
-  object-fit: cover;
-  object-position: 52% center;
-  filter: saturate(.9) contrast(.98) brightness(1.015);
-  transform: scale(1.002);
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.ref-hero-background {
+  display: block;
+  flex: none;
+  width: auto;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  object-position: right bottom;
+  filter: saturate(.92) contrast(.96) brightness(1.035);
 }
 
-/* Keeps the left editorial field close to the supplied mockup while preserving
-   the actual architecture image underneath. */
 .ref-hero-wash {
   position: absolute;
+  z-index: 2;
   inset: 0;
   background:
     linear-gradient(
       90deg,
-      rgba(243, 238, 230, .985) 0%,
-      rgba(243, 238, 230, .97) 25%,
-      rgba(243, 238, 230, .86) 36%,
-      rgba(243, 238, 230, .25) 49%,
-      rgba(243, 238, 230, 0) 62%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(243, 238, 230, .34) 0%,
-      rgba(243, 238, 230, .06) 24%,
-      transparent 48%
+      rgba(243,238,230,.99) 0%,
+      rgba(243,238,230,.98) 19%,
+      rgba(243,238,230,.91) 29%,
+      rgba(243,238,230,.66) 37%,
+      rgba(243,238,230,.18) 49%,
+      rgba(243,238,230,0) 60%
     );
   pointer-events: none;
 }
@@ -151,25 +159,25 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 }
 
 .ref-hero-title {
-  max-width: 7.2ch;
+  max-width: 9.6ch;
   font-family: "Bodoni Moda", Georgia, serif;
-  font-size: clamp(4rem, 6.15vw, 6.55rem);
+  font-size: clamp(4.4rem, 5.55vw, 6.45rem);
   font-weight: 400;
-  line-height: .88;
-  letter-spacing: -.055em;
+  line-height: .89;
+  letter-spacing: -.052em;
   color: var(--color-foreground);
 }
 
 .ref-hero-button {
   display: inline-flex;
-  min-height: 3rem;
+  min-height: 3.15rem;
   align-items: center;
   justify-content: center;
   gap: 1.65rem;
   border: 1px solid color-mix(in oklab, var(--color-foreground) 46%, transparent);
-  background: color-mix(in oklab, var(--ref-ivory) 76%, transparent);
-  padding: .84rem 1.35rem;
-  font-size: .61rem;
+  background: color-mix(in oklab, var(--ref-ivory) 80%, transparent);
+  padding: .88rem 1.4rem;
+  font-size: .66rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .17em;
@@ -184,34 +192,85 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   color: var(--ref-ivory);
 }
 
+@media (min-width: 1700px) {
+  .ref-header-logo { height: 6.65rem; }
+  .ref-nav-link { font-size: .76rem; }
+  .ref-hero-title { font-size: clamp(5rem, 5.25vw, 7rem); }
+  .ref-hero-wash {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(243,238,230,.99) 0%,
+        rgba(243,238,230,.98) 16%,
+        rgba(243,238,230,.90) 25%,
+        rgba(243,238,230,.58) 34%,
+        rgba(243,238,230,.12) 45%,
+        rgba(243,238,230,0) 55%
+      );
+  }
+}
+
+@media (max-width: 1199px) {
+  .ref-header-logo { height: 5.2rem; }
+  .ref-nav-link { font-size: .68rem; }
+  .ref-hero-title { max-width: 9.4ch; }
+}
+
 @media (max-width: 1023px) {
+  .ref-header-logo { height: 4.8rem; }
+  .ref-hero-media {
+    inset: auto 0 0 0;
+    width: 100%;
+    height: 52svh;
+  }
   .ref-hero-background {
-    object-position: 62% center;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 62% bottom;
   }
   .ref-hero-wash {
     background:
-      linear-gradient(180deg, rgba(243,238,230,.98) 0%, rgba(243,238,230,.96) 42%, rgba(243,238,230,.38) 58%, transparent 72%),
-      linear-gradient(90deg, rgba(243,238,230,.74), rgba(243,238,230,.1));
+      linear-gradient(180deg,
+        rgba(243,238,230,.99) 0%,
+        rgba(243,238,230,.98) 42%,
+        rgba(243,238,230,.78) 53%,
+        rgba(243,238,230,.18) 67%,
+        rgba(243,238,230,0) 78%
+      );
+  }
+  .ref-hero-copy {
+    max-width: 92%;
+    padding-bottom: 50svh;
   }
   .ref-hero-title {
-    max-width: 7.2ch;
-    font-size: clamp(3.8rem, 12vw, 6.4rem);
+    max-width: 9.4ch;
+    font-size: clamp(3.8rem, 11vw, 6rem);
   }
 }
 
 @media (max-width: 639px) {
-  .ref-hero-background {
-    object-position: 67% center;
+  .ref-header-logo { height: 4.35rem; }
+  .ref-hero-media { height: 46svh; }
+  .ref-hero-background { object-position: 64% bottom; }
+  .ref-hero-copy {
+    max-width: 94%;
+    padding-bottom: 44svh;
   }
-  .ref-hero-copy { max-width: 90%; }
   .ref-hero-title {
-    font-size: clamp(3.4rem, 16vw, 5rem);
-    line-height: .9;
+    max-width: 9.2ch;
+    font-size: clamp(3.35rem, 15vw, 4.8rem);
+    line-height: .91;
   }
   .ref-hero-wash {
     background:
-      linear-gradient(180deg, rgba(243,238,230,.99) 0%, rgba(243,238,230,.97) 45%, rgba(243,238,230,.42) 62%, rgba(243,238,230,.04) 78%),
-      linear-gradient(90deg, rgba(243,238,230,.82), rgba(243,238,230,.08));
+      linear-gradient(180deg,
+        rgba(243,238,230,.995) 0%,
+        rgba(243,238,230,.985) 46%,
+        rgba(243,238,230,.76) 58%,
+        rgba(243,238,230,.12) 74%,
+        rgba(243,238,230,0) 84%
+      );
   }
 }
 

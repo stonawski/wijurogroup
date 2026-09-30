@@ -74,12 +74,12 @@ function Index() {
   return (
     <div id="top" className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       <header className="wijuro-ref-header absolute inset-x-0 top-0 z-50">
-        <div className="mx-auto flex h-[118px] max-w-[1480px] items-start px-5 pt-5 md:px-10 md:pt-7 lg:px-16 lg:pt-8">
+        <div className="mx-auto flex h-[132px] max-w-[1600px] items-start px-5 pt-6 md:h-[140px] md:px-10 md:pt-7 lg:px-14 lg:pt-8 xl:px-16">
           <a href="#top" aria-label="WIJURO Group — úvod" className="intro-logo flex shrink-0 items-start">
-            <img src={logoMark} alt="WIJURO Group" className="h-[74px] w-auto md:h-[88px]" width="406" height="567" />
+            <img src={logoMark} alt="WIJURO Group" className="ref-header-logo w-auto" width="406" height="567" />
           </a>
 
-          <nav className="intro-up ml-auto hidden items-center gap-8 pt-5 lg:flex xl:gap-10" style={{ "--d": "0.45s" } as React.CSSProperties} aria-label="Hlavní navigace">
+          <nav className="intro-up ml-auto hidden items-center gap-8 pt-6 lg:flex xl:gap-11" style={{ "--d": "0.45s" } as React.CSSProperties} aria-label="Hlavní navigace">
             {navItems.map(([label, href]) => (
               <a key={href} href={href} className="ref-nav-link">{label}</a>
             ))}
@@ -105,20 +105,20 @@ function Index() {
       <main>
         {/* HERO — customer reference using final WIJURO background */}
         <section className="ref-hero relative min-h-[100svh] overflow-hidden">
-          <div className="absolute inset-0">
+          <div className="ref-hero-media" aria-hidden="true">
             <img
               src={heroWijuro}
-              alt="Moderní architektura WIJURO Group v přírodních tónech"
+              alt=""
               className="ref-hero-background"
               width="1620"
               height="971"
               fetchPriority="high"
             />
-            <div className="ref-hero-wash" aria-hidden="true" />
           </div>
+          <div className="ref-hero-wash" aria-hidden="true" />
 
-          <div className="relative z-10 mx-auto min-h-[100svh] max-w-[1480px] px-5 md:px-10 lg:px-16">
-            <div className="ref-hero-copy flex min-h-[100svh] w-full max-w-[520px] flex-col pt-[205px] md:pt-[220px] lg:pt-[230px]">
+          <div className="relative z-10 mx-auto min-h-[100svh] max-w-[1600px] px-5 md:px-10 lg:px-14 xl:px-16">
+            <div className="ref-hero-copy flex min-h-[100svh] w-full max-w-[590px] flex-col pt-[190px] md:pt-[205px] lg:pt-[215px] xl:pt-[225px]">
               <h1 className="ref-hero-title">
                 <span className="intro-line"><span style={{ "--d": "0.75s" } as React.CSSProperties}>Tvoříme to,</span></span>
                 <span className="intro-line"><span style={{ "--d": "0.95s" } as React.CSSProperties}>co</span></span>

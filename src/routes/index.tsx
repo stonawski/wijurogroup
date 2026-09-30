@@ -134,17 +134,20 @@ function Index() {
           <div className="relative z-10 mx-auto min-h-[100svh] max-w-[1600px] px-5 md:px-10 lg:px-14 xl:px-16">
             <div className="ref-hero-copy flex min-h-[100svh] w-full max-w-[590px] flex-col pt-[190px] md:pt-[205px] lg:pt-[215px] xl:pt-[225px]">
               <div className="ref-hero-content">
+                <p className="ref-hero-kicker intro-up" style={{ "--d": "0.6s" } as React.CSSProperties}>
+                  MARKETING · BUSINESS DEVELOPMENT · PROJECTS
+                </p>
+
                 <h1 className="ref-hero-title">
-                  <span className="intro-line"><span style={{ "--d": "0.75s" } as React.CSSProperties}>Tvoříme</span></span>
-                  <span className="intro-line"><span style={{ "--d": "0.95s" } as React.CSSProperties}>lepší</span></span>
-                  <span className="intro-line"><span style={{ "--d": "1.15s" } as React.CSSProperties}>zítřky.</span></span>
+                  <span className="intro-line"><span style={{ "--d": "0.8s" } as React.CSSProperties}>Rozvíjíme značky,</span></span>
+                  <span className="intro-line"><span style={{ "--d": "1s" } as React.CSSProperties}>firmy a projekty.</span></span>
                 </h1>
 
-                <p className="intro-up mt-7 max-w-[390px] font-display text-[1.03rem] leading-[1.48] text-foreground/88 md:text-[1.12rem]" style={{ "--d": "1.4s" } as React.CSSProperties}>
+                <p className="intro-up mt-7 max-w-[390px] font-display text-[1.03rem] leading-[1.48] text-foreground/88 md:text-[1.12rem]" style={{ "--d": "1.3s" } as React.CSSProperties}>
                   WIJURO Group propojuje kreativitu, strategii a investiční myšlení.
                 </p>
 
-                <div className="ref-hero-cta intro-up" style={{ "--d": "1.65s" } as React.CSSProperties}>
+                <div className="ref-hero-cta intro-up" style={{ "--d": "1.55s" } as React.CSSProperties}>
                   <a className="ref-hero-button group" href="#o-nas">
                     <span>Poznat WIJURO</span>
                     <ArrowRight size={16} strokeWidth={1.3} className="transition-transform duration-500 group-hover:translate-x-1.5" />

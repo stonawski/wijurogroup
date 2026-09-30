@@ -149,45 +149,40 @@ function Index() {
           </div>
         </section>
 
-        {/* INTRO */}
-        <section className="editorial-intro" data-reveal>
-          <div className="editorial-shell editorial-intro-grid">
-            <div className="editorial-section-meta">
-              <span>O nás</span>
-              <span className="editorial-meta-line" aria-hidden="true" />
-            </div>
-            <h2 className="editorial-intro-title">WIJURO<br />Group</h2>
-            <div className="editorial-intro-copy">
-              <p>
-                Naším úkolem ve WIJURO Group je vzít váš podnikatelský záměr, vizi nebo majetek, připravit z nich srozumitelný obchodní projekt a úspěšně jej uplatnit na trhu. Jsme obchodní skupina, která pomáhá podnikům se zajištěním kapitálu, prodejem a nákupem. Nejsme finanční makléři ani regulovaná instituce – zaměřujeme se na reálné propojení vašeho byznysu s tržními příležitostmi.
-              </p>
-            </div>
-          </div>
-        </section>
-
         {/* O NÁS */}
-        <section id="o-nas" className="editorial-about scroll-mt-24" data-reveal>
+        <section id="o-nas" className="editorial-about editorial-about-compact scroll-mt-24" data-reveal>
           <div className="editorial-shell">
-            <div className="editorial-heading-grid">
-              <p className="editorial-eyebrow">O nás</p>
-              <h2 className="editorial-display-title">Dva lidé,<br />jedna společná vize.</h2>
-            </div>
-
-            <div className="editorial-about-story">
-              <div className="editorial-about-copy">
-                <p>WIJURO vzniklo z naší společné vize budovat něco vlastního. Jako manželský pár jsme se rozhodli spojit své zkušenosti, energii a společné hodnoty a vytvořit skupinu, která bude od začátku stát na pevných základech. Důvěra, individualita, svoboda rozhodování a osobní odpovědnost jsou pro nás hodnoty, na kterých chceme WIJURO stavět. Věříme, že každý člověk má svou vlastní cestu, nápady a potenciál – a právě prostor pro vlastní iniciativu považujeme za důležitou součást podnikání.</p>
-                <p>Je to pro nás rodinná firma v pravém slova smyslu. Chceme ji budovat dlouhodobě, společně a způsobem, který bude odrážet to, kým jsme a čemu věříme. Naším cílem je vytvářet vlastní projekty, rozvíjet zajímavé příležitosti a investovat do toho, co podle nás má skutečný potenciál.</p>
+            <div className="editorial-about-lead">
+              <div className="editorial-section-meta">
+                <span>O nás</span>
+                <span className="editorial-meta-line" aria-hidden="true" />
               </div>
 
-              <figure className="editorial-about-visual">
+              <div className="editorial-about-headline">
+                <h2>WIJURO Group</h2>
+                <h3>Dva lidé, jedna společná vize.</h3>
+              </div>
+
+              <figure className="editorial-about-visual editorial-about-visual-compact">
                 <img src={heroStone} alt="" className="editorial-about-image" width="409" height="544" loading="lazy" />
                 <div className="editorial-about-mark" aria-hidden="true">
                   <img src={logoMark} alt="" />
                 </div>
               </figure>
+
+              <div className="editorial-about-summary">
+                <p>
+                  Naším úkolem ve WIJURO Group je vzít váš podnikatelský záměr, vizi nebo majetek, připravit z nich srozumitelný obchodní projekt a úspěšně jej uplatnit na trhu. Jsme obchodní skupina, která pomáhá podnikům se zajištěním kapitálu, prodejem a nákupem. Nejsme finanční makléři ani regulovaná instituce – zaměřujeme se na reálné propojení vašeho byznysu s tržními příležitostmi.
+                </p>
+              </div>
             </div>
 
-            <div className="editorial-founders" data-reveal="none">
+            <div className="editorial-about-detail">
+              <p>WIJURO vzniklo z naší společné vize budovat něco vlastního. Jako manželský pár jsme se rozhodli spojit své zkušenosti, energii a společné hodnoty a vytvořit skupinu, která bude od začátku stát na pevných základech. Důvěra, individualita, svoboda rozhodování a osobní odpovědnost jsou pro nás hodnoty, na kterých chceme WIJURO stavět. Věříme, že každý člověk má svou vlastní cestu, nápady a potenciál – a právě prostor pro vlastní iniciativu považujeme za důležitou součást podnikání.</p>
+              <p>Je to pro nás rodinná firma v pravém slova smyslu. Chceme ji budovat dlouhodobě, společně a způsobem, který bude odrážet to, kým jsme a čemu věříme. Naším cílem je vytvářet vlastní projekty, rozvíjet zajímavé příležitosti a investovat do toho, co podle nás má skutečný potenciál.</p>
+            </div>
+
+            <div className="editorial-founders editorial-founders-compact" data-reveal="none">
               {founders.map((f, k) => (
                 <article key={f.name} className="editorial-founder-card reveal-item" style={{ "--i": k } as React.CSSProperties}>
                   <div className="editorial-founder-portrait" style={{ backgroundImage: `linear-gradient(145deg, rgba(247,242,235,.80), rgba(203,190,174,.72)), url(${stoneTexture})` }}>
@@ -204,10 +199,10 @@ function Index() {
               ))}
             </div>
 
-            <div className="editorial-manifesto">
+            <div className="editorial-manifesto editorial-manifesto-compact">
               <p className="editorial-eyebrow">WIJURO</p>
+              <h3>Dvě perspektivy. Jeden směr.</h3>
               <div>
-                <h3>Dvě perspektivy. Jeden směr.</h3>
                 <p>Právě rozdílné pohledy považujeme za jednu z našich největších výhod. Kreativita a strategie. Marketing a obchod. Nápad a jeho realizace.</p>
                 <p>WIJURO vzniklo z touhy tyto světy propojit a postupně kolem nich vybudovat něco vlastního.</p>
               </div>

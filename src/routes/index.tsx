@@ -151,56 +151,35 @@ function Index() {
         </section>
 
         {/* O NÁS */}
-        <section id="o-nas" className="editorial-about editorial-about-compact scroll-mt-24" data-reveal>
+        <section id="o-nas" className="editorial-about-story-section scroll-mt-24" data-reveal>
           <div className="editorial-shell">
-            <div className="editorial-about-lead">
-              <div className="editorial-section-meta">
-                <span>O nás</span>
-                <span className="editorial-meta-line" aria-hidden="true" />
-              </div>
-
-              <div className="editorial-about-headline">
+            <div className="editorial-story-grid">
+              <div className="editorial-story-heading">
+                <p className="editorial-eyebrow">O nás</p>
                 <h2>WIJURO Group</h2>
-                <h3>Dva lidé, jedna společná vize.</h3>
+                <p className="editorial-story-kicker">Dva lidé, jedna společná vize.</p>
               </div>
 
-              <figure className="editorial-about-visual editorial-about-visual-compact">
+              <figure className="editorial-story-visual">
                 <img src={heroStone} alt="" className="editorial-about-image" width="409" height="544" loading="lazy" />
                 <div className="editorial-about-mark" aria-hidden="true">
                   <img src={logoMark} alt="" />
                 </div>
               </figure>
 
-              <div className="editorial-about-summary">
-                <p>
+              <div className="editorial-story-copy">
+                <p className="editorial-story-lead">
                   Naším úkolem ve WIJURO Group je vzít váš podnikatelský záměr, vizi nebo majetek, připravit z nich srozumitelný obchodní projekt a úspěšně jej uplatnit na trhu. Jsme obchodní skupina, která pomáhá podnikům se zajištěním kapitálu, prodejem a nákupem. Nejsme finanční makléři ani regulovaná instituce – zaměřujeme se na reálné propojení vašeho byznysu s tržními příležitostmi.
                 </p>
+
+                <div className="editorial-story-columns">
+                  <p>WIJURO vzniklo z naší společné vize budovat něco vlastního. Jako manželský pár jsme se rozhodli spojit své zkušenosti, energii a společné hodnoty a vytvořit skupinu, která bude od začátku stát na pevných základech. Důvěra, individualita, svoboda rozhodování a osobní odpovědnost jsou pro nás hodnoty, na kterých chceme WIJURO stavět. Věříme, že každý člověk má svou vlastní cestu, nápady a potenciál – a právě prostor pro vlastní iniciativu považujeme za důležitou součást podnikání.</p>
+                  <p>Je to pro nás rodinná firma v pravém slova smyslu. Chceme ji budovat dlouhodobě, společně a způsobem, který bude odrážet to, kým jsme a čemu věříme. Naším cílem je vytvářet vlastní projekty, rozvíjet zajímavé příležitosti a investovat do toho, co podle nás má skutečný potenciál.</p>
+                </div>
               </div>
             </div>
 
-            <div className="editorial-about-detail">
-              <p>WIJURO vzniklo z naší společné vize budovat něco vlastního. Jako manželský pár jsme se rozhodli spojit své zkušenosti, energii a společné hodnoty a vytvořit skupinu, která bude od začátku stát na pevných základech. Důvěra, individualita, svoboda rozhodování a osobní odpovědnost jsou pro nás hodnoty, na kterých chceme WIJURO stavět. Věříme, že každý člověk má svou vlastní cestu, nápady a potenciál – a právě prostor pro vlastní iniciativu považujeme za důležitou součást podnikání.</p>
-              <p>Je to pro nás rodinná firma v pravém slova smyslu. Chceme ji budovat dlouhodobě, společně a způsobem, který bude odrážet to, kým jsme a čemu věříme. Naším cílem je vytvářet vlastní projekty, rozvíjet zajímavé příležitosti a investovat do toho, co podle nás má skutečný potenciál.</p>
-            </div>
-
-            <div className="editorial-founders editorial-founders-compact" data-reveal="none">
-              {founders.map((f, k) => (
-                <article key={f.name} className="editorial-founder-card reveal-item" style={{ "--i": k } as React.CSSProperties}>
-                  <div className="editorial-founder-portrait" style={{ backgroundImage: `linear-gradient(145deg, rgba(247,242,235,.80), rgba(203,190,174,.72)), url(${stoneTexture})` }}>
-                    <span>{f.initials}</span>
-                  </div>
-                  <div className="editorial-founder-body">
-                    <div>
-                      <p className="editorial-founder-role">{f.role}</p>
-                      <h3>{f.name}</h3>
-                    </div>
-                    <p className="editorial-founder-text">{f.text}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-
-            <div className="editorial-manifesto editorial-manifesto-compact">
+            <div className="editorial-story-manifesto">
               <p className="editorial-eyebrow">WIJURO</p>
               <h3>Dvě perspektivy. Jeden směr.</h3>
               <div>
@@ -211,15 +190,47 @@ function Index() {
           </div>
         </section>
 
+        {/* ZAKLADATELÉ */}
+        <section className="editorial-founders-section" data-reveal>
+          <div className="editorial-shell">
+            <div className="editorial-founders-heading">
+              <p className="editorial-eyebrow">Zakladatelé</p>
+              <h2>Lidé za WIJURO.</h2>
+            </div>
+
+            <div className="editorial-founders-grid">
+              {founders.map((f, k) => (
+                <article key={f.name} className="editorial-founder-profile reveal-item" style={{ "--i": k } as React.CSSProperties}>
+                  <div
+                    className="editorial-founder-profile-mark"
+                    style={{ backgroundImage: `linear-gradient(145deg, rgba(247,242,235,.82), rgba(203,190,174,.76)), url(${stoneTexture})` }}
+                    aria-hidden="true"
+                  >
+                    <span>{f.initials}</span>
+                  </div>
+
+                  <div className="editorial-founder-profile-copy">
+                    <div>
+                      <p className="editorial-founder-role">{f.role}</p>
+                      <h3>{f.name}</h3>
+                    </div>
+                    <p>{f.text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* SLUŽBY */}
         <section id="sluzby" className="editorial-services scroll-mt-24">
           <div className="editorial-shell">
-            <div className="editorial-heading-grid editorial-services-heading" data-reveal>
+            <div className="editorial-heading-grid editorial-services-heading">
               <span aria-hidden="true" />
               <h2 className="editorial-display-title">Co děláme</h2>
             </div>
 
-            <div className={`editorial-division-switcher ${activeDivision ? "has-selection" : ""}`} data-reveal>
+            <div className={`editorial-division-switcher ${activeDivision ? "has-selection" : ""}`}>
               <button
                 type="button"
                 aria-expanded={activeDivision === 1}
@@ -251,7 +262,10 @@ function Index() {
               </button>
             </div>
 
-            <div className={`editorial-division-detail-shell ${activeDivision ? "is-open" : ""}`}>
+            <div
+              className={`editorial-division-detail-shell ${activeDivision ? "is-open" : ""}`}
+              aria-hidden={!activeDivision}
+            >
               {activeDivision === 1 ? (
                 <div key="division-1" className="editorial-division-detail">
                   <div className="editorial-division-detail-head">

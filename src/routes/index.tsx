@@ -219,8 +219,8 @@ function Index() {
         <section id="sluzby" className="editorial-services scroll-mt-24">
           <div className="editorial-shell">
             <div className="editorial-heading-grid editorial-services-heading" data-reveal>
-              <p className="editorial-eyebrow">Co děláme</p>
-              <h2 className="editorial-display-title">Strategie, kapitál<br />a růst.</h2>
+              <span aria-hidden="true" />
+              <h2 className="editorial-display-title">Co děláme</h2>
             </div>
 
             <article className="editorial-division" data-reveal>
@@ -321,7 +321,7 @@ function Index() {
         <section id="kontakt" className="editorial-contact scroll-mt-24" data-reveal>
           <div className="editorial-shell editorial-contact-grid">
             <div className="editorial-contact-main">
-              <p className="editorial-eyebrow editorial-eyebrow-light">Kontakt</p>
+              <p className="editorial-eyebrow">Kontakt</p>
               <h2>Máte nápad,<br />který stojí za to rozvíjet?</h2>
               <p className="editorial-contact-lead">Řekněte nám, na čem pracujete. Zajímají nás zajímaví lidé, nápady a příležitosti.</p>
 

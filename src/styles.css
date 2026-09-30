@@ -1232,15 +1232,22 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .editorial-contact-watermark {
   position: absolute;
   z-index: 1;
-  right: clamp(-13rem, -8vw, -4rem);
-  top: 50%;
+  left: 60%;
+  top: clamp(1rem, 2.8vw, 2.75rem);
   width: auto;
-  height: 138%;
+  height: 145%;
   max-width: none;
-  transform: translateY(-50%);
+  transform: translateX(-50%);
   object-fit: contain;
-  filter: brightness(0) invert(1);
-  opacity: .085;
+  object-position: top center;
+  filter:
+    brightness(0)
+    invert(1)
+    drop-shadow(-2px -2px 1px rgba(255,255,255,.42))
+    drop-shadow(2px 3px 2px rgba(70,55,42,.26))
+    drop-shadow(0 11px 24px rgba(70,55,42,.10));
+  mix-blend-mode: soft-light;
+  opacity: .19;
   pointer-events: none;
   user-select: none;
 }
@@ -1433,9 +1440,11 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   .editorial-ma li p { margin-top: .8rem; }
   .editorial-contact-main h2 { font-size: clamp(3.8rem, 17vw, 5.5rem); }
   .editorial-contact-watermark {
-    right: -8rem;
-    height: 118%;
-    opacity: .07;
+    left: 62%;
+    top: 1.25rem;
+    height: 112%;
+    transform: translateX(-50%);
+    opacity: .14;
   }
   .editorial-contact-side { min-height: 20rem; }
   .editorial-contact-side li { grid-template-columns: 1fr; gap: .7rem; }

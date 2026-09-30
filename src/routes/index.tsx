@@ -64,8 +64,12 @@ function Index() {
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
     const observer = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("is-visible")),
-      { threshold: 0, rootMargin: "0px 0px -12% 0px" },
+      (entries) => entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }),
+      { threshold: 0.08, rootMargin: "0px 0px -8% 0px" },
     );
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
@@ -152,23 +156,23 @@ function Index() {
         </section>
 
         {/* O NÁS */}
-        <section id="o-nas" className="editorial-about-story-section scroll-mt-24" data-reveal>
+        <section id="o-nas" className="editorial-about-story-section scroll-mt-24">
           <div className="editorial-shell">
             <div className="editorial-story-grid">
-              <div className="editorial-story-heading">
+              <div className="editorial-story-heading" data-reveal="left">
                 <p className="editorial-eyebrow">O nás</p>
                 <h2>WIJURO Group</h2>
                 <p className="editorial-story-kicker">Dva lidé, jedna společná vize.</p>
               </div>
 
-              <figure className="editorial-story-visual">
+              <figure className="editorial-story-visual" data-reveal="scale">
                 <img src={heroStone} alt="" className="editorial-about-image" width="409" height="544" loading="lazy" />
                 <div className="editorial-about-mark" aria-hidden="true">
                   <img src={logoMark} alt="" />
                 </div>
               </figure>
 
-              <div className="editorial-story-copy">
+              <div className="editorial-story-copy" data-reveal="right">
                 <p className="editorial-story-lead">
                   Naším úkolem ve WIJURO Group je vzít váš podnikatelský záměr, vizi nebo majetek, připravit z nich srozumitelný obchodní projekt a úspěšně jej uplatnit na trhu. Jsme obchodní skupina, která pomáhá podnikům se zajištěním kapitálu, prodejem a nákupem. Nejsme finanční makléři ani regulovaná instituce – zaměřujeme se na reálné propojení vašeho byznysu s tržními příležitostmi.
                 </p>
@@ -211,9 +215,9 @@ function Index() {
         </section>
 
         {/* ZAKLADATELÉ */}
-        <section className="editorial-founders-section" data-reveal>
+        <section className="editorial-founders-section" data-reveal="soft">
           <div className="editorial-shell">
-            <div className="editorial-founders-heading">
+            <div className="editorial-founders-heading" data-reveal="left">
               <p className="editorial-eyebrow">Zakladatelé</p>
               <h2>Lidé za WIJURO.</h2>
             </div>
@@ -248,7 +252,7 @@ function Index() {
         {/* SLUŽBY */}
         <section id="sluzby" className="editorial-services scroll-mt-24">
           <div className="editorial-shell">
-            <div className="editorial-heading-grid editorial-services-heading">
+            <div className="editorial-heading-grid editorial-services-heading" data-reveal="left">
               <span aria-hidden="true" />
               <h2 className="editorial-display-title">Co děláme</h2>
             </div>
@@ -364,14 +368,14 @@ function Index() {
         </section>
 
         {/* HODNOTY */}
-        <section id="hodnoty" className="editorial-values scroll-mt-24" data-reveal>
+        <section id="hodnoty" className="editorial-values scroll-mt-24">
           <div className="editorial-shell">
-            <div className="editorial-heading-grid">
+            <div className="editorial-heading-grid" data-reveal="left">
               <p className="editorial-eyebrow">Hodnoty</p>
               <h2 className="editorial-display-title">Na čem nám<br />záleží.</h2>
             </div>
 
-            <div className="editorial-values-cluster" aria-label="Hodnoty WIJURO Group">
+            <div className="editorial-values-cluster" data-reveal="scale" aria-label="Hodnoty WIJURO Group">
               <img src={logoMark} alt="" className="editorial-values-watermark" aria-hidden="true" />
 
               <div className="editorial-value-center" aria-hidden="true">
@@ -392,9 +396,9 @@ function Index() {
         </section>
 
         {/* KONTAKT */}
-        <section id="kontakt" className="editorial-contact scroll-mt-24" data-reveal>
+        <section id="kontakt" className="editorial-contact scroll-mt-24">
           <div className="editorial-shell editorial-contact-grid">
-            <div className="editorial-contact-main">
+            <div className="editorial-contact-main" data-reveal="left">
               <p className="editorial-eyebrow">Kontakt</p>
               <h2>Máte nápad,<br />který stojí za to rozvíjet?</h2>
               <p className="editorial-contact-lead">Řekněte nám, na čem pracujete. Zajímají nás zajímaví lidé, nápady a příležitosti.</p>
@@ -442,7 +446,7 @@ function Index() {
               </div>
             </div>
 
-            <div className="editorial-contact-side">
+            <div className="editorial-contact-side" data-reveal="right">
               <div className="editorial-contact-logo">
                 <img src={logoMark} alt="WIJURO Group" width="406" height="567" />
               </div>

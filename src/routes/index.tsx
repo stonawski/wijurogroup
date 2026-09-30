@@ -230,9 +230,12 @@ function Index() {
                   </div>
 
                   <div className="editorial-founder-profile-copy">
-                    <div>
-                      <p className="editorial-founder-role">{f.role}</p>
-                      <h3>{f.name}</h3>
+                    <div className="editorial-founder-profile-head">
+                      <span className="editorial-founder-index">0{k + 1}</span>
+                      <div>
+                        <p className="editorial-founder-role">{f.role}</p>
+                        <h3>{f.name}</h3>
+                      </div>
                     </div>
                     <p>{f.text}</p>
                   </div>

@@ -46,6 +46,7 @@ const values = ["Vize", "Integrita", "Růst", "Férovost", "Dlouhodobost"];
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [headerCompact, setHeaderCompact] = useState(false);
+  const [activeDivision, setActiveDivision] = useState<1 | 2 | null>(null);
   const [formOpen, setFormOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
@@ -218,78 +219,110 @@ function Index() {
               <h2 className="editorial-display-title">Co děláme</h2>
             </div>
 
-            <article className="editorial-division" data-reveal>
-              <div className="editorial-division-number">01</div>
-              <div className="editorial-division-main">
-                <p className="editorial-eyebrow">Divize 01</p>
-                <h3>Korporátní fundraising &amp; expanze</h3>
-                <p className="editorial-division-lead">Zvyšujeme tržní hodnotu firem. Propojujeme strategický marketing s akvizicí rozvojového kapitálu.</p>
-
-                <div className="editorial-how">
-                  <p className="editorial-eyebrow">Jak to funguje?</p>
-                  <p>Prostřednictvím cílených marketingových kampaní oslovujeme relevantní investorské skupiny a zajišťujeme externí financování pro malé a střední podniky. Alokovaný kapitál následně efektivně transformujeme do realizace projektů a tržní expanze.</p>
+            <div className={`editorial-division-switcher ${activeDivision ? "has-selection" : ""}`} data-reveal>
+              <button
+                type="button"
+                aria-expanded={activeDivision === 1}
+                onClick={() => setActiveDivision((current) => current === 1 ? null : 1)}
+                className={`editorial-division-card ${activeDivision === 1 ? "is-active" : activeDivision === 2 ? "is-dimmed" : ""}`}
+              >
+                <span className="editorial-division-card-no">01</span>
+                <div>
+                  <p className="editorial-eyebrow">Divize 01</p>
+                  <h3>Korporátní fundraising &amp; expanze</h3>
+                  <p>Zvyšujeme tržní hodnotu firem. Propojujeme strategický marketing s akvizicí rozvojového kapitálu.</p>
                 </div>
+                <ArrowRight className="editorial-division-card-arrow" size={24} strokeWidth={1.2} />
+              </button>
 
-                <div className="editorial-steps">
-                  {[
-                    ["1", "Strategie", "Propojení strategického marketingu s kapitálovou strategií společnosti."],
-                    ["2", "Kapitál", "Vyhledání a oslovení relevantních investorských skupin a zajištění externího financování."],
-                    ["3", "Expanze", "Transformace získaného kapitálu do realizace projektů, rozvoje společnosti a tržní expanze."],
-                  ].map(([no, name, text]) => (
-                    <div key={no} className="editorial-step">
-                      <span>{no}</span>
-                      <h4>{name}</h4>
-                      <p>{text}</p>
-                    </div>
-                  ))}
+              <button
+                type="button"
+                aria-expanded={activeDivision === 2}
+                onClick={() => setActiveDivision((current) => current === 2 ? null : 2)}
+                className={`editorial-division-card ${activeDivision === 2 ? "is-active" : activeDivision === 1 ? "is-dimmed" : ""}`}
+              >
+                <span className="editorial-division-card-no">02</span>
+                <div>
+                  <p className="editorial-eyebrow">Divize 02</p>
+                  <h3>Fůze &amp; akvizice</h3>
+                  <p>Zajišťujeme kompletní proces při realizaci prodeje firem. Zastupujeme majitele, kteří plánují kapitálový exit, a aktivně vyhledáváme strategické kupující.</p>
                 </div>
-              </div>
-            </article>
+                <ArrowRight className="editorial-division-card-arrow" size={24} strokeWidth={1.2} />
+              </button>
+            </div>
 
-            <article className="editorial-division editorial-division-secondary" data-reveal>
-              <div className="editorial-division-number">02</div>
-              <div className="editorial-division-main">
-                <p className="editorial-eyebrow">Divize 02</p>
-                <h3>Fůze &amp; akvizice</h3>
-                <p className="editorial-division-lead">Zajišťujeme kompletní proces při realizaci prodeje firem. Zastupujeme majitele, kteří plánují kapitálový exit, a aktivně vyhledáváme strategické kupující.</p>
+            <div className={`editorial-division-detail-shell ${activeDivision ? "is-open" : ""}`}>
+              {activeDivision === 1 ? (
+                <div key="division-1" className="editorial-division-detail">
+                  <div className="editorial-division-detail-head">
+                    <p className="editorial-eyebrow">Divize 01 — detail</p>
+                    <h3>Korporátní fundraising &amp; expanze</h3>
+                  </div>
 
-                <div className="editorial-how">
-                  <p className="editorial-eyebrow">Jak to funguje?</p>
-                  <p>Spolupracujeme s vlastníky podniků v jakékoliv fázi jejich cyklu. Pomáháme úspěšným a profitabilním firmám, kde majitelé chtějí bezpečně prodat svůj byznys a zhodnotit tržní hodnotu dlouholeté práce.</p>
-                </div>
+                  <div className="editorial-how">
+                    <p className="editorial-eyebrow">Jak to funguje?</p>
+                    <p>Prostřednictvím cílených marketingových kampaní oslovujeme relevantní investorské skupiny a zajišťujeme externí financování pro malé a střední podniky. Alokovaný kapitál následně efektivně transformujeme do realizace projektů a tržní expanze.</p>
+                  </div>
 
-                <div className="editorial-cases">
-                  {[
-                    ["01", "Kapitálový exit", "Úspěšná a profitabilní společnost, jejíž majitel chce bezpečně prodat svůj byznys a zhodnotit tržní hodnotu dlouholeté práce."],
-                    ["02", "Kapitálová tíseň", "Podnik, který se ocitl v kapitálové tísni a potřebuje strategického investora pro zachování kontinuity provozu, hodnoty značky a dalšího fungování společnosti."],
-                  ].map(([no, name, text]) => (
-                    <div key={no} className="editorial-case">
-                      <span>{no}</span>
-                      <h4>{name}</h4>
-                      <p>{text}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="editorial-ma">
-                  <p className="editorial-eyebrow">M&amp;A proces</p>
-                  <ol>
+                  <div className="editorial-steps">
                     {[
-                      ["01", "Analýza"],
-                      ["02", "Strategie"],
-                      ["03", "Vyhledání investora"],
-                      ["04", "Vyjednávání"],
-                      ["05", "Transakce"],
-                    ].map(([no, name]) => (
-                      <li key={no}>
+                      ["1", "Strategie", "Propojení strategického marketingu s kapitálovou strategií společnosti."],
+                      ["2", "Kapitál", "Vyhledání a oslovení relevantních investorských skupin a zajištění externího financování."],
+                      ["3", "Expanze", "Transformace získaného kapitálu do realizace projektů, rozvoje společnosti a tržní expanze."],
+                    ].map(([no, name, text]) => (
+                      <div key={no} className="editorial-step">
                         <span>{no}</span>
-                        <p>{name}</p>
-                      </li>
+                        <h4>{name}</h4>
+                        <p>{text}</p>
+                      </div>
                     ))}
-                  </ol>
+                  </div>
                 </div>
-              </div>
-            </article>
+              ) : activeDivision === 2 ? (
+                <div key="division-2" className="editorial-division-detail">
+                  <div className="editorial-division-detail-head">
+                    <p className="editorial-eyebrow">Divize 02 — detail</p>
+                    <h3>Fůze &amp; akvizice</h3>
+                  </div>
+
+                  <div className="editorial-how">
+                    <p className="editorial-eyebrow">Jak to funguje?</p>
+                    <p>Spolupracujeme s vlastníky podniků v jakékoliv fázi jejich cyklu. Pomáháme úspěšným a profitabilním firmám, kde majitelé chtějí bezpečně prodat svůj byznys a zhodnotit tržní hodnotu dlouholeté práce.</p>
+                  </div>
+
+                  <div className="editorial-cases">
+                    {[
+                      ["01", "Kapitálový exit", "Úspěšná a profitabilní společnost, jejíž majitel chce bezpečně prodat svůj byznys a zhodnotit tržní hodnotu dlouholeté práce."],
+                      ["02", "Kapitálová tíseň", "Podnik, který se ocitl v kapitálové tísni a potřebuje strategického investora pro zachování kontinuity provozu, hodnoty značky a dalšího fungování společnosti."],
+                    ].map(([no, name, text]) => (
+                      <div key={no} className="editorial-case">
+                        <span>{no}</span>
+                        <h4>{name}</h4>
+                        <p>{text}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="editorial-ma">
+                    <p className="editorial-eyebrow">M&amp;A proces</p>
+                    <ol>
+                      {[
+                        ["01", "Analýza"],
+                        ["02", "Strategie"],
+                        ["03", "Vyhledání investora"],
+                        ["04", "Vyjednávání"],
+                        ["05", "Transakce"],
+                      ].map(([no, name]) => (
+                        <li key={no}>
+                          <span>{no}</span>
+                          <p>{name}</p>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                </div>
+              ) : null}
+            </div>
           </div>
         </section>
 

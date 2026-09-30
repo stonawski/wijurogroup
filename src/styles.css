@@ -87,94 +87,181 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .more-panel.is-open .more-link { opacity: .78; transform: none; transition-delay: calc(var(--i, 0) * 70ms + 120ms); }
 .more-panel.is-open .more-link:hover { opacity: 1; }
 
-/* ---------- Reference hero / editorial direction ---------- */
-.wijuro-header {
-  border-bottom: 1px solid color-mix(in oklab, var(--color-foreground) 12%, transparent);
-  background: color-mix(in oklab, var(--color-background) 94%, transparent);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+/* ---------- Hero matched to supplied customer reference ---------- */
+.wijuro-ref-header {
+  color: var(--color-foreground);
 }
-.nav-link-editorial { color: var(--color-foreground); opacity: .68; }
 
-.wijuro-hero {
-  background: #f3eee6;
+.ref-nav-link {
+  position: relative;
+  font-size: .61rem;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--color-foreground);
+  opacity: .72;
+  transition: opacity .3s ease;
 }
-.hero-reference-copy {
-  background: #f3eee6;
+.ref-nav-link:hover { opacity: 1; }
+
+.ref-hero {
+  --ref-ivory: #f3eee6;
+  background: var(--ref-ivory);
 }
-.hero-reference-title {
-  max-width: 9ch;
+
+.ref-hero-scene {
+  overflow: hidden;
+  background: var(--ref-ivory);
+}
+
+/* The reference lets the landscape run beneath the left column at the bottom. */
+.ref-hero-landscape {
+  position: absolute;
+  inset: auto 0 0 0;
+  width: 100%;
+  height: 24%;
+  object-fit: cover;
+  object-position: center 67%;
+  filter: saturate(.66) contrast(.91) brightness(.98) sepia(.08);
+  transform: scale(1.01);
+}
+
+/* Clean ivory field behind the headline, ending just above the landscape. */
+.ref-hero-ivory-mask {
+  position: absolute;
+  inset: 0 49% 22% 0;
+  background: var(--ref-ivory);
+}
+
+/* Right-hand architectural/photo mass, positioned exactly like the mockup. */
+.ref-hero-architecture {
+  position: absolute;
+  left: 46%;
+  right: 0;
+  top: 15.5%;
+  bottom: 0;
+  background-size: 182% auto;
+  background-position: 55% 55%;
+  background-repeat: no-repeat;
+  filter: saturate(.7) contrast(.94) brightness(.97) sepia(.08);
+  clip-path: polygon(0 19%, 100% 0, 100% 100%, 0 100%);
+}
+
+.ref-hero-stone-panel {
+  position: absolute;
+  z-index: 3;
+  right: 0;
+  top: 15.5%;
+  bottom: 0;
+  width: 20.5%;
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  box-shadow: -20px 0 42px -38px rgba(35,28,23,.65);
+}
+.ref-hero-stone-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.09), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,.05), rgba(48,39,31,.08));
+  pointer-events: none;
+}
+.ref-hero-stone-copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: .8rem;
+  padding-left: 21%;
+  font-size: clamp(.54rem,.7vw,.68rem);
+  font-weight: 600;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  color: color-mix(in oklab, var(--color-foreground) 66%, transparent);
+}
+.ref-hero-stone-copy span { display: block; }
+
+.ref-hero-copy {
+  position: relative;
+  z-index: 5;
+}
+
+.ref-hero-title {
+  max-width: 7.2ch;
   font-family: "Bodoni Moda", Georgia, serif;
-  font-size: clamp(3.8rem, 7.1vw, 7.35rem);
+  font-size: clamp(4rem, 6.15vw, 6.55rem);
   font-weight: 400;
-  line-height: .89;
+  line-height: .88;
   letter-spacing: -.055em;
   color: var(--color-foreground);
 }
-.hero-reference-button {
+
+.ref-hero-button {
   display: inline-flex;
   min-height: 3rem;
   align-items: center;
   justify-content: center;
-  gap: 1.15rem;
-  border: 1px solid color-mix(in oklab, var(--color-foreground) 48%, transparent);
-  background: transparent;
-  padding: .85rem 1.2rem;
-  font-size: .62rem;
+  gap: 1.65rem;
+  border: 1px solid color-mix(in oklab, var(--color-foreground) 46%, transparent);
+  background: color-mix(in oklab, var(--ref-ivory) 78%, transparent);
+  padding: .84rem 1.35rem;
+  font-size: .61rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .17em;
   color: var(--color-foreground);
-  transition: background-color .45s var(--ease-lux), color .45s var(--ease-lux), border-color .45s var(--ease-lux), transform .45s var(--ease-lux);
+  backdrop-filter: blur(4px);
+  transition: background-color .4s ease, color .4s ease, border-color .4s ease;
 }
-.hero-reference-button:hover {
-  transform: translateY(-1px);
+.ref-hero-button:hover {
   border-color: var(--color-foreground);
   background: var(--color-foreground);
-  color: var(--color-background);
-}
-.hero-reference-visual {
-  background: #d8c9b8;
-}
-.hero-reference-image {
-  transform: scale(1.035);
-  object-position: 49% center;
-  filter: saturate(.72) contrast(.95) brightness(1.02) sepia(.06);
-}
-.hero-reference-image-wash {
-  background: linear-gradient(90deg, rgba(243,238,230,.06) 0%, rgba(52,43,35,.03) 46%, rgba(35,30,25,.11) 100%);
-  pointer-events: none;
-}
-.hero-reference-stone {
-  isolation: isolate;
-  background-size: cover;
-  background-position: center;
-  box-shadow: -18px 0 40px -34px rgba(36, 30, 25, .5);
-}
-.hero-reference-stone::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(110deg, rgba(255,255,255,.16), transparent 38%, rgba(63,50,40,.08));
-  mix-blend-mode: soft-light;
+  color: var(--ref-ivory);
 }
 
 @media (max-width: 1023px) {
-  .hero-reference-title {
-    max-width: 10ch;
-    font-size: clamp(3.7rem, 12.5vw, 6.3rem);
-    line-height: .92;
+  .ref-hero-landscape { height: 19%; }
+  .ref-hero-ivory-mask { inset: 0 0 47% 0; }
+  .ref-hero-architecture {
+    left: 0;
+    top: 53%;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    clip-path: none;
   }
-  .hero-reference-visual { min-height: 48svh; }
-  .hero-reference-image { object-position: center; }
+  .ref-hero-stone-panel {
+    top: 53%;
+    width: 30%;
+  }
+  .ref-hero-title {
+    max-width: 7.2ch;
+    font-size: clamp(3.8rem, 12vw, 6.4rem);
+  }
 }
 
 @media (max-width: 639px) {
-  .wijuro-header { background: color-mix(in oklab, #f3eee6 96%, transparent); }
-  .hero-reference-title { font-size: clamp(3.35rem, 16.5vw, 5.2rem); }
-  .hero-reference-stone { top: 16%; width: 38%; padding-inline: 5%; }
-  .hero-reference-stone div { font-size: .48rem; letter-spacing: .16em; }
+  .ref-hero-copy { max-width: 88%; }
+  .ref-hero-title {
+    font-size: clamp(3.4rem, 16vw, 5rem);
+    line-height: .9;
+  }
+  .ref-hero-landscape { height: 17%; }
+  .ref-hero-architecture { top: 58%; }
+  .ref-hero-stone-panel {
+    top: 58%;
+    width: 35%;
+  }
+  .ref-hero-stone-copy {
+    gap: .55rem;
+    padding-left: 16%;
+    font-size: .45rem;
+    letter-spacing: .16em;
+  }
 }
 
 /* ---------- Motion system ---------- */

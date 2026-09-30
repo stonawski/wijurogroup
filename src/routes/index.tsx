@@ -28,12 +28,13 @@ export const Route = createFileRoute("/")({
 });
 
 const navItems = [
-  ["O nás", "#o-nas"], ["Co děláme", "#sluzby"], ["Kontakt", "#kontakt"],
+  ["O nás", "#o-nas"],
+  ["Co děláme", "#sluzby"],
+  ["Hodnoty", "#hodnoty"],
+  ["Kontakt", "#kontakt"],
 ];
 
-const moreItems = [
-  ["Hodnoty", "#hodnoty"],
-];
+const moreItems: string[][] = [];
 
 const founders = [
   { name: "David W. Juras", role: "Co-Founder", initials: "D", text: "Dívám se na svět s otevřenou myslí cestovatele, tvořím s citem umělce, bojuji s vytrvalostí sportovce a nechávám věci zrát s trpělivostí vinaře." },
@@ -73,89 +74,92 @@ function Index() {
 
   return (
     <div id="top" className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
-      {/* Editorial header — visually integrated with the hero reference */}
-      <header className="wijuro-header fixed inset-x-0 top-0 z-50">
-        <div className="mx-auto flex h-20 max-w-[1480px] items-center px-5 md:h-24 md:px-10 lg:px-16">
-          <a href="#top" aria-label="WIJURO Group — úvod" className="intro-logo flex shrink-0 items-center">
-            <img src={logoMark} alt="WIJURO Group" className="h-14 w-auto md:h-[4.15rem]" width="406" height="567" />
+      <header className="wijuro-ref-header absolute inset-x-0 top-0 z-50">
+        <div className="mx-auto flex h-[118px] max-w-[1480px] items-start px-5 pt-5 md:px-10 md:pt-7 lg:px-16 lg:pt-8">
+          <a href="#top" aria-label="WIJURO Group — úvod" className="intro-logo flex shrink-0 items-start">
+            <img src={logoMark} alt="WIJURO Group" className="h-[74px] w-auto md:h-[88px]" width="406" height="567" />
           </a>
 
-          <nav className="intro-up ml-auto hidden items-center gap-9 lg:flex" style={{ "--d": "0.5s" } as React.CSSProperties} aria-label="Hlavní navigace">
-            {navItems.map(([label, href]) => <a key={href} href={href} className="nav-link nav-link-editorial">{label}</a>)}
-            <span className="ml-3 h-px w-16 bg-foreground/25" aria-hidden="true" />
+          <nav className="intro-up ml-auto hidden items-center gap-8 pt-5 lg:flex xl:gap-10" style={{ "--d": "0.45s" } as React.CSSProperties} aria-label="Hlavní navigace">
+            {navItems.map(([label, href]) => (
+              <a key={href} href={href} className="ref-nav-link">{label}</a>
+            ))}
+            <span className="ml-3 h-px w-16 bg-foreground/25 xl:w-20" aria-hidden="true" />
+            <span className="ref-nav-link pointer-events-none opacity-70">CZ</span>
           </nav>
 
-          <button type="button" aria-label={menuOpen ? "Zavřít menu" : "Otevřít menu"} aria-expanded={menuOpen} aria-controls="mobile-menu" className="relative z-10 ml-auto inline-flex h-11 w-11 shrink-0 items-center justify-center lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+          <button type="button" aria-label={menuOpen ? "Zavřít menu" : "Otevřít menu"} aria-expanded={menuOpen} aria-controls="mobile-menu" className="relative z-10 ml-auto mt-3 inline-flex h-11 w-11 shrink-0 items-center justify-center lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
 
-        <nav id="mobile-menu" className={`mobile-menu fixed inset-x-0 bottom-0 top-20 flex flex-col overflow-y-auto border-t border-border bg-background px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-6 md:top-24 md:px-10 lg:hidden ${menuOpen ? "is-open" : "invisible pointer-events-none"}`} aria-label="Mobilní navigace" aria-hidden={!menuOpen}>
+        <nav id="mobile-menu" className={`mobile-menu fixed inset-x-0 bottom-0 top-20 flex flex-col overflow-y-auto border-t border-foreground/10 bg-[#f3eee6] px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-6 md:top-24 md:px-10 lg:hidden ${menuOpen ? "is-open" : "invisible pointer-events-none"}`} aria-label="Mobilní navigace" aria-hidden={!menuOpen}>
           {navItems.map(([label, href]) => (
             <a key={href} href={href} tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mobile-menu-link border-b border-foreground/12 py-4 text-2xl font-light sm:text-3xl">{label}</a>
           ))}
-          {moreItems.map(([label, href]) => (
-            <a key={href} href={href} tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mobile-menu-link border-b border-foreground/12 py-4 text-xl font-light text-muted-foreground sm:text-2xl">{label}</a>
-          ))}
-          <a href="#kontakt" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="hero-reference-button mt-auto inline-flex min-h-12 items-center justify-center gap-3 px-5 py-3 text-center">
+          <a href="#kontakt" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="ref-hero-button mt-auto inline-flex min-h-12 items-center justify-center gap-3 px-5 py-3 text-center">
             Pojďme se spojit <ArrowUpRight size={14} />
           </a>
         </nav>
       </header>
 
       <main>
-        {/* HERO — customer reference direction */}
-        <section className="wijuro-hero relative overflow-hidden pt-20 md:pt-24">
-          <div className="mx-auto grid min-h-[calc(100svh-5rem)] max-w-[1480px] lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.3fr)] md:min-h-[calc(100svh-6rem)]">
-            <div className="hero-reference-copy relative z-10 flex min-h-[54svh] flex-col justify-center px-5 pb-16 pt-12 md:px-10 md:pb-20 md:pt-16 lg:min-h-0 lg:px-16 lg:pb-20 lg:pt-20">
-              <h1 className="hero-reference-title text-balance">
-                <span className="intro-line"><span style={{ "--d": "0.85s" } as React.CSSProperties}>Tvoříme to,</span></span>
-                <span className="intro-line"><span style={{ "--d": "1.05s" } as React.CSSProperties}>co přichází.</span></span>
+        {/* HERO — matched to supplied customer reference */}
+        <section className="ref-hero relative min-h-[100svh] overflow-hidden bg-[#f3eee6]">
+          <div className="ref-hero-scene absolute inset-0">
+            <img
+              src={heroVineyard}
+              alt="Krajina v teplých přírodních tónech"
+              className="ref-hero-landscape"
+              width="1920"
+              height="1080"
+              fetchPriority="high"
+            />
+
+            <div className="ref-hero-ivory-mask" aria-hidden="true" />
+
+            <div
+              className="ref-hero-architecture"
+              style={{ backgroundImage: `linear-gradient(180deg, rgba(244,239,231,.08), rgba(48,39,31,.08)), url(${heroVineyard})` }}
+              aria-hidden="true"
+            />
+
+            <aside
+              className="ref-hero-stone-panel"
+              style={{ backgroundImage: `linear-gradient(180deg, rgba(218,205,189,.72), rgba(194,178,160,.72)), url(${stoneTexture})` }}
+              aria-hidden="true"
+            >
+              <div className="ref-hero-stone-copy">
+                <span>Marketing</span>
+                <span>Business</span>
+                <span>Projects</span>
+              </div>
+            </aside>
+          </div>
+
+          <div className="relative z-10 mx-auto min-h-[100svh] max-w-[1480px] px-5 md:px-10 lg:px-16">
+            <div className="ref-hero-copy flex min-h-[100svh] w-full max-w-[520px] flex-col pt-[175px] md:pt-[205px] lg:pt-[205px]">
+              <h1 className="ref-hero-title">
+                <span className="intro-line"><span style={{ "--d": "0.75s" } as React.CSSProperties}>Tvoříme to,</span></span>
+                <span className="intro-line"><span style={{ "--d": "0.95s" } as React.CSSProperties}>co</span></span>
+                <span className="intro-line"><span style={{ "--d": "1.15s" } as React.CSSProperties}>přichází.</span></span>
               </h1>
 
-              <p className="intro-up mt-8 max-w-[31rem] text-[1.02rem] leading-7 text-foreground/78 md:mt-10 md:text-lg md:leading-8" style={{ "--d": "1.35s" } as React.CSSProperties}>
+              <p className="intro-up mt-9 max-w-[390px] font-display text-[1.03rem] leading-[1.48] text-foreground/85 md:text-[1.12rem]" style={{ "--d": "1.4s" } as React.CSSProperties}>
                 WIJURO Group propojuje kreativitu, strategii a investiční myšlení.
               </p>
 
-              <p className="intro-up mt-6 text-[0.62rem] font-semibold uppercase tracking-[0.19em] text-muted-foreground md:mt-7" style={{ "--d": "1.55s" } as React.CSSProperties}>
-                MARKETING · BUSINESS DEVELOPMENT · PROJECTS
-              </p>
-
-              <div className="intro-up mt-9 md:mt-10" style={{ "--d": "1.8s" } as React.CSSProperties}>
-                <a className="hero-reference-button group" href="#o-nas">
+              <div className="intro-up mt-9" style={{ "--d": "1.65s" } as React.CSSProperties}>
+                <a className="ref-hero-button group" href="#o-nas">
                   <span>Poznat WIJURO</span>
-                  <ArrowRight size={15} strokeWidth={1.4} className="transition-transform duration-500 group-hover:translate-x-1" />
+                  <ArrowRight size={16} strokeWidth={1.3} className="transition-transform duration-500 group-hover:translate-x-1.5" />
                 </a>
               </div>
 
-              <div className="intro-up mt-auto hidden items-center gap-4 pt-12 text-[0.62rem] font-semibold tracking-[0.18em] text-foreground/55 lg:flex" style={{ "--d": "2.05s" } as React.CSSProperties} aria-hidden="true">
+              <div className="intro-up mt-auto hidden items-center gap-4 pb-9 text-[0.62rem] font-semibold tracking-[0.18em] text-foreground/55 lg:flex" style={{ "--d": "1.9s" } as React.CSSProperties} aria-hidden="true">
                 <span>01</span>
                 <span className="h-px w-24 bg-foreground/25" />
               </div>
-            </div>
-
-            <div className="hero-reference-visual intro-clip relative min-h-[46svh] overflow-hidden lg:min-h-0">
-              <img
-                src={heroVineyard}
-                alt="Prostor v teplých přírodních tónech s výhledem do krajiny"
-                className="hero-reference-image absolute inset-0 h-full w-full object-cover"
-                width="1920"
-                height="1080"
-                fetchPriority="high"
-              />
-              <div className="hero-reference-image-wash absolute inset-0" aria-hidden="true" />
-
-              <aside
-                className="hero-reference-stone absolute bottom-0 right-0 top-[9%] flex w-[34%] flex-col justify-center px-[6%] lg:w-[35%]"
-                style={{ backgroundImage: `linear-gradient(180deg, rgba(235,226,214,.9), rgba(205,190,173,.82)), url(${stoneTexture})` }}
-                aria-hidden="true"
-              >
-                <div className="space-y-3 text-[0.58rem] font-semibold uppercase leading-[1.7] tracking-[0.2em] text-foreground/62 sm:text-[0.64rem] lg:text-[0.7rem]">
-                  <span className="block">Marketing</span>
-                  <span className="block">Business Development</span>
-                  <span className="block">Projects</span>
-                </div>
-              </aside>
             </div>
           </div>
         </section>

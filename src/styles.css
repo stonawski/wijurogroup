@@ -91,22 +91,91 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .wijuro-ref-header {
   --ref-ivory: #f3eee6;
   color: var(--color-foreground);
+  transition: padding .55s var(--ease-lux);
 }
-
-.ref-header-logo { height: 5.7rem; }
+.wijuro-header-inner {
+  transition:
+    height .55s var(--ease-lux),
+    max-width .55s var(--ease-lux),
+    padding .55s var(--ease-lux),
+    margin .55s var(--ease-lux),
+    background-color .45s ease,
+    border-color .45s ease,
+    border-radius .55s var(--ease-lux),
+    box-shadow .45s ease;
+}
+.ref-header-logo {
+  height: 5.9rem;
+  transition: height .55s var(--ease-lux);
+}
 
 .ref-nav-link {
   position: relative;
-  font-size: .72rem;
+  font-size: .82rem;
   font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
-  letter-spacing: .125em;
+  letter-spacing: .115em;
   color: var(--color-foreground);
-  opacity: .74;
-  transition: opacity .3s ease;
+  opacity: .78;
+  transition: opacity .3s ease, font-size .55s var(--ease-lux);
+}
+.ref-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -.52rem;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform .45s var(--ease-lux);
 }
 .ref-nav-link:hover { opacity: 1; }
+.ref-nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+.ref-lang::after { display: none; }
+
+.header-divider {
+  transition: width .55s var(--ease-lux), opacity .4s ease;
+}
+.wijuro-desktop-nav {
+  transition: padding .55s var(--ease-lux), gap .55s var(--ease-lux);
+}
+
+/* Persistent compact navigation after the first part of the hero. */
+@media (min-width: 1024px) {
+  .wijuro-ref-header.is-compact {
+    padding-top: .8rem;
+  }
+  .wijuro-ref-header.is-compact .wijuro-header-inner {
+    height: 4.35rem;
+    max-width: 61rem;
+    align-items: center;
+    padding: 0 1.45rem;
+    margin-inline: auto;
+    border: 1px solid rgba(56,47,39,.13);
+    border-radius: 999px;
+    background: rgba(244,239,232,.91);
+    box-shadow: 0 12px 34px rgba(51,42,35,.10);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+  .wijuro-ref-header.is-compact .ref-header-logo { height: 3.05rem; }
+  .wijuro-ref-header.is-compact .wijuro-desktop-nav {
+    padding-top: 0;
+    gap: 1.8rem;
+  }
+  .wijuro-ref-header.is-compact .ref-nav-link { font-size: .69rem; }
+  .wijuro-ref-header.is-compact .ref-nav-link::after { bottom: -.38rem; }
+  .wijuro-ref-header.is-compact .header-divider {
+    width: 2.6rem;
+    opacity: .7;
+  }
+}
 
 .ref-hero {
   --ref-ivory: #f3eee6;
@@ -133,9 +202,10 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   max-width: none;
   object-fit: contain;
   object-position: right bottom;
-  filter: saturate(.92) contrast(.96) brightness(1.035);
+  filter: saturate(.92) contrast(.96) brightness(1.04);
 }
 
+/* Stronger ivory field behind the headline for legibility while leaving the house visible. */
 .ref-hero-wash {
   position: absolute;
   z-index: 2;
@@ -143,12 +213,12 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   background:
     linear-gradient(
       90deg,
-      rgba(243,238,230,.99) 0%,
-      rgba(243,238,230,.98) 19%,
-      rgba(243,238,230,.91) 29%,
-      rgba(243,238,230,.66) 37%,
-      rgba(243,238,230,.18) 49%,
-      rgba(243,238,230,0) 60%
+      rgba(243,238,230,1) 0%,
+      rgba(243,238,230,.995) 22%,
+      rgba(243,238,230,.96) 31%,
+      rgba(243,238,230,.78) 40%,
+      rgba(243,238,230,.30) 50%,
+      rgba(243,238,230,0) 61%
     );
   pointer-events: none;
 }
@@ -159,64 +229,79 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 }
 
 .ref-hero-title {
-  max-width: 9.6ch;
-  font-family: "Bodoni Moda", Georgia, serif;
-  font-size: clamp(4.4rem, 5.55vw, 6.45rem);
-  font-weight: 400;
-  line-height: .89;
-  letter-spacing: -.052em;
-  color: var(--color-foreground);
+  max-width: 7.2ch;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(4.9rem, 5.75vw, 7.15rem);
+  font-weight: 600;
+  line-height: .82;
+  letter-spacing: -.035em;
+  color: #211d19;
+  text-shadow: 0 1px 0 rgba(255,255,255,.32);
+}
+
+.ref-hero-cta {
+  margin-top: auto;
+  margin-bottom: clamp(7rem, 16.5vh, 11rem);
 }
 
 .ref-hero-button {
   display: inline-flex;
-  min-height: 3.15rem;
+  min-height: 3.2rem;
   align-items: center;
   justify-content: center;
   gap: 1.65rem;
-  border: 1px solid color-mix(in oklab, var(--color-foreground) 46%, transparent);
-  background: color-mix(in oklab, var(--ref-ivory) 80%, transparent);
-  padding: .88rem 1.4rem;
-  font-size: .66rem;
+  border: 1px solid color-mix(in oklab, var(--color-foreground) 48%, transparent);
+  background: color-mix(in oklab, var(--ref-ivory) 84%, transparent);
+  padding: .9rem 1.45rem;
+  font-size: .68rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .17em;
   color: var(--color-foreground);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  transition: background-color .4s ease, color .4s ease, border-color .4s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: background-color .4s ease, color .4s ease, border-color .4s ease, transform .4s var(--ease-lux);
 }
 .ref-hero-button:hover {
+  transform: translateY(-2px);
   border-color: var(--color-foreground);
   background: var(--color-foreground);
   color: var(--ref-ivory);
 }
 
 @media (min-width: 1700px) {
-  .ref-header-logo { height: 6.65rem; }
-  .ref-nav-link { font-size: .76rem; }
-  .ref-hero-title { font-size: clamp(5rem, 5.25vw, 7rem); }
+  .ref-header-logo { height: 6.8rem; }
+  .ref-nav-link { font-size: .86rem; }
+  .ref-hero-title { font-size: clamp(5.35rem, 5.6vw, 7.6rem); }
   .ref-hero-wash {
     background:
       linear-gradient(
         90deg,
-        rgba(243,238,230,.99) 0%,
-        rgba(243,238,230,.98) 16%,
-        rgba(243,238,230,.90) 25%,
-        rgba(243,238,230,.58) 34%,
-        rgba(243,238,230,.12) 45%,
-        rgba(243,238,230,0) 55%
+        rgba(243,238,230,1) 0%,
+        rgba(243,238,230,.995) 19%,
+        rgba(243,238,230,.95) 28%,
+        rgba(243,238,230,.72) 37%,
+        rgba(243,238,230,.22) 47%,
+        rgba(243,238,230,0) 57%
       );
   }
 }
 
 @media (max-width: 1199px) {
-  .ref-header-logo { height: 5.2rem; }
-  .ref-nav-link { font-size: .68rem; }
-  .ref-hero-title { max-width: 9.4ch; }
+  .ref-header-logo { height: 5.25rem; }
+  .ref-nav-link { font-size: .76rem; }
+  .ref-hero-title { font-size: clamp(4.45rem, 6.6vw, 6.3rem); }
 }
 
 @media (max-width: 1023px) {
+  .wijuro-ref-header {
+    background: rgba(243,238,230,.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .wijuro-ref-header.is-compact {
+    box-shadow: 0 8px 26px rgba(51,42,35,.08);
+  }
   .ref-header-logo { height: 4.8rem; }
   .ref-hero-media {
     inset: auto 0 0 0;
@@ -232,11 +317,11 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   .ref-hero-wash {
     background:
       linear-gradient(180deg,
-        rgba(243,238,230,.99) 0%,
-        rgba(243,238,230,.98) 42%,
-        rgba(243,238,230,.78) 53%,
-        rgba(243,238,230,.18) 67%,
-        rgba(243,238,230,0) 78%
+        rgba(243,238,230,1) 0%,
+        rgba(243,238,230,.99) 42%,
+        rgba(243,238,230,.80) 54%,
+        rgba(243,238,230,.18) 68%,
+        rgba(243,238,230,0) 79%
       );
   }
   .ref-hero-copy {
@@ -244,8 +329,13 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
     padding-bottom: 50svh;
   }
   .ref-hero-title {
-    max-width: 9.4ch;
-    font-size: clamp(3.8rem, 11vw, 6rem);
+    max-width: 7.2ch;
+    font-size: clamp(4rem, 11vw, 6rem);
+    line-height: .84;
+  }
+  .ref-hero-cta {
+    margin-top: 2rem;
+    margin-bottom: 0;
   }
 }
 
@@ -258,17 +348,16 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
     padding-bottom: 44svh;
   }
   .ref-hero-title {
-    max-width: 9.2ch;
-    font-size: clamp(3.35rem, 15vw, 4.8rem);
-    line-height: .91;
+    font-size: clamp(3.5rem, 15.5vw, 4.95rem);
+    line-height: .86;
   }
   .ref-hero-wash {
     background:
       linear-gradient(180deg,
-        rgba(243,238,230,.995) 0%,
-        rgba(243,238,230,.985) 46%,
-        rgba(243,238,230,.76) 58%,
-        rgba(243,238,230,.12) 74%,
+        rgba(243,238,230,1) 0%,
+        rgba(243,238,230,.99) 47%,
+        rgba(243,238,230,.78) 59%,
+        rgba(243,238,230,.12) 75%,
         rgba(243,238,230,0) 84%
       );
   }

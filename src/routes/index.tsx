@@ -45,11 +45,19 @@ const valuesBottom = ["Férovost", "Dlouhodobost"];
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [headerCompact, setHeaderCompact] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+
+  useEffect(() => {
+    const onScroll = () => setHeaderCompact(window.scrollY > 72);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
@@ -73,18 +81,18 @@ function Index() {
 
   return (
     <div id="top" className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
-      <header className="wijuro-ref-header absolute inset-x-0 top-0 z-50">
-        <div className="mx-auto flex h-[132px] max-w-[1600px] items-start px-5 pt-6 md:h-[140px] md:px-10 md:pt-7 lg:px-14 lg:pt-8 xl:px-16">
+      <header className={`wijuro-ref-header fixed inset-x-0 top-0 z-50 ${headerCompact ? "is-compact" : ""}`}>
+        <div className="wijuro-header-inner mx-auto flex h-[132px] max-w-[1600px] items-start px-5 pt-6 md:h-[140px] md:px-10 md:pt-7 lg:px-14 lg:pt-8 xl:px-16">
           <a href="#top" aria-label="WIJURO Group — úvod" className="intro-logo flex shrink-0 items-start">
             <img src={logoMark} alt="WIJURO Group" className="ref-header-logo w-auto" width="406" height="567" />
           </a>
 
-          <nav className="intro-up ml-auto hidden items-center gap-8 pt-6 lg:flex xl:gap-11" style={{ "--d": "0.45s" } as React.CSSProperties} aria-label="Hlavní navigace">
+          <nav className="wijuro-desktop-nav intro-up ml-auto hidden items-center gap-8 pt-6 lg:flex xl:gap-11" style={{ "--d": "0.45s" } as React.CSSProperties} aria-label="Hlavní navigace">
             {navItems.map(([label, href]) => (
               <a key={href} href={href} className="ref-nav-link">{label}</a>
             ))}
-            <span className="ml-3 h-px w-16 bg-foreground/25 xl:w-20" aria-hidden="true" />
-            <span className="ref-nav-link pointer-events-none opacity-70">CZ</span>
+            <span className="header-divider ml-3 h-px w-16 bg-foreground/25 xl:w-20" aria-hidden="true" />
+            <span className="ref-nav-link ref-lang pointer-events-none opacity-70">CZ</span>
           </nav>
 
           <button type="button" aria-label={menuOpen ? "Zavřít menu" : "Otevřít menu"} aria-expanded={menuOpen} aria-controls="mobile-menu" className="relative z-10 ml-auto mt-3 inline-flex h-11 w-11 shrink-0 items-center justify-center lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
@@ -120,25 +128,20 @@ function Index() {
           <div className="relative z-10 mx-auto min-h-[100svh] max-w-[1600px] px-5 md:px-10 lg:px-14 xl:px-16">
             <div className="ref-hero-copy flex min-h-[100svh] w-full max-w-[590px] flex-col pt-[190px] md:pt-[205px] lg:pt-[215px] xl:pt-[225px]">
               <h1 className="ref-hero-title">
-                <span className="intro-line"><span style={{ "--d": "0.75s" } as React.CSSProperties}>Tvoříme to,</span></span>
-                <span className="intro-line"><span style={{ "--d": "0.95s" } as React.CSSProperties}>co</span></span>
-                <span className="intro-line"><span style={{ "--d": "1.15s" } as React.CSSProperties}>přichází.</span></span>
+                <span className="intro-line"><span style={{ "--d": "0.75s" } as React.CSSProperties}>Tvoříme</span></span>
+                <span className="intro-line"><span style={{ "--d": "0.95s" } as React.CSSProperties}>lepší</span></span>
+                <span className="intro-line"><span style={{ "--d": "1.15s" } as React.CSSProperties}>zítřky.</span></span>
               </h1>
 
               <p className="intro-up mt-9 max-w-[390px] font-display text-[1.03rem] leading-[1.48] text-foreground/88 md:text-[1.12rem]" style={{ "--d": "1.4s" } as React.CSSProperties}>
                 WIJURO Group propojuje kreativitu, strategii a investiční myšlení.
               </p>
 
-              <div className="intro-up mt-9" style={{ "--d": "1.65s" } as React.CSSProperties}>
+              <div className="ref-hero-cta intro-up" style={{ "--d": "1.65s" } as React.CSSProperties}>
                 <a className="ref-hero-button group" href="#o-nas">
                   <span>Poznat WIJURO</span>
                   <ArrowRight size={16} strokeWidth={1.3} className="transition-transform duration-500 group-hover:translate-x-1.5" />
                 </a>
-              </div>
-
-              <div className="intro-up mt-auto hidden items-center gap-4 pb-9 text-[0.62rem] font-semibold tracking-[0.18em] text-foreground/58 lg:flex" style={{ "--d": "1.9s" } as React.CSSProperties} aria-hidden="true">
-                <span>01</span>
-                <span className="h-px w-24 bg-foreground/30" />
               </div>
             </div>
           </div>

@@ -440,6 +440,9 @@ function Index() {
             </div>
 
             <div className="editorial-contact-side">
+              <div className="editorial-contact-logo">
+                <img src={logoMark} alt="WIJURO Group" width="406" height="567" />
+              </div>
               <ul>
                 {[[Mail, "E-mail", "info@wijurogroup.com", "mailto:info@wijurogroup.com"], [Phone, "Telefon", "+420 771 190 429", "tel:+420771190429"]].map(([Icon, label, value, href]) => {
                   const I = Icon as typeof Mail;

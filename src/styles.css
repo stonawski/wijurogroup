@@ -1233,31 +1233,6 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   mix-blend-mode: multiply;
 }
 
-/* Oversized engraved word — intentionally cropped like lettering carved into stone. */
-.editorial-contact::after {
-  content: "WIJURO";
-  position: absolute;
-  z-index: 1;
-  left: 58%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(18rem, 35vw, 39rem);
-  font-weight: 500;
-  line-height: .72;
-  letter-spacing: -.075em;
-  white-space: nowrap;
-  color: rgba(84,64,47,.055);
-  -webkit-text-stroke: 1px rgba(255,255,255,.045);
-  text-shadow:
-    -2px -2px 1px rgba(255,255,255,.20),
-    2px 3px 2px rgba(80,59,41,.13),
-    7px 10px 15px rgba(80,59,41,.035);
-  mix-blend-mode: multiply;
-  pointer-events: none;
-  user-select: none;
-}
-
 .editorial-contact-grid {
   position: relative;
   z-index: 2;
@@ -1329,6 +1304,18 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .editorial-form-message { margin-top: 1.5rem; font-size: .9rem; opacity: .72; }
 .editorial-form-error { font-size: .75rem; opacity: .8; }
 
+.editorial-contact-logo {
+  width: clamp(5.5rem, 7vw, 7.5rem);
+  margin-bottom: clamp(2.5rem, 4vw, 4rem);
+}
+.editorial-contact-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: brightness(0) invert(1);
+  opacity: .38;
+}
+
 .editorial-contact-side {
   display: flex;
   flex-direction: column;
@@ -1359,14 +1346,6 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 }
 .editorial-contact-side li a:hover { opacity: 1; }
 
-@media (max-width: 1023px) {
-  .editorial-contact::after {
-    left: 63%;
-    font-size: clamp(17rem, 45vw, 29rem);
-    opacity: .9;
-  }
-}
-
 @media (max-width: 767px) {
   .editorial-contact-grid {
     grid-template-columns: 1fr;
@@ -1375,15 +1354,6 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   }
   .editorial-contact-main h2 {
     font-size: clamp(3.8rem, 17vw, 5.5rem);
-  }
-  .editorial-contact::after {
-    left: 72%;
-    top: 47%;
-    font-size: clamp(14rem, 64vw, 21rem);
-    color: rgba(84,64,47,.04);
-    text-shadow:
-      -1px -1px 1px rgba(255,255,255,.16),
-      1px 2px 1px rgba(80,59,41,.10);
   }
   .editorial-contact-side {
     min-height: 18rem;

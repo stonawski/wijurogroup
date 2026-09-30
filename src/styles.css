@@ -111,80 +111,39 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   background: var(--ref-ivory);
 }
 
-.ref-hero-scene {
-  overflow: hidden;
-  background: var(--ref-ivory);
-}
-
-/* The reference lets the landscape run beneath the left column at the bottom. */
-.ref-hero-landscape {
+.ref-hero-background {
   position: absolute;
-  inset: auto 0 0 0;
+  inset: 0;
   width: 100%;
-  height: 24%;
+  height: 100%;
   object-fit: cover;
-  object-position: center 67%;
-  filter: saturate(.66) contrast(.91) brightness(.98) sepia(.08);
-  transform: scale(1.01);
+  object-position: 52% center;
+  filter: saturate(.9) contrast(.98) brightness(1.015);
+  transform: scale(1.002);
 }
 
-/* Clean ivory field behind the headline, ending just above the landscape. */
-.ref-hero-ivory-mask {
-  position: absolute;
-  inset: 0 49% 22% 0;
-  background: var(--ref-ivory);
-}
-
-/* Right-hand architectural/photo mass, positioned exactly like the mockup. */
-.ref-hero-architecture {
-  position: absolute;
-  left: 46%;
-  right: 0;
-  top: 15.5%;
-  bottom: 0;
-  background-size: 182% auto;
-  background-position: 55% 55%;
-  background-repeat: no-repeat;
-  filter: saturate(.7) contrast(.94) brightness(.97) sepia(.08);
-  clip-path: polygon(0 19%, 100% 0, 100% 100%, 0 100%);
-}
-
-.ref-hero-stone-panel {
-  position: absolute;
-  z-index: 3;
-  right: 0;
-  top: 15.5%;
-  bottom: 0;
-  width: 20.5%;
-  display: flex;
-  align-items: center;
-  background-size: cover;
-  background-position: center;
-  box-shadow: -20px 0 42px -38px rgba(35,28,23,.65);
-}
-.ref-hero-stone-panel::after {
-  content: "";
+/* Keeps the left editorial field close to the supplied mockup while preserving
+   the actual architecture image underneath. */
+.ref-hero-wash {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(255,255,255,.09), transparent 38%),
-    linear-gradient(180deg, rgba(255,255,255,.05), rgba(48,39,31,.08));
+    linear-gradient(
+      90deg,
+      rgba(243, 238, 230, .985) 0%,
+      rgba(243, 238, 230, .97) 25%,
+      rgba(243, 238, 230, .86) 36%,
+      rgba(243, 238, 230, .25) 49%,
+      rgba(243, 238, 230, 0) 62%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(243, 238, 230, .34) 0%,
+      rgba(243, 238, 230, .06) 24%,
+      transparent 48%
+    );
   pointer-events: none;
 }
-.ref-hero-stone-copy {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  gap: .8rem;
-  padding-left: 21%;
-  font-size: clamp(.54rem,.7vw,.68rem);
-  font-weight: 600;
-  line-height: 1.4;
-  text-transform: uppercase;
-  letter-spacing: .22em;
-  color: color-mix(in oklab, var(--color-foreground) 66%, transparent);
-}
-.ref-hero-stone-copy span { display: block; }
 
 .ref-hero-copy {
   position: relative;
@@ -208,14 +167,15 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   justify-content: center;
   gap: 1.65rem;
   border: 1px solid color-mix(in oklab, var(--color-foreground) 46%, transparent);
-  background: color-mix(in oklab, var(--ref-ivory) 78%, transparent);
+  background: color-mix(in oklab, var(--ref-ivory) 76%, transparent);
   padding: .84rem 1.35rem;
   font-size: .61rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .17em;
   color: var(--color-foreground);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   transition: background-color .4s ease, color .4s ease, border-color .4s ease;
 }
 .ref-hero-button:hover {
@@ -225,19 +185,13 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 }
 
 @media (max-width: 1023px) {
-  .ref-hero-landscape { height: 19%; }
-  .ref-hero-ivory-mask { inset: 0 0 47% 0; }
-  .ref-hero-architecture {
-    left: 0;
-    top: 53%;
-    bottom: 0;
-    background-size: cover;
-    background-position: center;
-    clip-path: none;
+  .ref-hero-background {
+    object-position: 62% center;
   }
-  .ref-hero-stone-panel {
-    top: 53%;
-    width: 30%;
+  .ref-hero-wash {
+    background:
+      linear-gradient(180deg, rgba(243,238,230,.98) 0%, rgba(243,238,230,.96) 42%, rgba(243,238,230,.38) 58%, transparent 72%),
+      linear-gradient(90deg, rgba(243,238,230,.74), rgba(243,238,230,.1));
   }
   .ref-hero-title {
     max-width: 7.2ch;
@@ -246,22 +200,18 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 }
 
 @media (max-width: 639px) {
-  .ref-hero-copy { max-width: 88%; }
+  .ref-hero-background {
+    object-position: 67% center;
+  }
+  .ref-hero-copy { max-width: 90%; }
   .ref-hero-title {
     font-size: clamp(3.4rem, 16vw, 5rem);
     line-height: .9;
   }
-  .ref-hero-landscape { height: 17%; }
-  .ref-hero-architecture { top: 58%; }
-  .ref-hero-stone-panel {
-    top: 58%;
-    width: 35%;
-  }
-  .ref-hero-stone-copy {
-    gap: .55rem;
-    padding-left: 16%;
-    font-size: .45rem;
-    letter-spacing: .16em;
+  .ref-hero-wash {
+    background:
+      linear-gradient(180deg, rgba(243,238,230,.99) 0%, rgba(243,238,230,.97) 45%, rgba(243,238,230,.42) 62%, rgba(243,238,230,.04) 78%),
+      linear-gradient(90deg, rgba(243,238,230,.82), rgba(243,238,230,.08));
   }
 }
 

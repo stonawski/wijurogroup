@@ -7,7 +7,7 @@ import { submitContact } from "@/lib/contact.functions";
 
 import stoneTexture from "@/assets/stone-raw.jpg";
 import logoMark from "@/assets/logo-mark.png";
-import heroVineyard from "@/assets/hero-pavilion-poster.jpg";
+import heroWijuro from "@/assets/hero-wijuro.webp";
 
 const title = "WIJURO Group | Marketing, Business & Investments";
 const description =
@@ -34,7 +34,6 @@ const navItems = [
   ["Kontakt", "#kontakt"],
 ];
 
-const moreItems: string[][] = [];
 
 const founders = [
   { name: "David W. Juras", role: "Co-Founder", initials: "D", text: "Dívám se na svět s otevřenou myslí cestovatele, tvořím s citem umělce, bojuji s vytrvalostí sportovce a nechávám věci zrát s trpělivostí vinaře." },
@@ -104,48 +103,29 @@ function Index() {
       </header>
 
       <main>
-        {/* HERO — matched to supplied customer reference */}
-        <section className="ref-hero relative min-h-[100svh] overflow-hidden bg-[#f3eee6]">
-          <div className="ref-hero-scene absolute inset-0">
+        {/* HERO — customer reference using final WIJURO background */}
+        <section className="ref-hero relative min-h-[100svh] overflow-hidden">
+          <div className="absolute inset-0">
             <img
-              src={heroVineyard}
-              alt="Krajina v teplých přírodních tónech"
-              className="ref-hero-landscape"
-              width="1920"
-              height="1080"
+              src={heroWijuro}
+              alt="Moderní architektura WIJURO Group v přírodních tónech"
+              className="ref-hero-background"
+              width="1620"
+              height="971"
               fetchPriority="high"
             />
-
-            <div className="ref-hero-ivory-mask" aria-hidden="true" />
-
-            <div
-              className="ref-hero-architecture"
-              style={{ backgroundImage: `linear-gradient(180deg, rgba(244,239,231,.08), rgba(48,39,31,.08)), url(${heroVineyard})` }}
-              aria-hidden="true"
-            />
-
-            <aside
-              className="ref-hero-stone-panel"
-              style={{ backgroundImage: `linear-gradient(180deg, rgba(218,205,189,.72), rgba(194,178,160,.72)), url(${stoneTexture})` }}
-              aria-hidden="true"
-            >
-              <div className="ref-hero-stone-copy">
-                <span>Marketing</span>
-                <span>Business</span>
-                <span>Projects</span>
-              </div>
-            </aside>
+            <div className="ref-hero-wash" aria-hidden="true" />
           </div>
 
           <div className="relative z-10 mx-auto min-h-[100svh] max-w-[1480px] px-5 md:px-10 lg:px-16">
-            <div className="ref-hero-copy flex min-h-[100svh] w-full max-w-[520px] flex-col pt-[175px] md:pt-[205px] lg:pt-[205px]">
+            <div className="ref-hero-copy flex min-h-[100svh] w-full max-w-[520px] flex-col pt-[205px] md:pt-[220px] lg:pt-[230px]">
               <h1 className="ref-hero-title">
                 <span className="intro-line"><span style={{ "--d": "0.75s" } as React.CSSProperties}>Tvoříme to,</span></span>
                 <span className="intro-line"><span style={{ "--d": "0.95s" } as React.CSSProperties}>co</span></span>
                 <span className="intro-line"><span style={{ "--d": "1.15s" } as React.CSSProperties}>přichází.</span></span>
               </h1>
 
-              <p className="intro-up mt-9 max-w-[390px] font-display text-[1.03rem] leading-[1.48] text-foreground/85 md:text-[1.12rem]" style={{ "--d": "1.4s" } as React.CSSProperties}>
+              <p className="intro-up mt-9 max-w-[390px] font-display text-[1.03rem] leading-[1.48] text-foreground/88 md:text-[1.12rem]" style={{ "--d": "1.4s" } as React.CSSProperties}>
                 WIJURO Group propojuje kreativitu, strategii a investiční myšlení.
               </p>
 
@@ -156,9 +136,9 @@ function Index() {
                 </a>
               </div>
 
-              <div className="intro-up mt-auto hidden items-center gap-4 pb-9 text-[0.62rem] font-semibold tracking-[0.18em] text-foreground/55 lg:flex" style={{ "--d": "1.9s" } as React.CSSProperties} aria-hidden="true">
+              <div className="intro-up mt-auto hidden items-center gap-4 pb-9 text-[0.62rem] font-semibold tracking-[0.18em] text-foreground/58 lg:flex" style={{ "--d": "1.9s" } as React.CSSProperties} aria-hidden="true">
                 <span>01</span>
-                <span className="h-px w-24 bg-foreground/25" />
+                <span className="h-px w-24 bg-foreground/30" />
               </div>
             </div>
           </div>

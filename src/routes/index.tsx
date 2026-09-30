@@ -8,6 +8,7 @@ import { submitContact } from "@/lib/contact.functions";
 import stoneTexture from "@/assets/stone-raw.jpg";
 import logoMark from "@/assets/logo-mark.png";
 import heroWijuro from "@/assets/hero-wijuro.webp";
+import heroStone from "@/assets/hero-stone.jpg";
 
 const title = "WIJURO Group | Marketing, Business & Investments";
 const description =
@@ -40,12 +41,13 @@ const founders = [
   { name: "Julie W. Juras", role: "Co-Founder", initials: "J", text: "Kreativita je mou přirozenou součástí, cit pro detail a strategické myšlení mou silnou stránkou. Ráda propojuji nápady se souvislostmi a hledám cestu, která dává smysl." },
 ];
 
-const valuesTop = ["Vize", "Integrita", "Růst"];
-const valuesBottom = ["Férovost", "Dlouhodobost"];
+const values = ["Vize", "Integrita", "Růst", "Férovost", "Dlouhodobost"];
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [headerCompact, setHeaderCompact] = useState(false);
+  const [activeDivision, setActiveDivision] = useState<1 | 2 | null>(null);
+  const [aboutOpen, setAboutOpen] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
@@ -62,8 +64,12 @@ function Index() {
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
     const observer = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("is-visible")),
-      { threshold: 0, rootMargin: "0px 0px -12% 0px" },
+      (entries) => entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }),
+      { threshold: 0.08, rootMargin: "0px 0px -8% 0px" },
     );
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
@@ -128,17 +134,20 @@ function Index() {
           <div className="relative z-10 mx-auto min-h-[100svh] max-w-[1600px] px-5 md:px-10 lg:px-14 xl:px-16">
             <div className="ref-hero-copy flex min-h-[100svh] w-full max-w-[590px] flex-col pt-[190px] md:pt-[205px] lg:pt-[215px] xl:pt-[225px]">
               <div className="ref-hero-content">
+                <p className="ref-hero-kicker intro-up" style={{ "--d": "0.6s" } as React.CSSProperties}>
+                  MARKETING · BUSINESS DEVELOPMENT · PROJECTS
+                </p>
+
                 <h1 className="ref-hero-title">
-                  <span className="intro-line"><span style={{ "--d": "0.75s" } as React.CSSProperties}>Tvoříme</span></span>
-                  <span className="intro-line"><span style={{ "--d": "0.95s" } as React.CSSProperties}>lepší</span></span>
-                  <span className="intro-line"><span style={{ "--d": "1.15s" } as React.CSSProperties}>zítřky.</span></span>
+                  <span className="intro-line"><span style={{ "--d": "0.8s" } as React.CSSProperties}>Rozvíjíme značky,</span></span>
+                  <span className="intro-line"><span style={{ "--d": "1s" } as React.CSSProperties}>firmy a projekty.</span></span>
                 </h1>
 
-                <p className="intro-up mt-7 max-w-[390px] font-display text-[1.03rem] leading-[1.48] text-foreground/88 md:text-[1.12rem]" style={{ "--d": "1.4s" } as React.CSSProperties}>
+                <p className="intro-up mt-7 max-w-[390px] font-display text-[1.03rem] leading-[1.48] text-foreground/88 md:text-[1.12rem]" style={{ "--d": "1.3s" } as React.CSSProperties}>
                   WIJURO Group propojuje kreativitu, strategii a investiční myšlení.
                 </p>
 
-                <div className="ref-hero-cta intro-up" style={{ "--d": "1.65s" } as React.CSSProperties}>
+                <div className="ref-hero-cta intro-up" style={{ "--d": "1.55s" } as React.CSSProperties}>
                   <a className="ref-hero-button group" href="#o-nas">
                     <span>Poznat WIJURO</span>
                     <ArrowRight size={16} strokeWidth={1.3} className="transition-transform duration-500 group-hover:translate-x-1.5" />
@@ -149,188 +158,262 @@ function Index() {
           </div>
         </section>
 
-        {/* INTRO */}
-        <section className="section-shell relative z-10 border-t border-border bg-background" data-reveal="none">
-          <div className="grid gap-12 lg:grid-cols-12">
-            <p className="eyebrow lg:col-span-3">O nás</p>
-            <div className="lg:col-span-9">
-              <h2 className="display-heading">WIJURO Group</h2>
-              <div className="mt-12 max-w-2xl space-y-6 leading-8 text-muted-foreground">
-                <p>
+        {/* O NÁS */}
+        <section id="o-nas" className="editorial-about-story-section scroll-mt-24">
+          <div className="editorial-shell">
+            <div className="editorial-story-grid">
+              <div className="editorial-story-heading" data-reveal="left">
+                <p className="editorial-eyebrow">O nás</p>
+                <h2>WIJURO Group</h2>
+                <p className="editorial-story-kicker">Dva lidé, jedna společná vize.</p>
+              </div>
+
+              <figure className="editorial-story-visual" data-reveal="scale">
+                <img src={heroStone} alt="" className="editorial-about-image" width="409" height="544" loading="lazy" />
+                <div className="editorial-about-mark" aria-hidden="true">
+                  <img src={logoMark} alt="" />
+                </div>
+              </figure>
+
+              <div className="editorial-story-copy" data-reveal="right">
+                <p className="editorial-story-lead">
                   Naším úkolem ve WIJURO Group je vzít váš podnikatelský záměr, vizi nebo majetek, připravit z nich srozumitelný obchodní projekt a úspěšně jej uplatnit na trhu. Jsme obchodní skupina, která pomáhá podnikům se zajištěním kapitálu, prodejem a nákupem. Nejsme finanční makléři ani regulovaná instituce – zaměřujeme se na reálné propojení vašeho byznysu s tržními příležitostmi.
                 </p>
+
+                <button
+                  type="button"
+                  className={`editorial-story-toggle ${aboutOpen ? "is-open" : ""}`}
+                  aria-expanded={aboutOpen}
+                  aria-controls="about-details"
+                  onClick={() => setAboutOpen((open) => !open)}
+                >
+                  <span>{aboutOpen ? "Skrýt detail" : "Zjistit více"}</span>
+                  <ArrowRight size={16} strokeWidth={1.3} />
+                </button>
+              </div>
+            </div>
+
+            <div
+              id="about-details"
+              className={`editorial-story-details-shell ${aboutOpen ? "is-open" : ""}`}
+              aria-hidden={!aboutOpen}
+            >
+              <div className="editorial-story-details-inner">
+                <div className="editorial-story-columns">
+                  <p>WIJURO vzniklo z naší společné vize budovat něco vlastního. Jako manželský pár jsme se rozhodli spojit své zkušenosti, energii a společné hodnoty a vytvořit skupinu, která bude od začátku stát na pevných základech. Důvěra, individualita, svoboda rozhodování a osobní odpovědnost jsou pro nás hodnoty, na kterých chceme WIJURO stavět. Věříme, že každý člověk má svou vlastní cestu, nápady a potenciál – a právě prostor pro vlastní iniciativu považujeme za důležitou součást podnikání.</p>
+                  <p>Je to pro nás rodinná firma v pravém slova smyslu. Chceme ji budovat dlouhodobě, společně a způsobem, který bude odrážet to, kým jsme a čemu věříme. Naším cílem je vytvářet vlastní projekty, rozvíjet zajímavé příležitosti a investovat do toho, co podle nás má skutečný potenciál.</p>
+                </div>
+
+                <div className="editorial-story-manifesto">
+                  <p className="editorial-eyebrow">WIJURO</p>
+                  <h3>Dvě perspektivy. Jeden směr.</h3>
+                  <div>
+                    <p>Právě rozdílné pohledy považujeme za jednu z našich největších výhod. Kreativita a strategie. Marketing a obchod. Nápad a jeho realizace.</p>
+                    <p>WIJURO vzniklo z touhy tyto světy propojit a postupně kolem nich vybudovat něco vlastního.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-
-        {/* O NÁS */}
-        <section id="o-nas" className="scroll-mt-24 bg-stone/45" data-reveal="scale">
-          <div className="section-shell">
-            <div className="grid gap-12 lg:grid-cols-12">
-              <p className="eyebrow lg:col-span-3">O nás</p>
-              <div className="lg:col-span-9">
-                <h2 className="display-heading">Dva lidé, jedna společná vize.</h2>
-                <div className="mt-12 max-w-2xl space-y-6 leading-8 text-muted-foreground">
-                  <p>WIJURO vzniklo z naší společné vize budovat něco vlastního. Jako manželský pár jsme se rozhodli spojit své zkušenosti, energii a společné hodnoty a vytvořit skupinu, která bude od začátku stát na pevných základech. Důvěra, individualita, svoboda rozhodování a osobní odpovědnost jsou pro nás hodnoty, na kterých chceme WIJURO stavět. Věříme, že každý člověk má svou vlastní cestu, nápady a potenciál – a právě prostor pro vlastní iniciativu považujeme za důležitou součást podnikání.</p>
-                  <p>Je to pro nás rodinná firma v pravém slova smyslu. Chceme ji budovat dlouhodobě, společně a způsobem, který bude odrážet to, kým jsme a čemu věříme. Naším cílem je vytvářet vlastní projekty, rozvíjet zajímavé příležitosti a investovat do toho, co podle nás má skutečný potenciál.</p>
-                </div>
-              </div>
+        {/* ZAKLADATELÉ */}
+        <section className="editorial-founders-section" data-reveal="soft">
+          <div className="editorial-shell">
+            <div className="editorial-founders-heading" data-reveal="left">
+              <p className="editorial-eyebrow">Zakladatelé</p>
+              <h2>Lidé za WIJURO.</h2>
             </div>
 
-            <div className="mt-24 grid gap-20 md:grid-cols-2 md:gap-12 lg:gap-28" data-reveal="none">
+            <div className="editorial-founders-grid">
               {founders.map((f, k) => (
-                <article key={f.name} className="text-center">
-                  <div className="reveal-item img-hover mx-auto aspect-square w-52 rounded-full border border-foreground/15 bg-stone md:w-64" style={{ "--i": k } as React.CSSProperties}>
-                    <div className="img-inner flex h-full w-full items-center justify-center">
-                      <span className="font-display text-5xl font-light tracking-[0.12em] text-stone-foreground/25">{f.initials}</span>
-                    </div>
+                <article key={f.name} className="editorial-founder-profile reveal-item" style={{ "--i": k } as React.CSSProperties}>
+                  <div
+                    className="editorial-founder-profile-mark"
+                    style={{ backgroundImage: `linear-gradient(145deg, rgba(247,242,235,.82), rgba(203,190,174,.76)), url(${stoneTexture})` }}
+                    aria-hidden="true"
+                  >
+                    <span>{f.initials}</span>
                   </div>
-                  <h3 className="reveal-item mt-10 text-2xl font-medium tracking-tight md:text-3xl" style={{ "--i": k + 2 } as React.CSSProperties}>{f.name}</h3>
-                  <p className="reveal-item mt-3 eyebrow" style={{ "--i": k + 3 } as React.CSSProperties}>{f.role}</p>
-                  <p className="reveal-item mx-auto mt-6 max-w-md leading-7 text-muted-foreground" style={{ "--i": k + 4 } as React.CSSProperties}>{f.text}</p>
+
+                  <div className="editorial-founder-profile-copy">
+                    <div className="editorial-founder-profile-head">
+                      <span className="editorial-founder-index">0{k + 1}</span>
+                      <div>
+                        <p className="editorial-founder-role">{f.role}</p>
+                        <h3>{f.name}</h3>
+                      </div>
+                    </div>
+                    <p>{f.text}</p>
+                  </div>
                 </article>
               ))}
-            </div>
-
-            <div className="mt-28 border-t border-foreground/15 pt-14 text-center md:pt-20">
-              <h3 className="text-3xl font-light tracking-tight md:text-4xl">Dvě perspektivy. Jeden směr.</h3>
-              <p className="mx-auto mt-8 max-w-2xl text-[0.95rem] leading-[1.9] text-muted-foreground">Právě rozdílné pohledy považujeme za jednu z našich největších výhod. Kreativita a strategie. Marketing a obchod. Nápad a jeho realizace.</p>
-              <p className="mx-auto mt-6 max-w-2xl text-[0.95rem] leading-[1.9] text-muted-foreground">WIJURO vzniklo z touhy tyto světy propojit a postupně kolem nich vybudovat něco vlastního.</p>
             </div>
           </div>
         </section>
 
         {/* SLUŽBY */}
-        <section id="sluzby" className="section-shell scroll-mt-24" data-reveal>
-          <div className="mb-10 grid gap-6 lg:grid-cols-12">
-            <p className="eyebrow lg:col-span-3">Co děláme</p>
-          </div>
-
-          {/* DIVIZE 01 */}
-          <div className="border-t border-border pt-14 md:pt-20">
-            <p className="eyebrow">Divize 01</p>
-            <p className="mt-6 text-sm uppercase leading-6 tracking-[0.18em] text-muted-foreground md:text-base">{"\n"}</p>
-            <h3 className="mt-6 font-display text-3xl font-light leading-tight tracking-tight md:text-5xl">Korporátní fundraising &amp; expanze</h3>
-
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl md:leading-9">
-              Zvyšujeme tržní hodnotu firem. Propojujeme strategický marketing s akvizicí rozvojového kapitálu.
-            </p>
-
-            <div className="mt-16 grid gap-6 border-t border-border pt-10 md:mt-24 md:grid-cols-12 md:gap-8 md:pt-14">
-              <h4 className="eyebrow md:col-span-4">Jak to funguje?</h4>
-              <p className="text-lg leading-8 text-muted-foreground md:col-span-8">
-                Prostřednictvím cílených marketingových kampaní oslovujeme relevantní investorské skupiny a zajišťujeme externí financování pro malé a střední podniky. Alokovaný kapitál následně efektivně transformujeme do realizace projektů a tržní expanze.
-              </p>
+        <section id="sluzby" className="editorial-services scroll-mt-24">
+          <div className="editorial-shell">
+            <div className="editorial-heading-grid editorial-services-heading" data-reveal="left">
+              <span aria-hidden="true" />
+              <h2 className="editorial-display-title">Co děláme</h2>
             </div>
 
-            <div className="mt-16 grid grid-cols-3 gap-4 md:mt-24 md:gap-10">
-              {[
-                ["1", "Strategie", "Propojení strategického marketingu s kapitálovou strategií společnosti."],
-                ["2", "Kapitál", "Vyhledání a oslovení relevantních investorských skupin a zajištění externího financování."],
-                ["3", "Expanze", "Transformace získaného kapitálu do realizace projektů, rozvoje společnosti a tržní expanze."],
-              ].map(([no, name, text]) => (
-                <div key={no}>
-                  <span className="text-xs text-muted-foreground md:text-sm">{no}</span>
-                  <h4 className="mt-3 text-base font-light tracking-tight md:mt-6 md:text-2xl">{name}</h4>
-                  <p className="mt-2 text-xs leading-5 text-muted-foreground md:mt-4 md:text-sm md:leading-6">{text}</p>
+            <div className={`editorial-division-switcher ${activeDivision ? "has-selection" : ""}`}>
+              <button
+                type="button"
+                aria-expanded={activeDivision === 1}
+                onClick={() => setActiveDivision((current) => current === 1 ? null : 1)}
+                className={`editorial-division-card ${activeDivision === 1 ? "is-active" : activeDivision === 2 ? "is-dimmed" : ""}`}
+              >
+                <span className="editorial-division-card-no">01</span>
+                <div>
+                  <p className="editorial-eyebrow">Divize 01</p>
+                  <h3>Korporátní fundraising &amp; expanze</h3>
+                  <p>Zvyšujeme tržní hodnotu firem. Propojujeme strategický marketing s akvizicí rozvojového kapitálu.</p>
                 </div>
-              ))}
-            </div>
+                <ArrowRight className="editorial-division-card-arrow" size={24} strokeWidth={1.2} />
+              </button>
 
-          </div>
-
-          {/* DIVIZE 02 */}
-          <div className="mt-28 border-t border-border pt-14 md:mt-40 md:pt-20">
-            <p className="eyebrow">Divize 02</p>
-            <p className="mt-6 text-sm uppercase leading-6 tracking-[0.18em] text-muted-foreground md:text-base">{"\n"}</p>
-            <h3 className="mt-6 font-display text-3xl font-light leading-tight tracking-tight md:text-5xl">Fůze &amp; akvizice</h3>
-
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl md:leading-9">
-              Zajišťujeme kompletní proces při realizaci prodeje firem. Zastupujeme majitele, kteří plánují kapitálový exit, a aktivně vyhledáváme strategické kupující.
-            </p>
-
-            <div className="mt-16 grid gap-6 border-t border-border pt-10 md:mt-24 md:grid-cols-12 md:gap-8 md:pt-14">
-              <h4 className="eyebrow md:col-span-4">Jak to funguje?</h4>
-              <p className="text-lg leading-8 text-muted-foreground md:col-span-8">
-                Spolupracujeme s vlastníky podniků v jakékoliv fázi jejich cyklu. Pomáháme úspěšným a profitabilním firmám, kde majitelé chtějí bezpečně prodat svůj byznys a zhodnotit tržní hodnotu dlouholeté práce.
-              </p>
-            </div>
-
-            <div className="mt-16 grid gap-14 md:mt-24 md:grid-cols-2 md:gap-16">
-              {[
-                ["01", "Kapitálový exit", "Úspěšná a profitabilní společnost, jejíž majitel chce bezpečně prodat svůj byznys a zhodnotit tržní hodnotu dlouholeté práce."],
-                ["02", "Kapitálová tíseň", "Podnik, který se ocitl v kapitálové tísni a potřebuje strategického investora pro zachování kontinuity provozu, hodnoty značky a dalšího fungování společnosti."],
-              ].map(([no, name, text]) => (
-                <div key={no}>
-                  <span className="text-sm text-muted-foreground">{no}</span>
-                  <h4 className="mt-6 font-display text-3xl font-light tracking-tight md:text-4xl">{name}</h4>
-                  <p className="mt-5 max-w-md leading-7 text-muted-foreground">{text}</p>
+              <button
+                type="button"
+                aria-expanded={activeDivision === 2}
+                onClick={() => setActiveDivision((current) => current === 2 ? null : 2)}
+                className={`editorial-division-card ${activeDivision === 2 ? "is-active" : activeDivision === 1 ? "is-dimmed" : ""}`}
+              >
+                <span className="editorial-division-card-no">02</span>
+                <div>
+                  <p className="editorial-eyebrow">Divize 02</p>
+                  <h3>Fůze &amp; akvizice</h3>
+                  <p>Zajišťujeme kompletní proces při realizaci prodeje firem. Zastupujeme majitele, kteří plánují kapitálový exit, a aktivně vyhledáváme strategické kupující.</p>
                 </div>
-              ))}
+                <ArrowRight className="editorial-division-card-arrow" size={24} strokeWidth={1.2} />
+              </button>
             </div>
 
-            {/* M&A PROCES */}
-            <div className="mt-20 border-t border-border pt-10 md:mt-28 md:pt-14">
-              <h4 className="eyebrow">M&amp;A proces</h4>
-              <ol className="mt-10 grid grid-cols-5 gap-1.5 md:gap-0">
-                {[
-                  ["01", "Analýza"],
-                  ["02", "Strategie"],
-                  ["03", "Vyhledání investora"],
-                  ["04", "Vyjednávání"],
-                  ["05", "Transakce"],
-                ].map(([no, name]) => (
-                  <li key={no} className="border-r border-border pr-1.5 last:border-r-0 last:pr-0 md:px-6 md:first:pl-0 md:last:pr-0">
-                    <span className="text-xs text-muted-foreground md:text-sm">{no}</span>
-                    <p className="mt-3 break-words text-[0.63rem] font-light leading-[1.6] tracking-tight md:mt-4 md:text-sm md:leading-6">{name}</p>
-                  </li>
-                ))}
-              </ol>
+            <div
+              className={`editorial-division-detail-shell ${activeDivision ? "is-open" : ""}`}
+              aria-hidden={!activeDivision}
+            >
+              {activeDivision === 1 ? (
+                <div key="division-1" className="editorial-division-detail">
+                  <div className="editorial-division-detail-head">
+                    <p className="editorial-eyebrow">Divize 01 — detail</p>
+                    <h3>Korporátní fundraising &amp; expanze</h3>
+                  </div>
+
+                  <div className="editorial-how">
+                    <p className="editorial-eyebrow">Jak to funguje?</p>
+                    <p>Prostřednictvím cílených marketingových kampaní oslovujeme relevantní investorské skupiny a zajišťujeme externí financování pro malé a střední podniky. Alokovaný kapitál následně efektivně transformujeme do realizace projektů a tržní expanze.</p>
+                  </div>
+
+                  <div className="editorial-steps">
+                    {[
+                      ["1", "Strategie", "Propojení strategického marketingu s kapitálovou strategií společnosti."],
+                      ["2", "Kapitál", "Vyhledání a oslovení relevantních investorských skupin a zajištění externího financování."],
+                      ["3", "Expanze", "Transformace získaného kapitálu do realizace projektů, rozvoje společnosti a tržní expanze."],
+                    ].map(([no, name, text]) => (
+                      <div key={no} className="editorial-step">
+                        <span>{no}</span>
+                        <h4>{name}</h4>
+                        <p>{text}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : activeDivision === 2 ? (
+                <div key="division-2" className="editorial-division-detail">
+                  <div className="editorial-division-detail-head">
+                    <p className="editorial-eyebrow">Divize 02 — detail</p>
+                    <h3>Fůze &amp; akvizice</h3>
+                  </div>
+
+                  <div className="editorial-how">
+                    <p className="editorial-eyebrow">Jak to funguje?</p>
+                    <p>Spolupracujeme s vlastníky podniků v jakékoliv fázi jejich cyklu. Pomáháme úspěšným a profitabilním firmám, kde majitelé chtějí bezpečně prodat svůj byznys a zhodnotit tržní hodnotu dlouholeté práce.</p>
+                  </div>
+
+                  <div className="editorial-cases">
+                    {[
+                      ["01", "Kapitálový exit", "Úspěšná a profitabilní společnost, jejíž majitel chce bezpečně prodat svůj byznys a zhodnotit tržní hodnotu dlouholeté práce."],
+                      ["02", "Kapitálová tíseň", "Podnik, který se ocitl v kapitálové tísni a potřebuje strategického investora pro zachování kontinuity provozu, hodnoty značky a dalšího fungování společnosti."],
+                    ].map(([no, name, text]) => (
+                      <div key={no} className="editorial-case">
+                        <span>{no}</span>
+                        <h4>{name}</h4>
+                        <p>{text}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="editorial-ma">
+                    <p className="editorial-eyebrow">M&amp;A proces</p>
+                    <ol>
+                      {[
+                        ["01", "Analýza"],
+                        ["02", "Strategie"],
+                        ["03", "Vyhledání investora"],
+                        ["04", "Vyjednávání"],
+                        ["05", "Transakce"],
+                      ].map(([no, name]) => (
+                        <li key={no}>
+                          <span>{no}</span>
+                          <p>{name}</p>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                </div>
+              ) : null}
             </div>
           </div>
-
         </section>
 
         {/* HODNOTY */}
-        <section id="hodnoty" className="scroll-mt-24 bg-stone/45" data-reveal="clip">
-          <div className="section-shell !py-12 md:!py-16 lg:!py-20">
-            <h2 className="mb-7 font-display text-3xl font-light tracking-tight md:mb-9 md:text-4xl">Na čem nám záleží</h2>
-            <div
-              className="mx-auto flex flex-col items-center py-2"
-              style={{ ["--ring" as string]: "clamp(5.6rem, 21vw, 11.5rem)" }}
-            >
-              <div className="flex">
-                {valuesTop.map((name, i) => (
-                  <div key={name} className="value-ring" style={i > 0 ? { marginLeft: "calc(var(--ring) * -0.2)" } : undefined}>
-                    <span>{name}</span>
-                  </div>
-                ))}
+        <section id="hodnoty" className="editorial-values scroll-mt-24">
+          <div className="editorial-shell">
+            <div className="editorial-heading-grid" data-reveal="left">
+              <p className="editorial-eyebrow">Hodnoty</p>
+              <h2 className="editorial-display-title">Na čem nám<br />záleží.</h2>
+            </div>
+
+            <div className="editorial-values-cluster" data-reveal="scale" aria-label="Hodnoty WIJURO Group">
+              <img src={logoMark} alt="" className="editorial-values-watermark" aria-hidden="true" />
+
+              <div className="editorial-value-center" aria-hidden="true">
+                <span>WIJURO</span>
+                <small>GROUP</small>
               </div>
-              <div className="flex" style={{ marginTop: "calc(var(--ring) * -0.44)" }}>
-                {valuesBottom.map((name, i) => (
-                  <div key={name} className="value-ring" style={i > 0 ? { marginLeft: "calc(var(--ring) * -0.2)" } : undefined}>
-                    <span>{name}</span>
+
+              {values.map((name, i) => (
+                <div key={name} className={`editorial-value-orbit editorial-value-orbit-${i + 1}`}>
+                  <div className="editorial-value-circle">
+                    <span>{String(i + 1).padStart(2, "0")}</span>
+                    <h3>{name}</h3>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* KONTAKT */}
-        <section id="kontakt" className="scroll-mt-24 bg-stone text-stone-foreground" data-reveal>
-          <div className="section-shell grid gap-14 lg:grid-cols-12">
-            <div className="lg:col-span-7">
-              <p className="eyebrow !text-stone-foreground/70">Kontakt</p>
-              <h2 className="display-heading mt-6">Máte nápad, který stojí za to rozvíjet?</h2>
-              <p className="mt-8 max-w-xl text-lg leading-8 opacity-80">Řekněte nám, na čem pracujete. Zajímají nás zajímaví lidé, nápady a příležitosti.</p>
-              <button type="button" onClick={() => setFormOpen((v) => !v)} className="button-primary mt-10">Pojďme se spojit <ArrowUpRight size={14} /></button>
+        <section id="kontakt" className="editorial-contact scroll-mt-24">
+          <div className="editorial-shell editorial-contact-grid">
+            <div className="editorial-contact-main" data-reveal="left">
+              <p className="editorial-eyebrow">Kontakt</p>
+              <h2>Máte nápad,<br />který stojí za to rozvíjet?</h2>
+              <p className="editorial-contact-lead">Řekněte nám, na čem pracujete. Zajímají nás zajímaví lidé, nápady a příležitosti.</p>
+
+              <button type="button" onClick={() => setFormOpen((v) => !v)} className="editorial-contact-button">
+                Pojďme se spojit <ArrowUpRight size={15} strokeWidth={1.4} />
+              </button>
+
               <div className="grid transition-[grid-template-rows] duration-700 ease-[cubic-bezier(.19,.8,.18,1)]" style={{ gridTemplateRows: formOpen ? "1fr" : "0fr" }}>
                 <div className="overflow-hidden">
                   {sent ? (
-                    <p className="mt-6 max-w-[360px] text-sm opacity-80">Děkujeme, ozveme se vám.</p>
+                    <p className="editorial-form-message">Děkujeme, ozveme se vám.</p>
                   ) : (
                     <form
                       onSubmit={async (e) => {
@@ -353,44 +436,44 @@ function Index() {
                           setSending(false);
                         }
                       }}
-                      className="mt-6 max-w-[360px] space-y-3"
+                      className="editorial-contact-form"
                     >
                       {[["name", "Jméno a příjmení", "text"], ["email", "E-mail", "email"], ["phone", "Telefonní číslo", "tel"]].map(([n, label, type]) => (
-                        <input
-                          key={n}
-                          required
-                          name={n}
-                          type={type}
-                          placeholder={label}
-                          className="w-full border-b border-stone-foreground/25 bg-transparent py-2 text-sm placeholder:text-stone-foreground/45 focus:border-stone-foreground/70 focus:outline-none"
-                        />
+                        <input key={n} required name={n} type={type} placeholder={label} />
                       ))}
-                      {error ? <p className="text-xs opacity-80">{error}</p> : null}
-                      <button type="submit" disabled={sending} className="button-primary !mt-5 !px-5 !py-2 text-xs disabled:opacity-60">{sending ? "Odesílám…" : "Odeslat"} </button>
+                      {error ? <p className="editorial-form-error">{error}</p> : null}
+                      <button type="submit" disabled={sending}>{sending ? "Odesílám…" : "Odeslat"}</button>
                     </form>
                   )}
-
                 </div>
               </div>
             </div>
-            <ul className="self-end lg:col-span-5">
-              {[[Mail, "E-mail", "info@wijurogroup.com", "mailto:info@wijurogroup.com"], [Phone, "Telefon", "+420 771 190 429", "tel:+420771190429"]].map(([Icon, label, value, href]) => {
-                const I = Icon as typeof Mail;
-                return (
-                  <li key={label as string} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-stone-foreground/20 py-6 first:border-t">
-                    <span className="flex items-center gap-4"><I size={18} strokeWidth={1.4} />{label as string}</span>
-                    <a href={href as string} className="text-sm opacity-60 transition-opacity hover:opacity-100">{value as string}</a>
-                  </li>
-                );
-              })}
-            </ul>
+
+            <div className="editorial-contact-side" data-reveal="right">
+              <div className="editorial-contact-logo">
+                <img src={logoMark} alt="WIJURO Group" width="406" height="567" />
+              </div>
+              <ul>
+                {[[Mail, "E-mail", "info@wijurogroup.com", "mailto:info@wijurogroup.com"], [Phone, "Telefon", "+420 771 190 429", "tel:+420771190429"]].map(([Icon, label, value, href]) => {
+                  const I = Icon as typeof Mail;
+                  return (
+                    <li key={label as string}>
+                      <span><I size={18} strokeWidth={1.3} />{label as string}</span>
+                      <a href={href as string}>{value as string}</a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
         </section>
       </main>
 
-      <footer className="nav-stone bg-stone text-stone-foreground" style={{ "--nav-stone-image": `url(${stoneTexture})` } as React.CSSProperties}>
-        <div className="mx-auto max-w-[1480px] px-5 pb-5 pt-5 md:px-10 lg:px-16">
-          <p className="text-sm text-stone-foreground/55">© 2026 WIJURO Group. Všechna práva vyhrazena.</p>
+      <footer className="editorial-footer" style={{ "--footer-stone": `url(${stoneTexture})` } as React.CSSProperties}>
+        <div className="editorial-footer-inner">
+          <img src={logoMark} alt="WIJURO Group" width="406" height="567" />
+          <p>© 2026 WIJURO Group. Všechna práva vyhrazena.</p>
+          <a href="#top">Nahoru <ArrowUpRight size={13} strokeWidth={1.3} /></a>
         </div>
       </footer>
     </div>

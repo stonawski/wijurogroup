@@ -390,6 +390,15 @@ function Index() {
 
         {/* KONTAKT */}
         <section id="kontakt" className="editorial-contact scroll-mt-24" data-reveal>
+          <img
+            src={logoMark}
+            alt=""
+            className="editorial-contact-watermark"
+            width="406"
+            height="567"
+            aria-hidden="true"
+          />
+
           <div className="editorial-shell editorial-contact-grid">
             <div className="editorial-contact-main">
               <p className="editorial-eyebrow">Kontakt</p>
@@ -440,9 +449,6 @@ function Index() {
             </div>
 
             <div className="editorial-contact-side">
-              <div className="editorial-contact-mark">
-                <img src={logoMark} alt="WIJURO Group" width="406" height="567" />
-              </div>
               <ul>
                 {[[Mail, "E-mail", "info@wijurogroup.com", "mailto:info@wijurogroup.com"], [Phone, "Telefon", "+420 771 190 429", "tel:+420771190429"]].map(([Icon, label, value, href]) => {
                   const I = Icon as typeof Mail;

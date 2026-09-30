@@ -1,15 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Mail, Menu, Phone, X } from "lucide-react";
-import { useEffect, useState, useRef } from "react";
+import { ArrowRight, ArrowUpRight, Mail, Menu, Phone, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
 import { submitContact } from "@/lib/contact.functions";
 
-import stoneSeamless from "@/assets/stone-raw.jpg";
+import stoneTexture from "@/assets/stone-raw.jpg";
 import logoMark from "@/assets/logo-mark.png";
-import heroWordmark from "@/assets/wijuro-wordmark-light.png";
 import heroVineyard from "@/assets/hero-pavilion-poster.jpg";
-import heroVideo from "@/assets/hero-pavilion-portrait.mp4.asset.json";
 
 const title = "WIJURO Group | Marketing, Business & Investments";
 const description =
@@ -47,34 +45,12 @@ const valuesBottom = ["Férovost", "Dlouhodobost"];
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [navHidden, setNavHidden] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const heroRef = useRef<HTMLElement>(null);
-
-  // Hide the top bar when scrolling down, reveal it when scrolling up
-  useEffect(() => {
-    let lastY = window.scrollY;
-    let ticking = false;
-    const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        const y = window.scrollY;
-        const goingDown = y > lastY && y - lastY > 4;
-        const goingUp = y < lastY && lastY - y > 4;
-        if (goingDown && y > 140) setNavHidden(true);
-        else if (goingUp || y <= 140) setNavHidden(false);
-        lastY = y;
-        ticking = false;
-      });
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
@@ -84,29 +60,6 @@ function Index() {
     );
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
-
-  // Cinematic hero: scroll + cursor driven camera (lerped via rAF)
-  useEffect(() => {
-    const hero = heroRef.current;
-    if (!hero || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const fine = window.matchMedia("(pointer: fine)").matches;
-    let tx = 0, ty = 0, cx = 0, cy = 0, cp = 0, raf = 0;
-    const onMove = (e: MouseEvent) => {
-      tx = (e.clientX / window.innerWidth - 0.5) * 2;
-      ty = (e.clientY / window.innerHeight - 0.5) * 2;
-    };
-    const tick = () => {
-      const tp = Math.min(Math.max(window.scrollY / (window.innerHeight * 0.9), 0), 1);
-      cx += (tx - cx) * 0.05; cy += (ty - cy) * 0.05; cp += (tp - cp) * 0.12;
-      hero.style.setProperty("--mx", cx.toFixed(4));
-      hero.style.setProperty("--my", cy.toFixed(4));
-      hero.style.setProperty("--p", cp.toFixed(4));
-      raf = requestAnimationFrame(tick);
-    };
-    if (fine) window.addEventListener("mousemove", onMove, { passive: true });
-    raf = requestAnimationFrame(tick);
-    return () => { cancelAnimationFrame(raf); window.removeEventListener("mousemove", onMove); };
   }, []);
 
   useEffect(() => {
@@ -119,69 +72,92 @@ function Index() {
     };
   }, [menuOpen]);
 
-  const barStyle = { "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties;
   return (
     <div id="top" className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
-      {/* Horizontal natural-stone top bar */}
-
-      <header
-        className={`nav-stone fixed inset-x-0 top-0 z-50 isolate bg-stone text-stone-foreground transition-transform duration-500 ease-[cubic-bezier(.19,.8,.18,1)] ${navHidden && !menuOpen ? "-translate-y-full" : "translate-y-0"}`}
-        style={barStyle}
-      >
-        <div className="mx-auto flex h-20 max-w-[1480px] items-center justify-between px-5 md:h-24 md:px-10 lg:px-16">
-          <a href="#top" aria-label="WIJURO Group — úvod" className="intro-logo flex items-center">
-            <img src={logoMark} alt="WIJURO Group" className="h-14 w-auto md:h-[4.25rem]" width="406" height="567" />
+      {/* Editorial header — visually integrated with the hero reference */}
+      <header className="wijuro-header fixed inset-x-0 top-0 z-50">
+        <div className="mx-auto flex h-20 max-w-[1480px] items-center px-5 md:h-24 md:px-10 lg:px-16">
+          <a href="#top" aria-label="WIJURO Group — úvod" className="intro-logo flex shrink-0 items-center">
+            <img src={logoMark} alt="WIJURO Group" className="h-14 w-auto md:h-[4.15rem]" width="406" height="567" />
           </a>
-          <nav className="intro-up hidden items-center gap-9 lg:flex" style={{ "--d": "0.5s" } as React.CSSProperties} aria-label="Hlavní navigace">
-            {navItems.map(([label, href]) => <a key={href} href={href} className="nav-link">{label}</a>)}
+
+          <nav className="intro-up ml-auto hidden items-center gap-9 lg:flex" style={{ "--d": "0.5s" } as React.CSSProperties} aria-label="Hlavní navigace">
+            {navItems.map(([label, href]) => <a key={href} href={href} className="nav-link nav-link-editorial">{label}</a>)}
+            <span className="ml-3 h-px w-16 bg-foreground/25" aria-hidden="true" />
           </nav>
-          <div className="flex items-center gap-4">
-            <button type="button" aria-label={menuOpen ? "Zavřít menu" : "Otevřít menu"} aria-expanded={menuOpen} aria-controls="mobile-menu" className="relative z-10 inline-flex h-11 w-11 shrink-0 items-center justify-center lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
-              {menuOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
-          </div>
+
+          <button type="button" aria-label={menuOpen ? "Zavřít menu" : "Otevřít menu"} aria-expanded={menuOpen} aria-controls="mobile-menu" className="relative z-10 ml-auto inline-flex h-11 w-11 shrink-0 items-center justify-center lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
-        <nav id="mobile-menu" className={`mobile-menu nav-stone fixed inset-x-0 bottom-0 top-20 flex flex-col overflow-y-auto bg-stone px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-6 md:top-24 md:px-10 lg:hidden ${menuOpen ? "is-open" : "invisible pointer-events-none"}`} aria-label="Mobilní navigace" aria-hidden={!menuOpen} style={barStyle}>
+
+        <nav id="mobile-menu" className={`mobile-menu fixed inset-x-0 bottom-0 top-20 flex flex-col overflow-y-auto border-t border-border bg-background px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-6 md:top-24 md:px-10 lg:hidden ${menuOpen ? "is-open" : "invisible pointer-events-none"}`} aria-label="Mobilní navigace" aria-hidden={!menuOpen}>
           {navItems.map(([label, href]) => (
-            <a key={href} href={href} tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mobile-menu-link border-b border-stone-foreground/15 py-4 text-2xl font-light sm:text-3xl">{label}</a>
+            <a key={href} href={href} tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mobile-menu-link border-b border-foreground/12 py-4 text-2xl font-light sm:text-3xl">{label}</a>
           ))}
           {moreItems.map(([label, href]) => (
-            <a key={href} href={href} tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mobile-menu-link border-b border-stone-foreground/15 py-4 text-xl font-light text-stone-foreground/70 sm:text-2xl">{label}</a>
+            <a key={href} href={href} tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mobile-menu-link border-b border-foreground/12 py-4 text-xl font-light text-muted-foreground sm:text-2xl">{label}</a>
           ))}
-          <a href="#kontakt" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mt-auto inline-flex min-h-12 items-center justify-center gap-2 rounded-[2px] bg-stone-foreground px-4 py-3 text-center text-xs font-semibold uppercase text-stone">
+          <a href="#kontakt" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="hero-reference-button mt-auto inline-flex min-h-12 items-center justify-center gap-3 px-5 py-3 text-center">
             Pojďme se spojit <ArrowUpRight size={14} />
           </a>
         </nav>
       </header>
 
       <main>
-        {/* HERO */}
-        <section ref={heroRef} className="relative mx-auto grid min-h-[100svh] max-w-[1480px] items-center gap-10 px-5 pb-14 pt-28 md:px-10 md:pt-36 lg:grid-cols-12 lg:gap-12 lg:px-16 lg:pb-16 lg:pt-32">
-          <div className="hero-text relative z-10 lg:col-span-6">
-            <p className="eyebrow intro-up" style={{ "--d": "1.2s" } as React.CSSProperties}>MARKETING · BUSINESS DEVELOPMENT · PROJECTS</p>
-            <h1 className="mt-7 text-[2.75rem] font-light leading-[0.98] sm:text-6xl md:mt-8 md:text-7xl lg:text-[clamp(3.2rem,5vw,6rem)]">
-              <span className="intro-line"><span style={{ "--d": "1.4s" } as React.CSSProperties}>Tvoříme to,</span></span>
-              <span className="intro-line"><span className="text-muted-foreground" style={{ "--d": "1.65s" } as React.CSSProperties}>co přichází.</span></span>
-            </h1>
-            <p className="intro-up mt-9 max-w-xl text-lg leading-8 text-muted-foreground" style={{ "--d": "2.05s" } as React.CSSProperties}>
-              WIJURO Group propojuje kreativitu, strategii a investiční myšlení.
-            </p>
-            <div className="intro-up mt-10 flex flex-col gap-3 sm:flex-row" style={{ "--d": "2.3s" } as React.CSSProperties}>
-              <a className="button-primary lux-hover" href="#o-nas">Poznat WIJURO</a>
-            </div>
-          </div>
-          <div className="relative lg:col-span-6 lg:-mr-16 lg:-mt-8 lg:self-start xl:-mr-24">
-            <div className="hero-media">
-              <div className="intro-clip relative overflow-hidden">
-                <video src={heroVideo.url} poster={heroVineyard} autoPlay muted loop playsInline preload="auto" aria-label="Prosklený prostor s logem WIJURO vyleptaným do skla" className="intro-zoom aspect-[4/5] max-h-[68svh] w-full object-cover md:max-h-[72svh] lg:aspect-[5/6] lg:max-h-[82svh]" />
-                 <span className="hero-symbol-cover" aria-hidden="true"><img src={heroWordmark} alt="" /></span>
-                <div className="hero-light" aria-hidden="true" />
+        {/* HERO — customer reference direction */}
+        <section className="wijuro-hero relative overflow-hidden pt-20 md:pt-24">
+          <div className="mx-auto grid min-h-[calc(100svh-5rem)] max-w-[1480px] lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.3fr)] md:min-h-[calc(100svh-6rem)]">
+            <div className="hero-reference-copy relative z-10 flex min-h-[54svh] flex-col justify-center px-5 pb-16 pt-12 md:px-10 md:pb-20 md:pt-16 lg:min-h-0 lg:px-16 lg:pb-20 lg:pt-20">
+              <h1 className="hero-reference-title text-balance">
+                <span className="intro-line"><span style={{ "--d": "0.85s" } as React.CSSProperties}>Tvoříme to,</span></span>
+                <span className="intro-line"><span style={{ "--d": "1.05s" } as React.CSSProperties}>co přichází.</span></span>
+              </h1>
+
+              <p className="intro-up mt-8 max-w-[31rem] text-[1.02rem] leading-7 text-foreground/78 md:mt-10 md:text-lg md:leading-8" style={{ "--d": "1.35s" } as React.CSSProperties}>
+                WIJURO Group propojuje kreativitu, strategii a investiční myšlení.
+              </p>
+
+              <p className="intro-up mt-6 text-[0.62rem] font-semibold uppercase tracking-[0.19em] text-muted-foreground md:mt-7" style={{ "--d": "1.55s" } as React.CSSProperties}>
+                MARKETING · BUSINESS DEVELOPMENT · PROJECTS
+              </p>
+
+              <div className="intro-up mt-9 md:mt-10" style={{ "--d": "1.8s" } as React.CSSProperties}>
+                <a className="hero-reference-button group" href="#o-nas">
+                  <span>Poznat WIJURO</span>
+                  <ArrowRight size={15} strokeWidth={1.4} className="transition-transform duration-500 group-hover:translate-x-1" />
+                </a>
+              </div>
+
+              <div className="intro-up mt-auto hidden items-center gap-4 pt-12 text-[0.62rem] font-semibold tracking-[0.18em] text-foreground/55 lg:flex" style={{ "--d": "2.05s" } as React.CSSProperties} aria-hidden="true">
+                <span>01</span>
+                <span className="h-px w-24 bg-foreground/25" />
               </div>
             </div>
-          </div>
-          <div className="hero-cue intro-up pointer-events-none absolute bottom-6 left-16 hidden flex-col items-center gap-3 lg:flex" style={{ "--d": "2.8s" } as React.CSSProperties} aria-hidden="true">
-            <span aria-hidden="true" />
-            <span className="h-10 w-px bg-foreground/30" />
+
+            <div className="hero-reference-visual intro-clip relative min-h-[46svh] overflow-hidden lg:min-h-0">
+              <img
+                src={heroVineyard}
+                alt="Prostor v teplých přírodních tónech s výhledem do krajiny"
+                className="hero-reference-image absolute inset-0 h-full w-full object-cover"
+                width="1920"
+                height="1080"
+                fetchPriority="high"
+              />
+              <div className="hero-reference-image-wash absolute inset-0" aria-hidden="true" />
+
+              <aside
+                className="hero-reference-stone absolute bottom-0 right-0 top-[9%] flex w-[34%] flex-col justify-center px-[6%] lg:w-[35%]"
+                style={{ backgroundImage: `linear-gradient(180deg, rgba(235,226,214,.9), rgba(205,190,173,.82)), url(${stoneTexture})` }}
+                aria-hidden="true"
+              >
+                <div className="space-y-3 text-[0.58rem] font-semibold uppercase leading-[1.7] tracking-[0.2em] text-foreground/62 sm:text-[0.64rem] lg:text-[0.7rem]">
+                  <span className="block">Marketing</span>
+                  <span className="block">Business Development</span>
+                  <span className="block">Projects</span>
+                </div>
+              </aside>
+            </div>
           </div>
         </section>
 

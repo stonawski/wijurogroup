@@ -87,6 +87,96 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .more-panel.is-open .more-link { opacity: .78; transform: none; transition-delay: calc(var(--i, 0) * 70ms + 120ms); }
 .more-panel.is-open .more-link:hover { opacity: 1; }
 
+/* ---------- Reference hero / editorial direction ---------- */
+.wijuro-header {
+  border-bottom: 1px solid color-mix(in oklab, var(--color-foreground) 12%, transparent);
+  background: color-mix(in oklab, var(--color-background) 94%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.nav-link-editorial { color: var(--color-foreground); opacity: .68; }
+
+.wijuro-hero {
+  background: #f3eee6;
+}
+.hero-reference-copy {
+  background: #f3eee6;
+}
+.hero-reference-title {
+  max-width: 9ch;
+  font-family: "Bodoni Moda", Georgia, serif;
+  font-size: clamp(3.8rem, 7.1vw, 7.35rem);
+  font-weight: 400;
+  line-height: .89;
+  letter-spacing: -.055em;
+  color: var(--color-foreground);
+}
+.hero-reference-button {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1.15rem;
+  border: 1px solid color-mix(in oklab, var(--color-foreground) 48%, transparent);
+  background: transparent;
+  padding: .85rem 1.2rem;
+  font-size: .62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .17em;
+  color: var(--color-foreground);
+  transition: background-color .45s var(--ease-lux), color .45s var(--ease-lux), border-color .45s var(--ease-lux), transform .45s var(--ease-lux);
+}
+.hero-reference-button:hover {
+  transform: translateY(-1px);
+  border-color: var(--color-foreground);
+  background: var(--color-foreground);
+  color: var(--color-background);
+}
+.hero-reference-visual {
+  background: #d8c9b8;
+}
+.hero-reference-image {
+  transform: scale(1.035);
+  object-position: 49% center;
+  filter: saturate(.72) contrast(.95) brightness(1.02) sepia(.06);
+}
+.hero-reference-image-wash {
+  background: linear-gradient(90deg, rgba(243,238,230,.06) 0%, rgba(52,43,35,.03) 46%, rgba(35,30,25,.11) 100%);
+  pointer-events: none;
+}
+.hero-reference-stone {
+  isolation: isolate;
+  background-size: cover;
+  background-position: center;
+  box-shadow: -18px 0 40px -34px rgba(36, 30, 25, .5);
+}
+.hero-reference-stone::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, rgba(255,255,255,.16), transparent 38%, rgba(63,50,40,.08));
+  mix-blend-mode: soft-light;
+}
+
+@media (max-width: 1023px) {
+  .hero-reference-title {
+    max-width: 10ch;
+    font-size: clamp(3.7rem, 12.5vw, 6.3rem);
+    line-height: .92;
+  }
+  .hero-reference-visual { min-height: 48svh; }
+  .hero-reference-image { object-position: center; }
+}
+
+@media (max-width: 639px) {
+  .wijuro-header { background: color-mix(in oklab, #f3eee6 96%, transparent); }
+  .hero-reference-title { font-size: clamp(3.35rem, 16.5vw, 5.2rem); }
+  .hero-reference-stone { top: 16%; width: 38%; padding-inline: 5%; }
+  .hero-reference-stone div { font-size: .48rem; letter-spacing: .16em; }
+}
+
 /* ---------- Motion system ---------- */
 :root { --ease-lux: cubic-bezier(.19, .8, .18, 1); }
 

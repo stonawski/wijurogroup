@@ -1389,9 +1389,9 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   display: block;
   width: 100%;
   height: auto;
-  max-height: 13rem;
+  max-width: none;
   object-fit: contain;
-  object-position: left center;
+  object-position: center;
   filter: brightness(0) invert(1);
   opacity: .38;
 }

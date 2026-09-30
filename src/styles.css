@@ -230,7 +230,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 
 .ref-hero-title {
   max-width: 11.5ch;
-  font-family: "Montserrat", Arial, sans-serif;
+  font-family: "Prata", Georgia, serif;
   font-size: clamp(3.9rem, 5vw, 6.4rem);
   font-weight: 400;
   line-height: .94;
@@ -241,7 +241,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 
 .ref-hero-kicker {
   margin-bottom: 1.35rem;
-  font-family: "Montserrat", Arial, sans-serif;
+  font-family: "Manrope", Arial, sans-serif;
   font-size: clamp(.6rem, .68vw, .72rem);
   font-weight: 400;
   line-height: 1.4;
@@ -401,7 +401,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .editorial-division-main > h3,
 .editorial-case h4,
 .editorial-value h3 {
-  font-family: "Montserrat", Arial, sans-serif;
+  font-family: "Prata", Georgia, serif;
   font-weight: 400;
 }
 
@@ -429,7 +429,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 }
 .editorial-story-heading h2 {
   margin-top: 1.4rem;
-  font-family: "Montserrat", Arial, sans-serif;
+  font-family: "Prata", Georgia, serif;
   font-size: clamp(4.3rem, 7vw, 7.6rem);
   font-weight: 400;
   line-height: .84;
@@ -552,7 +552,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   align-items: start;
 }
 .editorial-story-manifesto h3 {
-  font-family: "Montserrat", Arial, sans-serif;
+  font-family: "Prata", Georgia, serif;
   font-size: clamp(2.3rem, 3.2vw, 3.6rem);
   font-weight: 400;
   line-height: .98;
@@ -599,7 +599,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 }
 .editorial-founders-heading h2 {
   max-width: 10ch;
-  font-family: "Montserrat", Arial, sans-serif;
+  font-family: "Prata", Georgia, serif;
   font-size: clamp(3.6rem, 5.6vw, 6.2rem);
   font-weight: 400;
   line-height: .9;
@@ -701,7 +701,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   opacity: .52;
 }
 .editorial-founder-profile-copy h3 {
-  font-family: "Montserrat", Arial, sans-serif;
+  font-family: "Prata", Georgia, serif;
   font-size: clamp(2rem, 2.6vw, 2.8rem);
   font-weight: 400;
   line-height: 1;
@@ -846,7 +846,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .editorial-division-card h3 {
   margin-top: 1.35rem;
   max-width: 12ch;
-  font-family: "Montserrat", Arial, sans-serif;
+  font-family: "Prata", Georgia, serif;
   font-size: clamp(2.7rem, 4vw, 4.8rem);
   font-weight: 400;
   line-height: .92;
@@ -910,7 +910,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 }
 .editorial-division-detail-head h3 {
   max-width: 14ch;
-  font-family: "Montserrat", Arial, sans-serif;
+  font-family: "Prata", Georgia, serif;
   font-size: clamp(3.3rem, 5vw, 5.7rem);
   font-weight: 400;
   line-height: .92;
@@ -974,7 +974,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .editorial-case + .editorial-case { padding-left: 3rem; border-left: 1px solid rgba(61,51,43,.16); }
 .editorial-case h4 {
   margin-top: 3.8rem;
-  font-family: "Montserrat", Arial, sans-serif;
+  font-family: "Prata", Georgia, serif;
   font-size: clamp(2.2rem, 3vw, 3.5rem);
   font-weight: 400;
   line-height: .98;
@@ -1257,7 +1257,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 }
 .editorial-value-circle h3 {
   max-width: 10ch;
-  font-family: "Montserrat", Arial, sans-serif;
+  font-family: "Prata", Georgia, serif;
   font-size: clamp(1.7rem, 2.3vw, 2.3rem);
   font-weight: 400;
   line-height: 1.05;
@@ -1750,7 +1750,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
   to { transform: scale(1); }
 }
 
-/* Montserrat heading system */
+/* Prata heading system */
 .editorial-story-heading h2,
 .editorial-story-manifesto h3,
 .editorial-founders-heading h2,
@@ -1761,6 +1761,6 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opa
 .editorial-value-circle h3,
 .editorial-contact-main h2,
 .editorial-display-title {
-  font-family: "Montserrat", Arial, sans-serif;
+  font-family: "Prata", Georgia, serif;
   font-weight: 400;
 }

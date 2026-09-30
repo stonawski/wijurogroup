@@ -1,15 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Mail, Menu, Phone, X } from "lucide-react";
-import { useEffect, useState, useRef } from "react";
+import { ArrowRight, ArrowUpRight, Mail, Menu, Phone, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
 import { submitContact } from "@/lib/contact.functions";
 
-import stoneSeamless from "@/assets/stone-raw.jpg";
+import stoneTexture from "@/assets/stone-raw.jpg";
 import logoMark from "@/assets/logo-mark.png";
-import heroWordmark from "@/assets/wijuro-wordmark-light.png";
-import heroVineyard from "@/assets/hero-pavilion-poster.jpg";
-import heroVideo from "@/assets/hero-pavilion-portrait.mp4.asset.json";
+import heroWijuro from "@/assets/hero-wijuro.webp";
 
 const title = "WIJURO Group | Marketing, Business & Investments";
 const description =
@@ -30,12 +28,12 @@ export const Route = createFileRoute("/")({
 });
 
 const navItems = [
-  ["O nás", "#o-nas"], ["Co děláme", "#sluzby"], ["Kontakt", "#kontakt"],
+  ["O nás", "#o-nas"],
+  ["Co děláme", "#sluzby"],
+  ["Hodnoty", "#hodnoty"],
+  ["Kontakt", "#kontakt"],
 ];
 
-const moreItems = [
-  ["Hodnoty", "#hodnoty"],
-];
 
 const founders = [
   { name: "David W. Juras", role: "Co-Founder", initials: "D", text: "Dívám se na svět s otevřenou myslí cestovatele, tvořím s citem umělce, bojuji s vytrvalostí sportovce a nechávám věci zrát s trpělivostí vinaře." },
@@ -47,31 +45,16 @@ const valuesBottom = ["Férovost", "Dlouhodobost"];
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [navHidden, setNavHidden] = useState(false);
+  const [headerCompact, setHeaderCompact] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const heroRef = useRef<HTMLElement>(null);
 
-  // Hide the top bar when scrolling down, reveal it when scrolling up
   useEffect(() => {
-    let lastY = window.scrollY;
-    let ticking = false;
-    const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        const y = window.scrollY;
-        const goingDown = y > lastY && y - lastY > 4;
-        const goingUp = y < lastY && lastY - y > 4;
-        if (goingDown && y > 140) setNavHidden(true);
-        else if (goingUp || y <= 140) setNavHidden(false);
-        lastY = y;
-        ticking = false;
-      });
-    };
+    const onScroll = () => setHeaderCompact(window.scrollY > 72);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -86,29 +69,6 @@ function Index() {
     return () => observer.disconnect();
   }, []);
 
-  // Cinematic hero: scroll + cursor driven camera (lerped via rAF)
-  useEffect(() => {
-    const hero = heroRef.current;
-    if (!hero || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const fine = window.matchMedia("(pointer: fine)").matches;
-    let tx = 0, ty = 0, cx = 0, cy = 0, cp = 0, raf = 0;
-    const onMove = (e: MouseEvent) => {
-      tx = (e.clientX / window.innerWidth - 0.5) * 2;
-      ty = (e.clientY / window.innerHeight - 0.5) * 2;
-    };
-    const tick = () => {
-      const tp = Math.min(Math.max(window.scrollY / (window.innerHeight * 0.9), 0), 1);
-      cx += (tx - cx) * 0.05; cy += (ty - cy) * 0.05; cp += (tp - cp) * 0.12;
-      hero.style.setProperty("--mx", cx.toFixed(4));
-      hero.style.setProperty("--my", cy.toFixed(4));
-      hero.style.setProperty("--p", cp.toFixed(4));
-      raf = requestAnimationFrame(tick);
-    };
-    if (fine) window.addEventListener("mousemove", onMove, { passive: true });
-    raf = requestAnimationFrame(tick);
-    return () => { cancelAnimationFrame(raf); window.removeEventListener("mousemove", onMove); };
-  }, []);
-
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     const closeOnEscape = (event: KeyboardEvent) => event.key === "Escape" && setMenuOpen(false);
@@ -119,69 +79,73 @@ function Index() {
     };
   }, [menuOpen]);
 
-  const barStyle = { "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties;
   return (
     <div id="top" className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
-      {/* Horizontal natural-stone top bar */}
-
-      <header
-        className={`nav-stone fixed inset-x-0 top-0 z-50 isolate bg-stone text-stone-foreground transition-transform duration-500 ease-[cubic-bezier(.19,.8,.18,1)] ${navHidden && !menuOpen ? "-translate-y-full" : "translate-y-0"}`}
-        style={barStyle}
-      >
-        <div className="mx-auto flex h-20 max-w-[1480px] items-center justify-between px-5 md:h-24 md:px-10 lg:px-16">
-          <a href="#top" aria-label="WIJURO Group — úvod" className="intro-logo flex items-center">
-            <img src={logoMark} alt="WIJURO Group" className="h-14 w-auto md:h-[4.25rem]" width="406" height="567" />
+      <header className={`wijuro-ref-header fixed inset-x-0 top-0 z-50 ${headerCompact ? "is-compact" : ""}`}>
+        <div className="wijuro-header-inner mx-auto flex h-[132px] max-w-[1600px] items-start px-5 pt-6 md:h-[140px] md:px-10 md:pt-7 lg:px-14 lg:pt-8 xl:px-16">
+          <a href="#top" aria-label="WIJURO Group — úvod" className="intro-logo flex shrink-0 items-start">
+            <img src={logoMark} alt="WIJURO Group" className="ref-header-logo w-auto" width="406" height="567" />
           </a>
-          <nav className="intro-up hidden items-center gap-9 lg:flex" style={{ "--d": "0.5s" } as React.CSSProperties} aria-label="Hlavní navigace">
-            {navItems.map(([label, href]) => <a key={href} href={href} className="nav-link">{label}</a>)}
+
+          <nav className="wijuro-desktop-nav intro-up ml-auto hidden items-center gap-8 pt-6 lg:flex xl:gap-11" style={{ "--d": "0.45s" } as React.CSSProperties} aria-label="Hlavní navigace">
+            {navItems.map(([label, href]) => (
+              <a key={href} href={href} className="ref-nav-link">{label}</a>
+            ))}
+            <span className="header-divider ml-3 h-px w-16 bg-foreground/25 xl:w-20" aria-hidden="true" />
+            <span className="ref-nav-link ref-lang pointer-events-none opacity-70">CZ</span>
           </nav>
-          <div className="flex items-center gap-4">
-            <button type="button" aria-label={menuOpen ? "Zavřít menu" : "Otevřít menu"} aria-expanded={menuOpen} aria-controls="mobile-menu" className="relative z-10 inline-flex h-11 w-11 shrink-0 items-center justify-center lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
-              {menuOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
-          </div>
+
+          <button type="button" aria-label={menuOpen ? "Zavřít menu" : "Otevřít menu"} aria-expanded={menuOpen} aria-controls="mobile-menu" className="relative z-10 ml-auto mt-3 inline-flex h-11 w-11 shrink-0 items-center justify-center lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
-        <nav id="mobile-menu" className={`mobile-menu nav-stone fixed inset-x-0 bottom-0 top-20 flex flex-col overflow-y-auto bg-stone px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-6 md:top-24 md:px-10 lg:hidden ${menuOpen ? "is-open" : "invisible pointer-events-none"}`} aria-label="Mobilní navigace" aria-hidden={!menuOpen} style={barStyle}>
+
+        <nav id="mobile-menu" className={`mobile-menu fixed inset-x-0 bottom-0 top-20 flex flex-col overflow-y-auto border-t border-foreground/10 bg-[#f3eee6] px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-6 md:top-24 md:px-10 lg:hidden ${menuOpen ? "is-open" : "invisible pointer-events-none"}`} aria-label="Mobilní navigace" aria-hidden={!menuOpen}>
           {navItems.map(([label, href]) => (
-            <a key={href} href={href} tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mobile-menu-link border-b border-stone-foreground/15 py-4 text-2xl font-light sm:text-3xl">{label}</a>
+            <a key={href} href={href} tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mobile-menu-link border-b border-foreground/12 py-4 text-2xl font-light sm:text-3xl">{label}</a>
           ))}
-          {moreItems.map(([label, href]) => (
-            <a key={href} href={href} tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mobile-menu-link border-b border-stone-foreground/15 py-4 text-xl font-light text-stone-foreground/70 sm:text-2xl">{label}</a>
-          ))}
-          <a href="#kontakt" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="mt-auto inline-flex min-h-12 items-center justify-center gap-2 rounded-[2px] bg-stone-foreground px-4 py-3 text-center text-xs font-semibold uppercase text-stone">
+          <a href="#kontakt" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)} className="ref-hero-button mt-auto inline-flex min-h-12 items-center justify-center gap-3 px-5 py-3 text-center">
             Pojďme se spojit <ArrowUpRight size={14} />
           </a>
         </nav>
       </header>
 
       <main>
-        {/* HERO */}
-        <section ref={heroRef} className="relative mx-auto grid min-h-[100svh] max-w-[1480px] items-center gap-10 px-5 pb-14 pt-28 md:px-10 md:pt-36 lg:grid-cols-12 lg:gap-12 lg:px-16 lg:pb-16 lg:pt-32">
-          <div className="hero-text relative z-10 lg:col-span-6">
-            <p className="eyebrow intro-up" style={{ "--d": "1.2s" } as React.CSSProperties}>MARKETING · BUSINESS DEVELOPMENT · PROJECTS</p>
-            <h1 className="mt-7 text-[2.75rem] font-light leading-[0.98] sm:text-6xl md:mt-8 md:text-7xl lg:text-[clamp(3.2rem,5vw,6rem)]">
-              <span className="intro-line"><span style={{ "--d": "1.4s" } as React.CSSProperties}>Tvoříme to,</span></span>
-              <span className="intro-line"><span className="text-muted-foreground" style={{ "--d": "1.65s" } as React.CSSProperties}>co přichází.</span></span>
-            </h1>
-            <p className="intro-up mt-9 max-w-xl text-lg leading-8 text-muted-foreground" style={{ "--d": "2.05s" } as React.CSSProperties}>
-              WIJURO Group propojuje kreativitu, strategii a investiční myšlení.
-            </p>
-            <div className="intro-up mt-10 flex flex-col gap-3 sm:flex-row" style={{ "--d": "2.3s" } as React.CSSProperties}>
-              <a className="button-primary lux-hover" href="#o-nas">Poznat WIJURO</a>
-            </div>
+        {/* HERO — customer reference using final WIJURO background */}
+        <section className="ref-hero relative min-h-[100svh] overflow-hidden">
+          <div className="ref-hero-media" aria-hidden="true">
+            <img
+              src={heroWijuro}
+              alt=""
+              className="ref-hero-background"
+              width="1620"
+              height="971"
+              fetchPriority="high"
+            />
           </div>
-          <div className="relative lg:col-span-6 lg:-mr-16 lg:-mt-8 lg:self-start xl:-mr-24">
-            <div className="hero-media">
-              <div className="intro-clip relative overflow-hidden">
-                <video src={heroVideo.url} poster={heroVineyard} autoPlay muted loop playsInline preload="auto" aria-label="Prosklený prostor s logem WIJURO vyleptaným do skla" className="intro-zoom aspect-[4/5] max-h-[68svh] w-full object-cover md:max-h-[72svh] lg:aspect-[5/6] lg:max-h-[82svh]" />
-                 <span className="hero-symbol-cover" aria-hidden="true"><img src={heroWordmark} alt="" /></span>
-                <div className="hero-light" aria-hidden="true" />
+          <div className="ref-hero-wash" aria-hidden="true" />
+
+          <div className="relative z-10 mx-auto min-h-[100svh] max-w-[1600px] px-5 md:px-10 lg:px-14 xl:px-16">
+            <div className="ref-hero-copy flex min-h-[100svh] w-full max-w-[590px] flex-col pt-[190px] md:pt-[205px] lg:pt-[215px] xl:pt-[225px]">
+              <div className="ref-hero-content">
+                <h1 className="ref-hero-title">
+                  <span className="intro-line"><span style={{ "--d": "0.75s" } as React.CSSProperties}>Tvoříme</span></span>
+                  <span className="intro-line"><span style={{ "--d": "0.95s" } as React.CSSProperties}>lepší</span></span>
+                  <span className="intro-line"><span style={{ "--d": "1.15s" } as React.CSSProperties}>zítřky.</span></span>
+                </h1>
+
+                <p className="intro-up mt-7 max-w-[390px] font-display text-[1.03rem] leading-[1.48] text-foreground/88 md:text-[1.12rem]" style={{ "--d": "1.4s" } as React.CSSProperties}>
+                  WIJURO Group propojuje kreativitu, strategii a investiční myšlení.
+                </p>
+
+                <div className="ref-hero-cta intro-up" style={{ "--d": "1.65s" } as React.CSSProperties}>
+                  <a className="ref-hero-button group" href="#o-nas">
+                    <span>Poznat WIJURO</span>
+                    <ArrowRight size={16} strokeWidth={1.3} className="transition-transform duration-500 group-hover:translate-x-1.5" />
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="hero-cue intro-up pointer-events-none absolute bottom-6 left-16 hidden flex-col items-center gap-3 lg:flex" style={{ "--d": "2.8s" } as React.CSSProperties} aria-hidden="true">
-            <span aria-hidden="true" />
-            <span className="h-10 w-px bg-foreground/30" />
           </div>
         </section>
 
@@ -424,7 +388,7 @@ function Index() {
         </section>
       </main>
 
-      <footer className="nav-stone bg-stone text-stone-foreground" style={{ "--nav-stone-image": `url(${stoneSeamless})` } as React.CSSProperties}>
+      <footer className="nav-stone bg-stone text-stone-foreground" style={{ "--nav-stone-image": `url(${stoneTexture})` } as React.CSSProperties}>
         <div className="mx-auto max-w-[1480px] px-5 pb-5 pt-5 md:px-10 lg:px-16">
           <p className="text-sm text-stone-foreground/55">© 2026 WIJURO Group. Všechna práva vyhrazena.</p>
         </div>

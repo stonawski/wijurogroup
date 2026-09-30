@@ -47,6 +47,7 @@ function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [headerCompact, setHeaderCompact] = useState(false);
   const [activeDivision, setActiveDivision] = useState<1 | 2 | null>(null);
+  const [aboutOpen, setAboutOpen] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
@@ -172,19 +173,38 @@ function Index() {
                   Naším úkolem ve WIJURO Group je vzít váš podnikatelský záměr, vizi nebo majetek, připravit z nich srozumitelný obchodní projekt a úspěšně jej uplatnit na trhu. Jsme obchodní skupina, která pomáhá podnikům se zajištěním kapitálu, prodejem a nákupem. Nejsme finanční makléři ani regulovaná instituce – zaměřujeme se na reálné propojení vašeho byznysu s tržními příležitostmi.
                 </p>
 
+                <button
+                  type="button"
+                  className={`editorial-story-toggle ${aboutOpen ? "is-open" : ""}`}
+                  aria-expanded={aboutOpen}
+                  aria-controls="about-details"
+                  onClick={() => setAboutOpen((open) => !open)}
+                >
+                  <span>{aboutOpen ? "Skrýt detail" : "Zjistit více"}</span>
+                  <ArrowRight size={16} strokeWidth={1.3} />
+                </button>
+              </div>
+            </div>
+
+            <div
+              id="about-details"
+              className={`editorial-story-details-shell ${aboutOpen ? "is-open" : ""}`}
+              aria-hidden={!aboutOpen}
+            >
+              <div className="editorial-story-details-inner">
                 <div className="editorial-story-columns">
                   <p>WIJURO vzniklo z naší společné vize budovat něco vlastního. Jako manželský pár jsme se rozhodli spojit své zkušenosti, energii a společné hodnoty a vytvořit skupinu, která bude od začátku stát na pevných základech. Důvěra, individualita, svoboda rozhodování a osobní odpovědnost jsou pro nás hodnoty, na kterých chceme WIJURO stavět. Věříme, že každý člověk má svou vlastní cestu, nápady a potenciál – a právě prostor pro vlastní iniciativu považujeme za důležitou součást podnikání.</p>
                   <p>Je to pro nás rodinná firma v pravém slova smyslu. Chceme ji budovat dlouhodobě, společně a způsobem, který bude odrážet to, kým jsme a čemu věříme. Naším cílem je vytvářet vlastní projekty, rozvíjet zajímavé příležitosti a investovat do toho, co podle nás má skutečný potenciál.</p>
                 </div>
-              </div>
-            </div>
 
-            <div className="editorial-story-manifesto">
-              <p className="editorial-eyebrow">WIJURO</p>
-              <h3>Dvě perspektivy. Jeden směr.</h3>
-              <div>
-                <p>Právě rozdílné pohledy považujeme za jednu z našich největších výhod. Kreativita a strategie. Marketing a obchod. Nápad a jeho realizace.</p>
-                <p>WIJURO vzniklo z touhy tyto světy propojit a postupně kolem nich vybudovat něco vlastního.</p>
+                <div className="editorial-story-manifesto">
+                  <p className="editorial-eyebrow">WIJURO</p>
+                  <h3>Dvě perspektivy. Jeden směr.</h3>
+                  <div>
+                    <p>Právě rozdílné pohledy považujeme za jednu z našich největších výhod. Kreativita a strategie. Marketing a obchod. Nápad a jeho realizace.</p>
+                    <p>WIJURO vzniklo z touhy tyto světy propojit a postupně kolem nich vybudovat něco vlastního.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -349,6 +369,8 @@ function Index() {
             </div>
 
             <div className="editorial-values-cluster" aria-label="Hodnoty WIJURO Group">
+              <img src={logoMark} alt="" className="editorial-values-watermark" aria-hidden="true" />
+
               <div className="editorial-value-center" aria-hidden="true">
                 <span>WIJURO</span>
                 <small>GROUP</small>

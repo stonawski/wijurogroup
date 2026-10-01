@@ -56,7 +56,7 @@ jobs:
           print("CUSTOM_PROPERTIES")
           props = re.findall(r'(--[\w-]+)\s*:\s*([^;}{]+)', text)
           for k,v in props:
-              if any(t in k.lower() for t in ["color","background","bg","border","primary","secondary","accent","foreground"]):
+              if any(t in k.lower() for t in ["color","background","bg","border","primary","secondary","accent","foreground","stone","olive","muted","input","ring","footer"]):
                   print(k, "=", v.strip())
 
           print("COLOR_DECLARATIONS")

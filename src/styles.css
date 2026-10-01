@@ -465,15 +465,33 @@ body::before {
 
 .ref-hero {
   --ref-ivory: #f3eee6;
+  --hero-media-top: clamp(4.75rem, 7.5vh, 6.5rem);
   background: var(--ref-ivory);
+}
+
+/* Soft atmospheric fade below the transparent desktop navigation. */
+.ref-hero::before {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  inset: 0 0 auto 0;
+  height: clamp(8rem, 15vh, 11rem);
+  background: linear-gradient(
+    180deg,
+    rgba(243, 238, 230, .98) 0%,
+    rgba(243, 238, 230, .86) 24%,
+    rgba(243, 238, 230, .48) 58%,
+    rgba(243, 238, 230, 0) 100%
+  );
+  pointer-events: none;
 }
 
 /* Preserve the full source composition on desktop/ultrawide so the landscape remains visible. */
 .ref-hero-media {
   position: absolute;
   z-index: 1;
-  inset: 0 0 0 auto;
-  height: 100%;
+  inset: var(--hero-media-top) 0 0 auto;
+  height: auto;
   max-width: 100%;
   overflow: hidden;
   display: flex;
@@ -631,6 +649,15 @@ body::before {
 }
 
 @media (max-width: 1023px) {
+  .ref-hero::before {
+    height: 8rem;
+    background: linear-gradient(
+      180deg,
+      rgba(243, 238, 230, .96) 0%,
+      rgba(243, 238, 230, .72) 40%,
+      rgba(243, 238, 230, 0) 100%
+    );
+  }
   .wijuro-ref-header {
     background: rgba(243, 238, 230, 0.88);
     backdrop-filter: blur(14px);

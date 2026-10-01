@@ -26,20 +26,45 @@ jobs:
               url = urllib.parse.urljoin(root, href)
               try:
                   req = urllib.request.Request(url, headers={"User-Agent":"Mozilla/5.0"})
-                  blobs.append(urllib.request.urlopen(req, timeout=30).read().decode("utf-8","ignore"))
+                  css = urllib.request.urlopen(req, timeout=30).read().decode("utf-8","ignore")
+                  blobs.append(css)
               except Exception as e:
                   print("CSS_FETCH_ERROR", url, repr(e))
 
           text = "\n".join(blobs)
-          hexes = [h.lower() for h in re.findall(r'#[0-9a-fA-F]{6}(?![0-9a-fA-F])', text)]
-          rgbs = [x.lower() for x in re.findall(r'rgba?\([^\)]+\)', text, flags=re.I)]
 
           print("HTML_BYTES", len(html))
           print("CSS_URLS", css_urls)
-          print("TOP_HEX")
-          for c,n in Counter(hexes).most_common(30):
+
+          color_tokens = []
+          patterns = [
+              r'#[0-9a-fA-F]{3,8}(?![0-9a-fA-F])',
+              r'rgba?\([^\)]+\)',
+              r'hsla?\([^\)]+\)',
+              r'oklch\([^\)]+\)',
+              r'oklab\([^\)]+\)',
+              r'lab\([^\)]+\)',
+              r'lch\([^\)]+\)',
+          ]
+          for pat in patterns:
+              color_tokens += [m.lower() for m in re.findall(pat, text, flags=re.I)]
+
+          print("TOP_COLOR_TOKENS")
+          for c,n in Counter(color_tokens).most_common(80):
               print(c, n)
-          print("TOP_RGB")
-          for c,n in Counter(rgbs).most_common(30):
-              print(c, n)
+
+          print("CUSTOM_PROPERTIES")
+          props = re.findall(r'(--[\w-]+)\s*:\s*([^;}{]+)', text)
+          for k,v in props:
+              if any(t in k.lower() for t in ["color","background","bg","border","primary","secondary","accent","foreground"]):
+                  print(k, "=", v.strip())
+
+          print("COLOR_DECLARATIONS")
+          declarations = re.findall(
+              r'(?i)(background(?:-color)?|color|border(?:-[\w-]+)?-color|fill|stroke)\s*:\s*([^;}{]+)',
+              text
+          )
+          counts = Counter((k.lower(), v.strip()) for k,v in declarations)
+          for (k,v),n in counts.most_common(100):
+              print(k, "=", v, "::", n)
           PY

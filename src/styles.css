@@ -481,6 +481,8 @@ body::before {
   justify-content: flex-end;
 }
 .ref-hero-background {
+  position: relative;
+  z-index: 1;
   display: block;
   flex: none;
   width: auto;
@@ -489,6 +491,31 @@ body::before {
   object-fit: contain;
   object-position: right bottom;
   filter: saturate(0.92) contrast(0.96) brightness(1.04);
+  transition: opacity 1.1s var(--ease-lux);
+}
+
+.ref-hero-video {
+  position: absolute;
+  z-index: 2;
+  inset: 0 0 0 auto;
+  width: min(46vw, 50rem);
+  height: 100%;
+  object-fit: cover;
+  object-position: center 46%;
+  opacity: 0;
+  filter: saturate(.78) contrast(.94) brightness(1.04) sepia(.035);
+  transform: scale(1.015);
+  transition:
+    opacity 1.15s var(--ease-lux),
+    transform 1.8s var(--ease-lux);
+  pointer-events: none;
+}
+.ref-hero-video.is-ready {
+  opacity: 1;
+  transform: scale(1);
+}
+.ref-hero.has-video .ref-hero-background {
+  opacity: 0;
 }
 
 /* Stronger ivory field behind the headline for legibility while leaving the house visible. */
@@ -501,9 +528,9 @@ body::before {
     rgba(243, 238, 230, 1) 0%,
     rgba(243, 238, 230, 0.995) 22%,
     rgba(243, 238, 230, 0.96) 31%,
-    rgba(243, 238, 230, 0.78) 40%,
-    rgba(243, 238, 230, 0.3) 50%,
-    rgba(243, 238, 230, 0) 61%
+    rgba(243, 238, 230, 0.82) 40%,
+    rgba(243, 238, 230, 0.38) 50%,
+    rgba(243, 238, 230, 0) 62%
   );
   pointer-events: none;
 }
@@ -629,6 +656,12 @@ body::before {
     height: 100%;
     object-fit: cover;
     object-position: 62% bottom;
+  }
+  .ref-hero-video {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-position: center 44%;
   }
   .ref-hero-wash {
     background: linear-gradient(
@@ -2472,4 +2505,9 @@ body::before {
 .editorial-display-title {
   font-family: "Prata", Georgia, serif;
   font-weight: 400;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ref-hero-video { display: none; }
+  .ref-hero.has-video .ref-hero-background { opacity: 1; }
 }

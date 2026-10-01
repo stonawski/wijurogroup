@@ -61,6 +61,18 @@ function Index() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [heroVideoEnabled, setHeroVideoEnabled] = useState(false);
+  const [heroVideoReady, setHeroVideoReady] = useState(false);
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+
+    if (reduceMotion || connection?.saveData) return;
+
+    const timer = window.setTimeout(() => setHeroVideoEnabled(true), 350);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setHeaderCompact(window.scrollY > 72);
@@ -173,7 +185,7 @@ function Index() {
 
       <main>
         {/* HERO — customer reference using final WIJURO background */}
-        <section className="ref-hero relative min-h-[100svh] overflow-hidden">
+        <section className={`ref-hero relative min-h-[100svh] overflow-hidden ${heroVideoReady ? "has-video" : ""}`}>
           <div className="ref-hero-media" aria-hidden="true">
             <img
               src={heroWijuro}
@@ -183,6 +195,20 @@ function Index() {
               height="971"
               fetchPriority="high"
             />
+            {heroVideoEnabled ? (
+              <video
+                className={`ref-hero-video ${heroVideoReady ? "is-ready" : ""}`}
+                src="/hero-flags-optimized.mp4"
+                muted
+                autoPlay
+                loop
+                playsInline
+                preload="metadata"
+                disablePictureInPicture
+                onCanPlay={() => setHeroVideoReady(true)}
+                onError={() => setHeroVideoReady(false)}
+              />
+            ) : null}
           </div>
           <div className="ref-hero-wash" aria-hidden="true" />
 

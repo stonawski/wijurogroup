@@ -1,0 +1,45 @@
+name: Capture reference palette
+
+on:
+  push:
+    branches:
+      - feat/reference-palette
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch reference site and extract colors
+        shell: bash
+        run: |
+          python - <<'PY'
+          import re, urllib.parse, urllib.request
+          from collections import Counter
+
+          root = "https://wijurogroup.com/"
+          req = urllib.request.Request(root, headers={"User-Agent":"Mozilla/5.0"})
+          html = urllib.request.urlopen(req, timeout=30).read().decode("utf-8", "ignore")
+
+          css_urls = re.findall(r'<link[^>]+href=["\']([^"\']+\.css(?:\?[^"\']*)?)["\']', html, flags=re.I)
+          blobs = [html]
+          for href in css_urls:
+              url = urllib.parse.urljoin(root, href)
+              try:
+                  req = urllib.request.Request(url, headers={"User-Agent":"Mozilla/5.0"})
+                  blobs.append(urllib.request.urlopen(req, timeout=30).read().decode("utf-8","ignore"))
+              except Exception as e:
+                  print("CSS_FETCH_ERROR", url, repr(e))
+
+          text = "\n".join(blobs)
+          hexes = [h.lower() for h in re.findall(r'#[0-9a-fA-F]{6}(?![0-9a-fA-F])', text)]
+          rgbs = [x.lower() for x in re.findall(r'rgba?\([^\)]+\)', text, flags=re.I)]
+
+          print("HTML_BYTES", len(html))
+          print("CSS_URLS", css_urls)
+          print("TOP_HEX")
+          for c,n in Counter(hexes).most_common(30):
+              print(c, n)
+          print("TOP_RGB")
+          for c,n in Counter(rgbs).most_common(30):
+              print(c, n)
+          PY

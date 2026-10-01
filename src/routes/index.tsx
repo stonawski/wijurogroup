@@ -7,7 +7,6 @@ import { submitContact } from "@/lib/contact.functions";
 
 import stoneTexture from "@/assets/stone-raw.jpg";
 import logoMark from "@/assets/logo-mark.png";
-import heroWijuro from "@/assets/hero-wijuro.webp";
 import heroStone from "@/assets/hero-stone.jpg";
 
 const title = "WIJURO Group | Marketing, Business & Investments";
@@ -61,6 +60,23 @@ function Index() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [heroVideoEnabled, setHeroVideoEnabled] = useState(false);
+  const [heroVideoReady, setHeroVideoReady] = useState(false);
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const connection = (
+      navigator as Navigator & {
+        connection?: { saveData?: boolean; effectiveType?: string };
+      }
+    ).connection;
+    const slowConnection = ["slow-2g", "2g", "3g"].includes(connection?.effectiveType ?? "");
+
+    if (reduceMotion || connection?.saveData || slowConnection) return;
+
+    const timer = window.setTimeout(() => setHeroVideoEnabled(true), 450);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setHeaderCompact(window.scrollY > 72);
@@ -173,16 +189,31 @@ function Index() {
 
       <main>
         {/* HERO — customer reference using final WIJURO background */}
-        <section className="ref-hero relative min-h-[100svh] overflow-hidden">
+        <section className={`ref-hero relative min-h-[100svh] overflow-hidden ${heroVideoReady ? "has-video" : ""}`}>
           <div className="ref-hero-media" aria-hidden="true">
             <img
-              src={heroWijuro}
+              src="/hero-fallback.webp"
               alt=""
               className="ref-hero-background"
-              width="1620"
-              height="971"
+              width="1280"
+              height="720"
               fetchPriority="high"
             />
+            {heroVideoEnabled ? (
+              <video
+                className={`ref-hero-video ${heroVideoReady ? "is-ready" : ""}`}
+                src="/hero-flags-realistic.mp4"
+                poster="/hero-fallback.webp"
+                muted
+                autoPlay
+                loop
+                playsInline
+                preload="none"
+                disablePictureInPicture
+                onCanPlay={() => setHeroVideoReady(true)}
+                onError={() => setHeroVideoReady(false)}
+              />
+            ) : null}
           </div>
           <div className="ref-hero-wash" aria-hidden="true" />
 

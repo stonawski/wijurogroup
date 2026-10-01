@@ -490,24 +490,25 @@ body::before {
   max-width: none;
   object-fit: contain;
   object-position: right bottom;
-  filter: saturate(0.92) contrast(0.96) brightness(1.04);
+  filter: saturate(.94) contrast(.97) brightness(1.02);
   transition: opacity 1.1s var(--ease-lux);
 }
 
 .ref-hero-video {
   position: absolute;
   z-index: 2;
-  inset: 0 0 0 auto;
-  width: min(46vw, 50rem);
+  inset: 0;
+  width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center 46%;
+  object-fit: contain;
+  object-position: right bottom;
   opacity: 0;
-  filter: saturate(.78) contrast(.94) brightness(1.04) sepia(.035);
-  transform: scale(1.015);
+  filter: saturate(.94) contrast(.97) brightness(1.02);
+  transform: scale(1.004);
+  transform-origin: right bottom;
   transition:
-    opacity 1.15s var(--ease-lux),
-    transform 1.8s var(--ease-lux);
+    opacity 1.05s var(--ease-lux),
+    transform 1.6s var(--ease-lux);
   pointer-events: none;
 }
 .ref-hero-video.is-ready {
@@ -655,13 +656,10 @@ body::before {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 62% bottom;
+    object-position: 76% bottom;
   }
   .ref-hero-video {
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-position: center 44%;
+    display: none;
   }
   .ref-hero-wash {
     background: linear-gradient(
@@ -699,7 +697,7 @@ body::before {
     height: 46svh;
   }
   .ref-hero-background {
-    object-position: 64% bottom;
+    object-position: 80% bottom;
   }
   .ref-hero-copy {
     max-width: 94%;

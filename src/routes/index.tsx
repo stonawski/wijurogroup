@@ -7,7 +7,6 @@ import { submitContact } from "@/lib/contact.functions";
 
 import stoneTexture from "@/assets/stone-raw.jpg";
 import logoMark from "@/assets/logo-mark.png";
-import heroWijuro from "@/assets/hero-wijuro.webp";
 import heroStone from "@/assets/hero-stone.jpg";
 
 const title = "WIJURO Group | Marketing, Business & Investments";
@@ -66,11 +65,17 @@ function Index() {
 
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    const desktopClass = window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches;
+    const connection = (
+      navigator as Navigator & {
+        connection?: { saveData?: boolean; effectiveType?: string };
+      }
+    ).connection;
+    const slowConnection = ["slow-2g", "2g", "3g"].includes(connection?.effectiveType ?? "");
 
-    if (reduceMotion || connection?.saveData) return;
+    if (reduceMotion || !desktopClass || connection?.saveData || slowConnection) return;
 
-    const timer = window.setTimeout(() => setHeroVideoEnabled(true), 350);
+    const timer = window.setTimeout(() => setHeroVideoEnabled(true), 550);
     return () => window.clearTimeout(timer);
   }, []);
 
@@ -188,22 +193,23 @@ function Index() {
         <section className={`ref-hero relative min-h-[100svh] overflow-hidden ${heroVideoReady ? "has-video" : ""}`}>
           <div className="ref-hero-media" aria-hidden="true">
             <img
-              src={heroWijuro}
+              src="/hero-flags-fallback.webp"
               alt=""
               className="ref-hero-background"
-              width="1620"
-              height="971"
+              width="1280"
+              height="720"
               fetchPriority="high"
             />
             {heroVideoEnabled ? (
               <video
                 className={`ref-hero-video ${heroVideoReady ? "is-ready" : ""}`}
-                src="/hero-flags-optimized.mp4"
+                src="/hero-flags-cinemagraph.mp4"
+                poster="/hero-flags-fallback.webp"
                 muted
                 autoPlay
                 loop
                 playsInline
-                preload="metadata"
+                preload="none"
                 disablePictureInPicture
                 onCanPlay={() => setHeroVideoReady(true)}
                 onError={() => setHeroVideoReady(false)}

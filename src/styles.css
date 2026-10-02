@@ -1755,7 +1755,8 @@ body::before {
 }
 .editorial-values-cluster:has(.editorial-value-orbit:hover) .editorial-value-center,
 .editorial-values-cluster:has(.editorial-value-orbit:focus-visible) .editorial-value-center {
-  z-index: 1;
+  /* Keep the center above the overlapping circles so its hover target never disappears. */
+  z-index: 12;
   opacity: 0.16;
   color: color-mix(in oklab, var(--primary) 42%, black);
   text-shadow: none;

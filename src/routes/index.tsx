@@ -382,7 +382,7 @@ function Index() {
                   <div
                     className="editorial-founder-profile-mark"
                     style={{
-                      backgroundImage: `linear-gradient(145deg, rgba(247,242,235,.82), rgba(203,190,174,.76)), url(${stoneTexture})`,
+                      backgroundImage: `linear-gradient(145deg, rgba(78,78,48,.72), rgba(42,43,26,.84)), url(${stoneTexture})`,
                     }}
                     aria-hidden="true"
                   >

@@ -46,6 +46,7 @@
   --stone-foreground: oklch(0.24 0.012 70);
   --footer: oklch(0.32 0.018 74);
   --footer-foreground: oklch(0.91 0.02 84);
+  --brand-green: #4e4e30;
   --olive-flag: oklch(0.415 0.046 108);
   --olive-flag-hover: oklch(0.465 0.05 108);
 }
@@ -939,8 +940,9 @@ body::before {
 /* Founders — modern profile cards */
 .editorial-founders-section {
   position: relative;
-  background: var(--stone);
-  border-bottom: 1px solid rgba(61, 51, 43, 0.15);
+  background: var(--brand-green);
+  color: var(--primary-foreground);
+  border-bottom: 1px solid rgba(238, 232, 223, 0.14);
   overflow: hidden;
 }
 .editorial-founders-section::before {
@@ -948,9 +950,12 @@ body::before {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 14% 18%, rgba(255, 255, 255, 0.18), transparent 28%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.07), transparent 48%);
+    radial-gradient(circle at 14% 18%, rgba(255, 255, 255, 0.07), transparent 28%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.025), transparent 48%);
   pointer-events: none;
+}
+.editorial-founders-section .editorial-eyebrow {
+  color: rgba(238, 232, 223, 0.56);
 }
 .editorial-founders-section .editorial-shell {
   position: relative;
@@ -984,12 +989,12 @@ body::before {
   display: grid;
   grid-template-columns: minmax(9rem, 12rem) 1fr;
   overflow: hidden;
-  border: 1px solid rgba(61, 51, 43, 0.16);
+  border: 1px solid rgba(238, 232, 223, 0.15);
   border-radius: 1.5rem;
-  background: color-mix(in oklab, var(--background) 72%, transparent);
+  background: rgba(238, 232, 223, 0.045);
   box-shadow:
-    0 18px 55px rgba(64, 50, 39, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.32);
+    0 18px 55px rgba(20, 20, 10, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
   transition:
     transform 0.55s var(--ease-lux),
     box-shadow 0.55s var(--ease-lux),
@@ -998,11 +1003,11 @@ body::before {
 }
 .editorial-founder-profile:hover {
   transform: translateY(-0.45rem);
-  border-color: rgba(61, 51, 43, 0.25);
-  background: rgba(246, 241, 234, 0.86);
+  border-color: rgba(238, 232, 223, 0.34);
+  background: rgba(238, 232, 223, 0.085);
   box-shadow:
-    0 28px 75px rgba(64, 50, 39, 0.13),
-    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    0 28px 75px rgba(20, 20, 10, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 .editorial-founder-profile-mark {
   position: relative;
@@ -1011,14 +1016,14 @@ body::before {
   overflow: hidden;
   background-size: cover;
   background-position: center;
-  border-right: 1px solid rgba(61, 51, 43, 0.13);
+  border-right: 1px solid rgba(238, 232, 223, 0.13);
 }
 .editorial-founder-profile-mark::before {
   content: "";
   position: absolute;
   width: 76%;
   aspect-ratio: 1;
-  border: 1px solid rgba(61, 51, 43, 0.14);
+  border: 1px solid rgba(238, 232, 223, 0.18);
   border-radius: 999px;
   transition:
     transform 0.7s var(--ease-lux),
@@ -1034,6 +1039,7 @@ body::before {
   font-family: "Playfair Display", Georgia, serif;
   font-size: clamp(4.5rem, 6vw, 7rem);
   line-height: 1;
+  color: var(--primary-foreground);
   opacity: 0.48;
   transition:
     transform 0.65s var(--ease-lux),
@@ -1069,7 +1075,7 @@ body::before {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  opacity: 0.52;
+  opacity: 0.58;
 }
 .editorial-founder-profile-copy h3 {
   font-family: "Prata", Georgia, serif;
@@ -1081,10 +1087,10 @@ body::before {
 .editorial-founder-profile-copy > p {
   max-width: 31rem;
   padding-top: 1.5rem;
-  border-top: 1px solid rgba(61, 51, 43, 0.12);
+  border-top: 1px solid rgba(238, 232, 223, 0.14);
   font-size: 0.9rem;
   line-height: 1.75;
-  opacity: 0.68;
+  opacity: 0.74;
 }
 
 @media (max-width: 1023px) {
@@ -1476,7 +1482,7 @@ body::before {
 
 /* Values — oversized overlapping shared-center flower */
 .editorial-values {
-  --values-bg: #4e4e30;
+  --values-bg: var(--brand-green);
   background: var(--values-bg);
   color: var(--primary-foreground);
   overflow: hidden;
@@ -1980,8 +1986,9 @@ body::before {
 /* Footer */
 .editorial-footer {
   position: relative;
-  background: var(--footer);
-  color: var(--footer-foreground);
+  background: var(--brand-green);
+  color: var(--primary-foreground);
+  border-top: 1px solid rgba(238, 232, 223, 0.14);
 }
 .editorial-footer::before {
   content: "";
@@ -1989,7 +1996,7 @@ body::before {
   inset: 0;
   background-image: var(--footer-stone);
   background-size: cover;
-  opacity: 0.08;
+  opacity: 0.045;
   mix-blend-mode: screen;
 }
 .editorial-footer-inner {
@@ -2007,11 +2014,12 @@ body::before {
   width: 3.6rem;
   height: auto;
   filter: brightness(0) invert(1);
-  opacity: 0.82;
+  opacity: 0.9;
 }
 .editorial-footer-inner p {
   font-size: 0.72rem;
-  opacity: 0.52;
+  color: var(--primary-foreground);
+  opacity: 0.58;
   text-align: center;
 }
 .editorial-footer-inner a {
@@ -2023,7 +2031,8 @@ body::before {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  opacity: 0.62;
+  color: var(--primary-foreground);
+  opacity: 0.7;
   transition: opacity 0.3s;
 }
 .editorial-footer-inner a:hover {

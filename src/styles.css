@@ -1594,6 +1594,7 @@ body::before {
   width: clamp(27rem, 36vw, 34rem);
   transform: translate(-50%, -50%);
   animation: editorial-value-float 8s ease-in-out infinite;
+  outline: none;
 }
 .editorial-value-orbit-1 {
   left: 50%;
@@ -1675,31 +1676,72 @@ body::before {
   transition: opacity 0.35s ease;
 }
 .editorial-value-circle h3 {
-  max-width: 10ch;
+  position: relative;
+  z-index: 2;
+  max-width: 15ch;
   font-family: "Prata", Georgia, serif;
-  font-size: clamp(1.7rem, 2.3vw, 2.3rem);
+  font-size: clamp(1.45rem, 2vw, 2.05rem);
   font-weight: 400;
-  line-height: 1.05;
+  line-height: 1.08;
   letter-spacing: -0.025em;
   transform: translate(var(--label-x), var(--label-y));
   transition:
-    transform 0.55s var(--ease-lux),
-    opacity 0.45s ease;
+    transform 0.6s var(--ease-lux),
+    opacity 0.45s ease,
+    font-size 0.45s var(--ease-lux);
+}
+
+.editorial-value-circle > p {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  width: min(72%, 21rem);
+  margin: 0;
+  font-size: clamp(0.72rem, 0.85vw, 0.84rem);
+  line-height: 1.58;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-wrap: pretty;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 1.8rem);
+  transition:
+    opacity 0.4s ease,
+    transform 0.6s var(--ease-lux),
+    visibility 0s linear 0.45s;
 }
 
 .editorial-value-orbit:hover {
   z-index: 9;
   animation-play-state: paused;
 }
-.editorial-value-orbit:hover .editorial-value-circle {
+.editorial-value-orbit:hover .editorial-value-circle,
+.editorial-value-orbit:focus-visible .editorial-value-circle {
   transform: scale(1.075);
   border-color: rgba(238, 232, 223, 0.58);
   background: rgba(238, 232, 223, 0.1);
   color: var(--accent-foreground);
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.14);
 }
-.editorial-value-orbit:hover .editorial-value-circle > span {
+.editorial-value-orbit:hover .editorial-value-circle > span,
+.editorial-value-orbit:focus-visible .editorial-value-circle > span {
   opacity: 0.72;
+}
+.editorial-value-orbit:hover .editorial-value-circle h3,
+.editorial-value-orbit:focus-visible .editorial-value-circle h3 {
+  font-size: clamp(1.35rem, 1.65vw, 1.75rem);
+  transform: translate(0, -4.2rem);
+}
+.editorial-value-orbit:hover .editorial-value-circle > p,
+.editorial-value-orbit:focus-visible .editorial-value-circle > p {
+  opacity: 0.88;
+  visibility: visible;
+  transform: translate(-50%, -1.45rem);
+  transition:
+    opacity 0.45s ease 0.08s,
+    transform 0.6s var(--ease-lux) 0.04s,
+    visibility 0s;
 }
 .editorial-values-cluster:has(.editorial-value-orbit:hover)
   .editorial-value-orbit:not(:hover)
@@ -2175,7 +2217,17 @@ body::before {
     --spread-y: 2rem;
   }
   .editorial-value-circle h3 {
-    font-size: clamp(1.1rem, 5vw, 1.5rem);
+    max-width: 13ch;
+    font-size: clamp(1.02rem, 4.7vw, 1.42rem);
+  }
+  .editorial-value-circle > p {
+    width: 76%;
+    font-size: clamp(0.62rem, 2.7vw, 0.74rem);
+    line-height: 1.45;
+  }
+  .editorial-value-orbit:focus-visible .editorial-value-circle h3 {
+    font-size: clamp(1rem, 4.3vw, 1.28rem);
+    transform: translate(0, -3.5rem);
   }
   .editorial-value-center {
     width: 9rem;

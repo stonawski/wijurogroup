@@ -49,7 +49,28 @@ const founders = [
   },
 ];
 
-const values = ["Vize", "Integrita", "Růst", "Férovost", "Dlouhodobost"];
+const values = [
+  {
+    name: "Rodina, ne korporát",
+    text: "Držíme při sobě. Nekryjeme se za anonymní procesy ani tabulky a s klienty jednáme jako člověk s člověkem. Na rovinu a férově.",
+  },
+  {
+    name: "Karty na stůl",
+    text: "Nelžeme, nemažeme med kolem pusy ani neslibujeme vzdušné zámky. Co řekneme, to platí. Poctivost je pro nás jediná cesta.",
+  },
+  {
+    name: "Kreativita s tahem",
+    text: "Nuda neprodává. Boříme šablony, vymýšlíme koncepty, které vyčnívají z davu, a děláme marketing, co lidi skutečně baví.",
+  },
+  {
+    name: "Lov příležitostí",
+    text: "Nestojíme na místě. Hledáme pro váš byznys nové trhy, odkrýváme skrytý potenciál a tlačíme vás nekompromisně dopředu.",
+  },
+  {
+    name: "Ukázaná platí",
+    text: "Kecat umí každý, my doručujeme. Co slíbíme, to dodržíme. Každý projekt má jasný řád, držíme deadline a nápady měníme v reálné výsledky.",
+  },
+];
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -566,11 +587,16 @@ function Index() {
                 <small>GROUP</small>
               </div>
 
-              {values.map((name, i) => (
-                <div key={name} className={`editorial-value-orbit editorial-value-orbit-${i + 1}`}>
+              {values.map((value, i) => (
+                <div
+                  key={value.name}
+                  className={`editorial-value-orbit editorial-value-orbit-${i + 1}`}
+                  tabIndex={0}
+                >
                   <div className="editorial-value-circle">
                     <span>{String(i + 1).padStart(2, "0")}</span>
-                    <h3>{name}</h3>
+                    <h3>{value.name}</h3>
+                    <p>{value.text}</p>
                   </div>
                 </div>
               ))}

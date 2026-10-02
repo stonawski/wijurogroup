@@ -1719,10 +1719,14 @@ body::before {
 .editorial-value-orbit:hover .editorial-value-circle,
 .editorial-value-orbit:focus-visible .editorial-value-circle {
   transform: scale(1.075);
-  border-color: rgba(238, 232, 223, 0.58);
-  background: rgba(238, 232, 223, 0.1);
+  border-color: color-mix(in oklab, var(--primary-foreground) 72%, transparent);
+  background: color-mix(in oklab, var(--primary-foreground) 17%, var(--primary));
   color: var(--accent-foreground);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.14);
+  box-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.24),
+    inset 0 0 0 1px color-mix(in oklab, var(--primary-foreground) 8%, transparent);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 .editorial-value-orbit:hover .editorial-value-circle > span,
 .editorial-value-orbit:focus-visible .editorial-value-circle > span {
@@ -1735,7 +1739,7 @@ body::before {
 }
 .editorial-value-orbit:hover .editorial-value-circle > p,
 .editorial-value-orbit:focus-visible .editorial-value-circle > p {
-  opacity: 0.88;
+  opacity: 0.96;
   visibility: visible;
   transform: translate(-50%, -1.45rem);
   transition:
@@ -1749,11 +1753,17 @@ body::before {
   transform: translate(var(--spread-x), var(--spread-y)) scale(0.96);
   opacity: 0.26;
 }
-.editorial-values-cluster:has(.editorial-value-orbit:hover) .editorial-value-center {
-  opacity: 0.8;
+.editorial-values-cluster:has(.editorial-value-orbit:hover) .editorial-value-center,
+.editorial-values-cluster:has(.editorial-value-orbit:focus-visible) .editorial-value-center {
+  z-index: 1;
+  opacity: 0.16;
+  color: color-mix(in oklab, var(--primary) 42%, black);
+  text-shadow: none;
+  transform: translate(-50%, -50%) scale(0.94);
 }
-.editorial-values-cluster:has(.editorial-value-orbit:hover) .editorial-values-watermark {
-  opacity: 0.035;
+.editorial-values-cluster:has(.editorial-value-orbit:hover) .editorial-values-watermark,
+.editorial-values-cluster:has(.editorial-value-orbit:focus-visible) .editorial-values-watermark {
+  opacity: 0;
 }
 
 @keyframes editorial-value-float {

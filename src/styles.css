@@ -1589,7 +1589,8 @@ body::before {
 .editorial-values-cluster:has(.editorial-value-center:hover) .editorial-values-watermark {
   opacity: 0.18;
   transform: translate(-50%, -50%) scale(1);
-  filter: brightness(0) invert(1);
+  filter: brightness(0) saturate(100%) invert(63%) sepia(22%) saturate(670%) hue-rotate(357deg)
+    brightness(92%) contrast(87%);
 }
 .editorial-values-cluster:has(.editorial-value-center:hover)
   .editorial-value-orbit
@@ -1790,7 +1791,8 @@ body::before {
 }
 .editorial-values-cluster:has(.editorial-value-center:hover) .editorial-values-watermark {
   opacity: 0.18;
-  filter: brightness(0) invert(1);
+  filter: brightness(0) saturate(100%) invert(63%) sepia(22%) saturate(670%) hue-rotate(357deg)
+    brightness(92%) contrast(87%);
   transform: translate(-50%, -50%) scale(1);
 }
 

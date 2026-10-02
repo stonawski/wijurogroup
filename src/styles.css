@@ -987,7 +987,7 @@ body::before {
   position: relative;
   min-height: 26rem;
   display: grid;
-  grid-template-columns: minmax(9rem, 12rem) 1fr;
+  grid-template-columns: minmax(13rem, 17rem) 1fr;
   overflow: hidden;
   border: 1px solid rgba(238, 232, 223, 0.15);
   border-radius: 1.5rem;
@@ -1168,7 +1168,7 @@ body::before {
     gap: 1.2rem;
   }
   .editorial-founder-profile {
-    grid-template-columns: 6.5rem 1fr;
+    grid-template-columns: 8.5rem 1fr;
     min-height: 18rem;
     border-radius: 1.1rem;
   }

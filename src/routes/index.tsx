@@ -39,12 +39,14 @@ const founders = [
     name: "David W. Juras",
     role: "Co-Founder",
     initials: "D",
+    image: "/people/david-juras.jpg",
     text: "Dívám se na svět s otevřenou myslí cestovatele, tvořím s citem umělce, bojuji s vytrvalostí sportovce a nechávám věci zrát s trpělivostí vinaře.",
   },
   {
     name: "Julie W. Juras",
     role: "Co-Founder",
     initials: "J",
+    image: null,
     text: "Kreativita je mou přirozenou součástí, cit pro detail a strategické myšlení mou silnou stránkou. Ráda propojuji nápady se souvislostmi a hledám cestu, která dává smysl.",
   },
 ];
@@ -384,9 +386,20 @@ function Index() {
                     style={{
                       backgroundImage: `linear-gradient(145deg, rgba(78,78,48,.72), rgba(42,43,26,.84)), url(${stoneTexture})`,
                     }}
-                    aria-hidden="true"
                   >
-                    <span>{f.initials}</span>
+                    <span aria-hidden="true">{f.initials}</span>
+                    {f.image ? (
+                      <img
+                        src={f.image}
+                        alt={f.name}
+                        className="editorial-founder-profile-image"
+                        loading="lazy"
+                        decoding="async"
+                        onError={(event) => {
+                          event.currentTarget.style.display = "none";
+                        }}
+                      />
+                    ) : null}
                   </div>
 
                   <div className="editorial-founder-profile-copy">

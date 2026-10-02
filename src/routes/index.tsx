@@ -39,17 +39,40 @@ const founders = [
     name: "David W. Juras",
     role: "Co-Founder",
     initials: "D",
+    image: "/people/david-juras.jpg",
     text: "Dívám se na svět s otevřenou myslí cestovatele, tvořím s citem umělce, bojuji s vytrvalostí sportovce a nechávám věci zrát s trpělivostí vinaře.",
   },
   {
     name: "Julie W. Juras",
     role: "Co-Founder",
     initials: "J",
+    image: null,
     text: "Kreativita je mou přirozenou součástí, cit pro detail a strategické myšlení mou silnou stránkou. Ráda propojuji nápady se souvislostmi a hledám cestu, která dává smysl.",
   },
 ];
 
-const values = ["Vize", "Integrita", "Růst", "Férovost", "Dlouhodobost"];
+const values = [
+  {
+    name: "Rodina, ne korporát",
+    text: "Držíme při sobě. Nekryjeme se za anonymní procesy ani tabulky a s klienty jednáme jako člověk s člověkem. Na rovinu a férově.",
+  },
+  {
+    name: "Karty na stůl",
+    text: "Nelžeme, nemažeme med kolem pusy ani neslibujeme vzdušné zámky. Co řekneme, to platí. Poctivost je pro nás jediná cesta.",
+  },
+  {
+    name: "Kreativita s tahem",
+    text: "Nuda neprodává. Boříme šablony, vymýšlíme koncepty, které vyčnívají z davu, a děláme marketing, co lidi skutečně baví.",
+  },
+  {
+    name: "Lov příležitostí",
+    text: "Nestojíme na místě. Hledáme pro váš byznys nové trhy, odkrýváme skrytý potenciál a tlačíme vás nekompromisně dopředu.",
+  },
+  {
+    name: "Ukázaná platí",
+    text: "Kecat umí každý, my doručujeme. Co slíbíme, to dodržíme. Každý projekt má jasný řád, držíme deadline a nápady měníme v reálné výsledky.",
+  },
+];
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -361,11 +384,22 @@ function Index() {
                   <div
                     className="editorial-founder-profile-mark"
                     style={{
-                      backgroundImage: `linear-gradient(145deg, rgba(247,242,235,.82), rgba(203,190,174,.76)), url(${stoneTexture})`,
+                      backgroundImage: `linear-gradient(145deg, rgba(78,78,48,.72), rgba(42,43,26,.84)), url(${stoneTexture})`,
                     }}
-                    aria-hidden="true"
                   >
-                    <span>{f.initials}</span>
+                    <span aria-hidden="true">{f.initials}</span>
+                    {f.image ? (
+                      <img
+                        src={f.image}
+                        alt={f.name}
+                        className="editorial-founder-profile-image"
+                        loading="lazy"
+                        decoding="async"
+                        onError={(event) => {
+                          event.currentTarget.style.display = "none";
+                        }}
+                      />
+                    ) : null}
                   </div>
 
                   <div className="editorial-founder-profile-copy">
@@ -566,11 +600,16 @@ function Index() {
                 <small>GROUP</small>
               </div>
 
-              {values.map((name, i) => (
-                <div key={name} className={`editorial-value-orbit editorial-value-orbit-${i + 1}`}>
+              {values.map((value, i) => (
+                <div
+                  key={value.name}
+                  className={`editorial-value-orbit editorial-value-orbit-${i + 1}`}
+                  tabIndex={0}
+                >
                   <div className="editorial-value-circle">
                     <span>{String(i + 1).padStart(2, "0")}</span>
-                    <h3>{name}</h3>
+                    <h3>{value.name}</h3>
+                    <p>{value.text}</p>
                   </div>
                 </div>
               ))}

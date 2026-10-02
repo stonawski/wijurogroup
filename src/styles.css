@@ -2769,6 +2769,42 @@ a {
     height: clamp(3.9rem, 9.5vw, 4.8rem);
   }
 
+  /* Keep hero media as a true background on tablet/mobile instead of a bottom media block. */
+  .ref-hero-media {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .ref-hero-background,
+  .ref-hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 74% center;
+  }
+
+  .ref-hero-wash {
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in oklab, var(--background) 96%, transparent) 0%,
+        color-mix(in oklab, var(--background) 90%, transparent) 22%,
+        color-mix(in oklab, var(--background) 62%, transparent) 48%,
+        color-mix(in oklab, var(--background) 18%, transparent) 76%,
+        transparent 100%
+      ),
+      linear-gradient(
+        90deg,
+        color-mix(in oklab, var(--background) 82%, transparent) 0%,
+        color-mix(in oklab, var(--background) 48%, transparent) 46%,
+        transparent 82%
+      );
+  }
+
   .ref-hero-copy {
     width: 100%;
     max-width: min(94%, 42rem);
@@ -2808,7 +2844,13 @@ a {
   }
 
   .ref-hero-media {
-    height: clamp(19rem, 46svh, 29rem);
+    inset: 0;
+    height: 100%;
+  }
+
+  .ref-hero-background,
+  .ref-hero-video {
+    object-position: 76% center;
   }
 
   .ref-hero-copy {

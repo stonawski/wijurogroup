@@ -1476,7 +1476,8 @@ body::before {
 
 /* Values — oversized overlapping shared-center flower */
 .editorial-values {
-  background: #4e4e30;
+  --values-bg: #4e4e30;
+  background: var(--values-bg);
   color: var(--primary-foreground);
   overflow: hidden;
 }
@@ -1727,7 +1728,7 @@ body::before {
 .editorial-value-orbit:focus-visible .editorial-value-circle {
   transform: scale(1.075);
   border-color: color-mix(in oklab, var(--primary-foreground) 72%, transparent);
-  background: color-mix(in oklab, var(--primary-foreground) 17%, var(--primary));
+  background: color-mix(in oklab, var(--primary-foreground) 14%, var(--values-bg));
   color: var(--accent-foreground);
   box-shadow:
     0 28px 90px rgba(0, 0, 0, 0.24),
@@ -1765,7 +1766,7 @@ body::before {
   /* Keep the center above the overlapping circles so its hover target never disappears. */
   z-index: 12;
   opacity: 0.16;
-  color: color-mix(in oklab, var(--primary) 42%, black);
+  color: color-mix(in oklab, var(--values-bg) 55%, black);
   text-shadow: none;
   transform: translate(-50%, -50%) scale(0.94);
 }

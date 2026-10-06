@@ -672,13 +672,7 @@ function Index() {
                     }`}
                     style={{ "--chair-mask": `url(${chair.mask})` } as React.CSSProperties}
                     aria-hidden="true"
-                  >
-                    <img
-                      src="/values/values-table.jpg"
-                      alt=""
-                      className="values-table-patch-image"
-                    />
-                  </div>
+                  />
                 ))}
 
                 <div className="values-table-copy-layer" aria-live="polite">

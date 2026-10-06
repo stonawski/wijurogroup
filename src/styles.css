@@ -923,7 +923,7 @@ body::before {
   font-family: "Prata", Georgia, serif;
   font-size: clamp(2.3rem, 3.2vw, 3.6rem);
   font-weight: 400;
-  line-height: 0.98;
+  line-height: 0.92;
   letter-spacing: -0.035em;
 }
 .editorial-story-manifesto > div {
@@ -1540,47 +1540,29 @@ body::before {
   inset: 0;
   width: 100%;
   height: 100%;
-  -webkit-mask-image: var(--chair-mask);
   mask-image: var(--chair-mask);
-  -webkit-mask-size: 100% 100%;
+  mask-mode: luminance;
   mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
+  mask-position: center;
   pointer-events: none;
 }
 .values-table-patch {
   z-index: 2;
-  overflow: hidden;
   opacity: 0;
-  transition: opacity 0.28s ease 0.08s;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(244, 237, 224, 0.78),
+      rgba(219, 205, 185, 0.58)
+    );
+  backdrop-filter: blur(15px) saturate(0.76);
+  transition:
+    opacity 0.42s ease 0.04s,
+    background 0.45s ease;
 }
 .values-table-patch.is-active {
   opacity: 1;
-}
-.values-table-patch-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  max-width: none;
-  object-fit: fill;
-  filter: blur(1.1px) saturate(0.92);
-  transform: scale(1.02);
-}
-.values-table-patch-top .values-table-patch-image {
-  transform: translateY(10%) scale(1.02);
-}
-.values-table-patch-left .values-table-patch-image {
-  transform: translateX(8%) scale(1.02);
-}
-.values-table-patch-right .values-table-patch-image {
-  transform: translateX(-8%) scale(1.02);
-}
-.values-table-patch-bottom-left .values-table-patch-image {
-  transform: translate(-2%, -9%) scale(1.02);
-}
-.values-table-patch-bottom-right .values-table-patch-image {
-  transform: translate(2%, -9%) scale(1.02);
 }
 
 .values-table-copy-layer {
@@ -1591,7 +1573,7 @@ body::before {
 }
 .values-table-copy {
   position: absolute;
-  width: clamp(8.5rem, 18vw, 18rem);
+  width: clamp(10rem, 23vw, 23rem);
   color: #383826;
   text-align: center;
   opacity: 0;
@@ -1615,7 +1597,7 @@ body::before {
 }
 .values-table-copy h3 {
   font-family: "Prata", Georgia, serif;
-  font-size: clamp(0.95rem, 2.15vw, 2.25rem);
+  font-size: clamp(1.35rem, 3.25vw, 3.8rem);
   font-weight: 400;
   line-height: 0.98;
   letter-spacing: -0.035em;
@@ -1623,31 +1605,31 @@ body::before {
 }
 .values-table-copy p {
   max-width: 18rem;
-  margin: 0.8rem auto 0;
-  font-size: clamp(0.52rem, 0.76vw, 0.78rem);
+  margin: 0.95rem auto 0;
+  font-size: clamp(0.58rem, 0.72vw, 0.78rem);
   line-height: 1.48;
   opacity: 0.78;
   text-wrap: pretty;
 }
 .values-table-copy-top {
-  left: 51.5%;
-  top: 29%;
+  left: 51%;
+  top: 27.5%;
 }
 .values-table-copy-left {
-  left: 27.5%;
+  left: 26%;
   top: 49%;
 }
 .values-table-copy-right {
-  left: 73.5%;
+  left: 75%;
   top: 49%;
 }
 .values-table-copy-bottom-left {
-  left: 39%;
-  top: 81%;
+  left: 38%;
+  top: 80%;
 }
 .values-table-copy-bottom-right {
-  left: 63%;
-  top: 81%;
+  left: 64%;
+  top: 80%;
 }
 
 .values-table-chair {
@@ -1658,6 +1640,7 @@ body::before {
   background-repeat: no-repeat;
   transform: translate3d(0, 0, 0);
   filter: drop-shadow(0 6px 10px rgba(64, 48, 28, 0));
+  transform-origin: center center;
   transition:
     transform 0.82s var(--ease-lux),
     filter 0.55s ease;
@@ -1718,6 +1701,11 @@ body::before {
 .values-table-hotspot:focus-visible {
   box-shadow: 0 0 0 2px rgba(78, 78, 48, 0.62), 0 0 0 5px rgba(255, 255, 255, 0.7);
 }
+.values-table-scene:not(:has(.values-table-hotspot.is-active))
+  .values-table-hotspot:hover {
+  cursor: grab;
+}
+
 .values-table-hotspot-top {
   left: 42%;
   top: 19%;
@@ -1781,7 +1769,7 @@ body::before {
     display: none;
   }
   .values-table-copy h3 {
-    font-size: clamp(0.72rem, 3.6vw, 1.05rem);
+    font-size: clamp(0.88rem, 4.2vw, 1.25rem);
   }
   .values-table-copy > span {
     font-size: 0.42rem;

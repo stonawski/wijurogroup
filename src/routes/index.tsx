@@ -75,11 +75,31 @@ const values = [
 ];
 
 const valueChairs = [
-  { id: "top", mask: "/values/mask-top.png" },
-  { id: "left", mask: "/values/mask-left.png" },
-  { id: "right", mask: "/values/mask-right.png" },
-  { id: "bottom-left", mask: "/values/mask-bottom-left.png" },
-  { id: "bottom-right", mask: "/values/mask-bottom-right.png" },
+  {
+    id: "top",
+    chair: "/values/chair-top.webp",
+    patch: "/values/patch-top.webp",
+  },
+  {
+    id: "left",
+    chair: "/values/chair-left.webp",
+    patch: "/values/patch-left.webp",
+  },
+  {
+    id: "right",
+    chair: "/values/chair-right.webp",
+    patch: "/values/patch-right.webp",
+  },
+  {
+    id: "bottom-left",
+    chair: "/values/chair-bottom-left.webp",
+    patch: "/values/patch-bottom-left.webp",
+  },
+  {
+    id: "bottom-right",
+    chair: "/values/chair-bottom-right.webp",
+    patch: "/values/patch-bottom-right.webp",
+  },
 ] as const;
 
 
@@ -665,12 +685,13 @@ function Index() {
                 />
 
                 {valueChairs.map((chair, i) => (
-                  <div
+                  <img
                     key={`patch-${chair.id}`}
+                    src={chair.patch}
+                    alt=""
                     className={`values-table-patch values-table-patch-${chair.id} ${
                       activeValue === i ? "is-active" : ""
                     }`}
-                    style={{ "--chair-mask": `url(${chair.mask})` } as React.CSSProperties}
                     aria-hidden="true"
                   />
                 ))}
@@ -685,18 +706,18 @@ function Index() {
                     >
                       <span>{String(i + 1).padStart(2, "0")}</span>
                       <h3>{value.name}</h3>
-                      <p>{value.text}</p>
                     </div>
                   ))}
                 </div>
 
                 {valueChairs.map((chair, i) => (
-                  <div
+                  <img
                     key={`chair-${chair.id}`}
+                    src={chair.chair}
+                    alt=""
                     className={`values-table-chair values-table-chair-${chair.id} ${
                       activeValue === i ? "is-active" : ""
                     } ${hoveredValue === i && activeValue !== i ? "is-peeking" : ""}`}
-                    style={{ "--chair-mask": `url(${chair.mask})` } as React.CSSProperties}
                     aria-hidden="true"
                   />
                 ))}
@@ -719,7 +740,7 @@ function Index() {
                 ))}
               </div>
 
-              <div className="values-table-mobile-detail" aria-live="polite">
+              <div className="values-table-detail" aria-live="polite">
                 {activeValue !== null ? (
                   <>
                     <span>{String(activeValue + 1).padStart(2, "0")}</span>

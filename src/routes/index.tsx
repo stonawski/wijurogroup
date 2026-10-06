@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Mail, Menu, Phone, X } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import logoAsset from "@/assets/Logo_WIJURO.png.asset.json";
 import { submitContact } from "@/lib/contact.functions";
@@ -74,35 +74,6 @@ const values = [
   },
 ];
 
-const valueChairs = [
-  {
-    id: "top",
-    chair: "/values/chair-top.webp",
-    patch: "/values/patch-top.webp",
-  },
-  {
-    id: "left",
-    chair: "/values/chair-left.webp",
-    patch: "/values/patch-left.webp",
-  },
-  {
-    id: "right",
-    chair: "/values/chair-right.webp",
-    patch: "/values/patch-right.webp",
-  },
-  {
-    id: "bottom-left",
-    chair: "/values/chair-bottom-left.webp",
-    patch: "/values/patch-bottom-left.webp",
-  },
-  {
-    id: "bottom-right",
-    chair: "/values/chair-bottom-right.webp",
-    patch: "/values/patch-bottom-right.webp",
-  },
-] as const;
-
-
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [headerCompact, setHeaderCompact] = useState(false);
@@ -114,10 +85,6 @@ function Index() {
   const [error, setError] = useState<string | null>(null);
   const [heroVideoEnabled, setHeroVideoEnabled] = useState(false);
   const [heroVideoReady, setHeroVideoReady] = useState(false);
-  const [activeValue, setActiveValue] = useState<number | null>(null);
-  const [hoveredValue, setHoveredValue] = useState<number | null>(null);
-  const valuesSectionRef = useRef<HTMLElement | null>(null);
-  const valuesHintedRef = useRef(false);
 
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -174,35 +141,6 @@ function Index() {
     );
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const section = valuesSectionRef.current;
-    if (!section) return;
-
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let timer: number | undefined;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry?.isIntersecting || valuesHintedRef.current) return;
-
-        valuesHintedRef.current = true;
-        timer = window.setTimeout(
-          () => setActiveValue(0),
-          reducedMotion ? 0 : 650,
-        );
-        observer.disconnect();
-      },
-      { threshold: 0.35 },
-    );
-
-    observer.observe(section);
-
-    return () => {
-      observer.disconnect();
-      if (timer) window.clearTimeout(timer);
-    };
   }, []);
 
   useEffect(() => {
@@ -654,13 +592,9 @@ function Index() {
         </section>
 
         {/* HODNOTY */}
-        <section
-          id="hodnoty"
-          ref={valuesSectionRef}
-          className="editorial-values scroll-mt-24"
-        >
+        <section id="hodnoty" className="editorial-values scroll-mt-24">
           <div className="editorial-shell">
-            <div className="editorial-heading-grid editorial-values-heading" data-reveal="left">
+            <div className="editorial-heading-grid" data-reveal="left">
               <p className="editorial-eyebrow">Hodnoty</p>
               <h2 className="editorial-display-title">
                 Na čem nám
@@ -669,88 +603,36 @@ function Index() {
               </h2>
             </div>
 
-            <div className="values-table-stage" data-reveal="scale">
-              <div
-                className="values-table-scene"
-                aria-label="Interaktivní hodnoty WIJURO Group. Kliknutím na židli zobrazíte hodnotu."
-              >
-                <img
-                  src="/values/values-table.jpg"
-                  alt="Stůl s pěti židlemi v prosvětleném interiéru"
-                  className="values-table-photo"
-                  width="1506"
-                  height="1045"
-                  loading="lazy"
-                  decoding="async"
-                />
+            <div
+              className="editorial-values-cluster"
+              data-reveal="scale"
+              aria-label="Hodnoty WIJURO Group"
+            >
+              <img
+                src={logoMark}
+                alt=""
+                className="editorial-values-watermark"
+                aria-hidden="true"
+              />
 
-                {valueChairs.map((chair, i) => (
-                  <img
-                    key={`patch-${chair.id}`}
-                    src={chair.patch}
-                    alt=""
-                    className={`values-table-patch values-table-patch-${chair.id} ${
-                      activeValue === i ? "is-active" : ""
-                    }`}
-                    aria-hidden="true"
-                  />
-                ))}
+              <div className="editorial-value-center" aria-hidden="true">
+                <span>WIJURO</span>
+                <small>GROUP</small>
+              </div>
 
-                <div className="values-table-copy-layer" aria-live="polite">
-                  {values.map((value, i) => (
-                    <div
-                      key={value.name}
-                      className={`values-table-copy values-table-copy-${valueChairs[i].id} ${
-                        activeValue === i ? "is-active" : ""
-                      }`}
-                    >
-                      <span>{String(i + 1).padStart(2, "0")}</span>
-                      <h3>{value.name}</h3>
-                    </div>
-                  ))}
+              {values.map((value, i) => (
+                <div
+                  key={value.name}
+                  className={`editorial-value-orbit editorial-value-orbit-${i + 1}`}
+                  tabIndex={0}
+                >
+                  <div className="editorial-value-circle">
+                    <span>{String(i + 1).padStart(2, "0")}</span>
+                    <h3>{value.name}</h3>
+                    <p>{value.text}</p>
+                  </div>
                 </div>
-
-                {valueChairs.map((chair, i) => (
-                  <img
-                    key={`chair-${chair.id}`}
-                    src={chair.chair}
-                    alt=""
-                    className={`values-table-chair values-table-chair-${chair.id} ${
-                      activeValue === i ? "is-active" : ""
-                    } ${hoveredValue === i && activeValue !== i ? "is-peeking" : ""}`}
-                    aria-hidden="true"
-                  />
-                ))}
-
-                {valueChairs.map((chair, i) => (
-                  <button
-                    key={`hotspot-${chair.id}`}
-                    type="button"
-                    className={`values-table-hotspot values-table-hotspot-${chair.id} ${
-                      activeValue === i ? "is-active" : ""
-                    }`}
-                    aria-label={`${activeValue === i ? "Skrýt" : "Zobrazit"} hodnotu: ${values[i].name}`}
-                    aria-pressed={activeValue === i}
-                    onMouseEnter={() => setHoveredValue(i)}
-                    onMouseLeave={() => setHoveredValue((current) => (current === i ? null : current))}
-                    onFocus={() => setHoveredValue(i)}
-                    onBlur={() => setHoveredValue((current) => (current === i ? null : current))}
-                    onClick={() => setActiveValue((current) => (current === i ? null : i))}
-                  />
-                ))}
-              </div>
-
-              <div className="values-table-detail" aria-live="polite">
-                {activeValue !== null ? (
-                  <>
-                    <span>{String(activeValue + 1).padStart(2, "0")}</span>
-                    <h3>{values[activeValue].name}</h3>
-                    <p>{values[activeValue].text}</p>
-                  </>
-                ) : (
-                  <p>Vyberte si místo u stolu.</p>
-                )}
-              </div>
+              ))}
             </div>
           </div>
         </section>
